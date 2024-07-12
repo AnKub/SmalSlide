@@ -81,5 +81,78 @@ document.addEventListener('click', function (e){
   if (targetElement.closest('.slide')){
     const slide = targetElement.closest('.slide');
     const slideImage = document.querySelector('ing');
+    const activeImage = document.querySelector('.slide__picture.active');
+
+      if (slide.classList.contains('swiper-slide-active')){
+          slideImage.classList.add('active');
+          textBlock.classList.add('active');
+          imageOpen(slideImage);
+      }else{
+        activeImage ? activeImage.classList.remove('active') : null;
+        pageSlider.slideTo(getIndex(slide));
+      }
+      e.preventDefault();
+  }
+  if(targetElement.closest('open-image')){
+    const openImage = targetElement.closest('.open-image');
+    const activeImage = document.querySelector('.slide__picture.active');
+    const imagePos = getImagePos(activeImage);
+
+    openImage.style.cssText = `
+    position: fixed;
+    left: ${imagePos.left}px;
+    top: ${imagePos.top}px;
+    width: ${imagePos.width}px;
+    height: ${imagePos.height}px;
+    transition : all ${speed}ms;
+    `;
+
+     setTimeout(() =>{
+        activeImage.classList.remove('active');
+        activeImage.style.opacity = 1;
+        openImage.remove();
+     },speed);
+
+     textBlock.classList.remove('active');
   }
 })
+
+function getIndex(el) {
+  return Array.from(el.parentNode.children).indexOf(el);
+
+}
+function imageOpen(image){
+  const imagePos = getImagePos(image);
+  const openImage = image.cloneNode();
+
+  const openImageBlock = document.createElement('div');
+  openImageBlock.classList.add('open-image');
+  openImageBlock.append(openImage);
+
+   openImageBlock.style.cssText +`
+   position: fixed;
+   left: ${imagePos.left}px;
+   top: ${imagePos.top}px;
+   width: ${imagePos.width}px;
+   height: ${imagePos.height}px;
+   transition: all ${speed}ms;
+   `;
+
+   document.body.append(openImageBlock);
+   setTimeout(() => {
+    image.style.opacity = 0;
+    openImageBlock.style.left = 0;
+    openImageBlock.style.top = 0;
+    openImageBlock.style.width = '100%';
+    openImageBlock.style.height = '100%;'
+   }, 0);
+}
+
+function getImagePos(image){
+  return{
+    left:image.getBoundingClientRect().left,
+    top:image.getBoundingClientRect().top,
+    width: image.offsetWidth,
+    height: image.offsetHeight
+  }
+}
