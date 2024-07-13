@@ -18,8 +18,8 @@ let pageSlider = new Swiper(`.slider`, {
   }
 });
 
-const page = document.querySelecnor ('.page');
-const images= document.querySelecnorAll('.slide__picture');
+const page = document.querySelector ('.page');
+const images= document.querySelectorAll('.slide__picture');
 
 if(images.lenght){
   let backgroundSlides = ``;
@@ -28,7 +28,7 @@ if(images.lenght){
   images.forEach(image => {
     backgroundSlides +=`
     <div class = 'background__slide swiper__slide'>
-      <div class='background__image'><
+      <div class = 'background__image'>
         <img src='${image.getAttribute("src")}' alt='${image.alt}'/>
       </div>
     </div>
@@ -76,11 +76,13 @@ const speed = 800;
 document.addEventListener('click', function (e){
   const targetElement = e.target;
   const textBlock = document.querySelector('.text');
-  textBlock.style.transitionDuration - `${speed}ms`;
+  textBlock.style.transitionDuration = `${speed}ms`;
+
 // open imaage
+
   if (targetElement.closest('.slide')){
     const slide = targetElement.closest('.slide');
-    const slideImage = document.querySelector('ing');
+    const slideImage = document.querySelector('img');
     const activeImage = document.querySelector('.slide__picture.active');
 
       if (slide.classList.contains('swiper-slide-active')){
