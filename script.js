@@ -163,3 +163,44 @@ function getImagePos(image) {
     height: image.offsetHeight
   }
 }
+
+
+// about scroll text
+function textOpacityScroll() {
+  const items = document.querySelectorAll('.text-section'); // Находим все элементы с классом 'text-section'
+
+  if (items.length) {
+    items.forEach(item => { // Перебираем каждый элемент
+      const itemValue = item.querySelector('.text-section__value'); // Находим элемент с текстом
+      const itemMask = item.querySelector('.text-section__mask'); // Находим элемент маски
+      const itemSpeed = itemValue.dataset.textSpeed || 500; // Получаем скорость из data-атрибута или используем значение по умолчанию
+      const itemOpacity = itemValue.dataset.textOpacity || 0.2; // Получаем прозрачность из data-атрибута или используем значение по умолчанию
+
+      // Оборачиваем каждое слово в span с заданной прозрачностью и скоростью перехода
+      itemValue.innerHTML = itemValue.innerHTML.replace(/([A-Za-z0-9'-,.&!?+<>/]+)/g, 
+      `<span style='transition: opacity ${itemSpeed}ms; opacity:${itemOpacity}'>$1</span>`);
+
+      // Обработчик события прокрутки
+      window.addEventListener('scroll', function () {
+        const maskPosition = itemMask.getBoundingClientRect().top - window.innerHeight; // Определяем положение маски относительно окна просмотра
+        const itemWay = Math.abs(maskPosition) / (window.innerHeight + itemMask.offsetHeight) * 100; // Рассчитываем текущий прогресс прокрутки
+        const itemWords = itemValue.querySelectorAll('span'); // Находим все слова, обернутые в span
+        const currentWord = maskPosition <= 0 ? Math.floor(itemWords.length / 100 * itemWay) : -1; // Определяем текущее слово на основе положения прокрутки
+        addOpacity(itemWords, currentWord); // Вызываем функцию для изменения прозрачности слов
+      });
+
+      // Функция для изменения прозрачности слов
+      function addOpacity(itemWords, currentWord) {
+        itemWords.forEach((itemWord, index) => {
+          itemWord.style.opacity = itemOpacity; // Устанавливаем прозрачность для всех слов
+          if (index <= currentWord) {
+            itemWord.style.opacity = 1; // Устанавливаем полную непрозрачность для текущего и предыдущих слов
+          }
+        });
+      }
+    });
+  }
+}
+
+// Вызов функции для начала работы
+textOpacityScroll();
