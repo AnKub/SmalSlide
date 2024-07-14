@@ -120,7 +120,7 @@ body {
   top: 0;
   left: 0;
   object-fit: cover;
-  filter: grayscale(1);
+  filter: grayscale(1) brightness(0.6) contrast(0.8);
 }
 
 .text {
@@ -173,10 +173,11 @@ body {
 /* Общие стили для текстовой секции */
 .wr {
   position: relative;
+  
 }
 
 .some-section {
-  height: 100vh; /* Высота секции должна быть 100% высоты окна */
+  height: 30vh; /* Высота секции должна быть 100% высоты окна */
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -211,11 +212,12 @@ body {
   left: 0;
 }
 
+
 /* Стили для футера */
 .footer {
   background-color: #333; /* Цвет фона футера */
   color: #fff; /* Цвет текста */
-  padding: 20px; /* Внутренний отступ футера */
+  padding: 15px; /* Внутренний отступ футера */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -225,28 +227,42 @@ body {
 }
 
 .footer__left {
-  width: 30%;
+  width: 33%;
 }
 
 .footer__center {
-  width: 40%;
+  width: 33%;
   text-align: center;
+  color: rgba(150, 200, 255, 0.5);
+  font-size: 14px;
 }
 
 .footer__right {
-  width: 30%;
+  width: 33%;
   display: flex;
   justify-content: flex-end;
 }
 
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Выравнивание ссылок по центру */
+  margin-right: 30%;
+}
+
 .footer__links a {
-  margin-left: 10px; /* Отступ между ссылками */
+  display: flex;
+  align-items: center; /* Выравнивание иконок и текста по центру */
+  text-decoration: none;
+  color: rgba(150, 200, 255, 0.5);
+  margin-bottom: 3px; 
 }
 
 .footer__links img {
   max-height: 30px; /* Высота иконок соцсетей */
+  margin-right: 20px; /* Отступ между иконкой и текстом */
 }
 
-.footer__logo {
-  /* Стили для логотипа в футере */
+.footer__links span {
+  font-size: 14px; /* Размер текста */
 }
