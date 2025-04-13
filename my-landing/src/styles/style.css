@@ -1,0 +1,268 @@
+/* Основные стили */
+@import url('reset.css');
+
+body {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  background-color: #000;
+  color: #fff;
+  margin: 0; 
+  padding: 0; 
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10vh 0; 
+  position: relative; 
+}
+
+.slider {
+  overflow: hidden;
+  flex: 1 1 auto;
+}
+
+.slider__wrapper {
+  display: flex;
+}
+
+.slider__slide {
+  flex-shrink: 0;
+}
+
+.slide__body {
+  width: 60vh;
+  margin: 0 auto;
+  max-width: 90vw;
+  box-shadow: 0 0 1.875rem rgba(150, 200, 255, 0.5);
+}
+
+.slide__image {
+  padding-bottom: 120%;
+  position: relative;
+  cursor: pointer;
+}
+
+.slide__picture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.slider__scrollbar {
+  position: absolute;
+  width: 100%;
+  height: 0.3125rem;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+}
+
+.slider__scrollbar:hover,
+.slider__scrollbar:active {
+  opacity: 0.8;
+  height: 0.9375rem;
+}
+
+.slider__scrollbar .swiper-scrollbar-drag {
+  opacity: 1;
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.background__wrapper {
+  min-height: 100%;
+  display: flex;
+}
+
+.background__slide {
+  min-height: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.background__image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.background__image img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.6) contrast(0.8);
+}
+
+.text {
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 12.5vh;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.text__wrapper {
+  display: flex;
+  position: absolute;
+  align-items: flex-end;
+}
+
+.text__slide {
+  position: relative;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.text__slide span {
+  display: inline-block;
+  max-width: 90vw;
+  padding: 0.3125rem 0.625rem;
+  background-color: #000;
+  text-transform: uppercase;
+  font-size: 4vh;
+}
+
+@media (max-aspect-ratio: 3/2) {
+  .text__slide span {
+    font-size: 3.5vw;
+  }
+}
+
+@media (min-width: 991px) {
+  .text__slide span {
+    max-width: 48vw;
+  }
+}
+
+/* Общие стили для текстовой секции */
+.wr {
+  position: relative;
+  
+}
+
+.some-section {
+  height: 30vh; 
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.text-section {
+  position: relative;
+  min-height: 200vh;
+}
+
+.text-section__wr {
+  position: sticky;
+  top: 0;
+  display: flex;
+  min-height: 100vh; 
+  align-items: center;
+}
+
+.text-section__value {
+  font-size: 2.375rem;
+  font-weight: 900;
+  line-height: 1.3;
+  max-width: 50rem;
+  padding-block: 1.25rem;
+  padding-inline: 0.9375rem;
+  margin: 0 auto;
+}
+
+.text-section__mask {
+  height: 16.666%; 
+  position: absolute;
+  width: 100%;
+  top: 33.333%; 
+  left: 0;
+}
+
+
+/* для футера */
+.footer {
+  background-color: #333; 
+  color: #fff; 
+  padding: 15px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute; 
+  bottom: 0; 
+  width: 100%;
+}
+
+.footer__left {
+  width: 33%;
+}
+
+.footer__center {
+  width: 33%;
+  text-align: center;
+  color: rgba(150, 200, 255, 0.5);
+  font-size: 14px;
+}
+
+.footer__right {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  margin-right: 30%;
+}
+
+.footer__links a {
+  display: flex;
+  align-items: center; 
+  text-decoration: none;
+  color: rgba(150, 200, 255, 0.5);
+  margin-bottom: 3px; 
+}
+
+.footer__links img {
+  max-height: 30px; 
+  margin-right: 20px; 
+}
+
+.footer__links span {
+  font-size: 14px; 
+}
