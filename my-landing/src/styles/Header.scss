@@ -1,0 +1,27 @@
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+
+  a {
+    text-decoration: none;
+    color: #333;
+    &:hover {
+      color: #0077ff;
+    }
+  }
+}

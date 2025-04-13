@@ -1,15 +1,19 @@
-import React from 'react';
 import Header from './components/Header';
 import Slider from './components/Slider';
+import Footer from './components/Footer';
+import TextSection from './components/TextSection';
 
 const App = () => {
   return (
-    <div>
+    <div className="wrapper">
       <Header />
-      <Slider />
+      <main className="page">
+        <Slider />
+        <TextSection />
+      </main>
+      <Footer />
     </div>
   );
 };
 
 export default App;
-

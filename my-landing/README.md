@@ -1,54 +1,28 @@
-# React + TypeScript + Vite
+🌀 Swipify™ — Because Your Images Deserve a Catwalk
+Welcome to Swipify™, the fancy-pants, no-backend-needed, totally-not-overengineered™ JavaScript slider for your web page. We don’t just slide images — we elevate them.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Features:
+Synchronized triple-slider madness: image, background, and title — all swiping together like besties.
 
-Currently, two official plugins are available:
+Smooth open & close animations so slick, even your grandma’s old photo albums will want in.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Scroll-based text animation because... well, why not?
 
-## Expanding the ESLint configuration
+Responsive design. On desktop? Great. On mobile? Still looks fab.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+No backend, no fuss, all the drama.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+🧙‍♂️ How it works:
+Drop it in, slap your images inside .slide__picture, and Swipify will do its magic ✨.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+📦 Install
+You don’t. Just copy-paste like it’s 2009.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+html
+Копировать код
+<script src="swiper.min.js"></script>
+<script src="swipify.js"></script>
+🧪 Use Case
+Need to impress your client with minimal effort but max visual flair? Swipify™.
+Want to feel like you’re working with React but in Vanilla JS? Swipify™.
+Woke up and chose ✨ CSS transitions ✨? Swipify™.
