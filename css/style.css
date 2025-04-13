@@ -5,23 +5,23 @@ body {
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   background-color: #000;
   color: #fff;
-  margin: 0; /* Убедитесь, что у body нет внутренних отступов */
-  padding: 0; /* Убедитесь, что у body нет внутренних отступов */
+  margin: 0; 
+  padding: 0; 
 }
 
 .wrapper {
-  min-height: 100vh; /* Высота обертки страницы на весь экран */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .page {
-  flex: 1; /* Занимает все доступное пространство, чтобы содержимое занимало центральную позицию */
+  flex: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10vh 0; /* Вертикальный отступ вверху и внизу страницы */
-  position: relative; /* Положение относительно, чтобы футер мог быть абсолютным */
+  padding: 10vh 0; 
+  position: relative; 
 }
 
 .slider {
@@ -177,20 +177,20 @@ body {
 }
 
 .some-section {
-  height: 30vh; /* Высота секции должна быть 100% высоты окна */
+  height: 30vh; 
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 .text-section {
   position: relative;
-  min-height: 200vh; /* Минимальная высота текстовой секции */
+  min-height: 200vh;
 }
 
 .text-section__wr {
   position: sticky;
   top: 0;
   display: flex;
-  min-height: 100vh; /* Минимальная высота контейнера текстовой секции */
+  min-height: 100vh; 
   align-items: center;
 }
 
@@ -205,25 +205,25 @@ body {
 }
 
 .text-section__mask {
-  height: 16.666%; /* Высота маски текстовой секции */
+  height: 16.666%; 
   position: absolute;
   width: 100%;
-  top: 33.333%; /* Положение маски от верха */
+  top: 33.333%; 
   left: 0;
 }
 
 
-/* Стили для футера */
+/* для футера */
 .footer {
-  background-color: #333; /* Цвет фона футера */
-  color: #fff; /* Цвет текста */
-  padding: 15px; /* Внутренний отступ футера */
+  background-color: #333; 
+  color: #fff; 
+  padding: 15px; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute; /* Абсолютное положение футера */
-  bottom: 0; /* Футер прижимается к нижней части страницы */
-  width: 100%; /* Футер занимает всю ширину экрана */
+  position: absolute; 
+  bottom: 0; 
+  width: 100%;
 }
 
 .footer__left {
@@ -246,23 +246,23 @@ body {
 .footer__links {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Выравнивание ссылок по центру */
+  align-items: center; 
   margin-right: 30%;
 }
 
 .footer__links a {
   display: flex;
-  align-items: center; /* Выравнивание иконок и текста по центру */
+  align-items: center; 
   text-decoration: none;
   color: rgba(150, 200, 255, 0.5);
   margin-bottom: 3px; 
 }
 
 .footer__links img {
-  max-height: 30px; /* Высота иконок соцсетей */
-  margin-right: 20px; /* Отступ между иконкой и текстом */
+  max-height: 30px; 
+  margin-right: 20px; 
 }
 
 .footer__links span {
-  font-size: 14px; /* Размер текста */
+  font-size: 14px; 
 }
