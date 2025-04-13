@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import Swiper from 'swiper';
-import 'swiper/css';
-import 'swiper/css/scrollbar';
+import '../styles/Slider.scss'
+import '../../node_modules/swiper/swiper.css';
+import '../../node_modules/swiper/modules/scrollbar-element.css';
+
 
 import './Slider.scss';
 
