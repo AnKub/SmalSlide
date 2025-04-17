@@ -5,6 +5,10 @@ import '../../node_modules/swiper/swiper.css';
 import '../../node_modules/swiper/modules/scrollbar-element.css';
 
 
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import 'swiper/swiper-bundle.min.css'
+// import 'swiper/swiper.min.css'
+
 import './Slider.scss';
 
 const images = [
