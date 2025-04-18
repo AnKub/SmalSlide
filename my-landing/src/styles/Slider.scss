@@ -1,10 +1,20 @@
-.main-slider {
+.slider {
+  overflow: hidden;
   width: 100%;
-  max-height: 500px;
+}
 
+.slider__container {
+  display: flex;
+  gap: 16px;
+}
+
+.slider__slide {
+  position: relative;
+  min-width: 100%;
+  flex: 0 0 auto;
   img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    display: block;
+    border-radius: 8px;
   }
 }
