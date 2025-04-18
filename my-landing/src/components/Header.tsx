@@ -6,9 +6,6 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="header__nav">
-            <div className="right-side">
-              <MiniWeather />
-            </div>
         <Link to="/" className="header__logo">My App</Link>
         <div className="header__links">
           <Link to="/about">About</Link>
@@ -17,7 +14,7 @@ const Header = () => {
 
         <div className="header__extras">
           <Link to="/weather" className="header__weather">
-            🌤️ 15°C Germany
+          <MiniWeather />
           </Link>
           <Link to="/login" className="header__login-button">
             Login

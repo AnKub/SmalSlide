@@ -1,10 +1,13 @@
+// MiniWeather.tsx
 import React, { useEffect } from "react";
 import { useWeather } from "../Hooks/useWeather";
 import { Image, Text } from "@mantine/core";
+import { showNotification } from "@mantine/notifications"; 
+import { IconAlertCircle } from "@tabler/icons-react";
 import styles from "./MiniWeather.module.scss";
 
 const MiniWeather: React.FC = () => {
-  const { weather, fetchWeather } = useWeather();
+  const { weather, fetchWeather, setError, error } = useWeather();
 
   useEffect(() => {
     const saved = localStorage.getItem("weather");
@@ -12,8 +15,37 @@ const MiniWeather: React.FC = () => {
 
     if (!saved || !lastFetch || Date.now() - Number(lastFetch) > 30 * 60 * 1000) {
       fetchWeather("Magdeburg");
+    } else {
+      try {
+        const parsedWeather = JSON.parse(saved);
+        if (parsedWeather) {
+          fetchWeather("Magdeburg");
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Unknown error occurred.");
+        }
+      }
     }
-  }, [fetchWeather]);
+  }, [fetchWeather, setError]);
+
+  // показуємо toast, якщо з'явилась помилка
+  useEffect(() => {
+    if (error) {
+      showNotification({
+        title: "Weather Error",
+        message: error,
+        color: "red",
+        icon: <IconAlertCircle size="1.1rem" />,
+      });
+  
+      const timeout = setTimeout(() => setError(""), 5000); // очищаємо помилку
+      return () => clearTimeout(timeout);
+    }
+  }, [error, setError]);
+  
 
   if (!weather) return null;
 

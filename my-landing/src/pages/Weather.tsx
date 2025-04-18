@@ -4,12 +4,11 @@ import { Container, TextInput, Button, Card, Text, Image } from "@mantine/core";
 import { useDebounce } from 'use-debounce';
 import styles from "./WeatherApp.module.scss";
 
-const WeatherApp: React.FC = () => {
+const Weather: React.FC = () => {
   const [city, setCity] = useState("");
   const { weather, error, fetchWeather } = useWeather();
   const [debouncedCity] = useDebounce(city, 1000); 
 
-  // debounce
   useEffect(() => {
     if (debouncedCity) {
       fetchWeather(debouncedCity);
@@ -62,4 +61,4 @@ const WeatherApp: React.FC = () => {
   );
 };
 
-export default WeatherApp;
+export default Weather;
