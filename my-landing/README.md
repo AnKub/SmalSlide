@@ -2,7 +2,7 @@
 Welcome to Swipify™, the fancy-pants, no-backend-needed, totally-not-overengineered™ JavaScript slider for your web page. We don’t just slide images — we elevate them.
 
 🚀 Features:
-Synchronized triple-slider madness: image, background, and title — all swiping together like besties.
+Synchronized triple-slider madness: image, background, and title — all swiping together like besties...
 
 Smooth open & close animations so slick, even your grandma’s old photo albums will want in.
 
