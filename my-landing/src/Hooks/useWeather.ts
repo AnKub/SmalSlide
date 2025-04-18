@@ -65,5 +65,5 @@ export const useWeather = () => {
     }
   };
 
-  return { weather, error, fetchWeather, setError, showHighlight }; // ← Додано setError
+  return { weather, error, fetchWeather, setError, showHighlight }; 
 };

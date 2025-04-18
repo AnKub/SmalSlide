@@ -1,4 +1,3 @@
-// MiniWeather.tsx
 import React, { useEffect } from "react";
 import { useWeather } from "../Hooks/useWeather";
 import { Image, Text } from "@mantine/core";
@@ -31,7 +30,7 @@ const MiniWeather: React.FC = () => {
     }
   }, [fetchWeather, setError]);
 
-  // показуємо toast, якщо з'явилась помилка
+  // трохи toast, якщо  помилка
   useEffect(() => {
     if (error) {
       showNotification({
@@ -41,7 +40,7 @@ const MiniWeather: React.FC = () => {
         icon: <IconAlertCircle size="1.1rem" />,
       });
   
-      const timeout = setTimeout(() => setError(""), 5000); // очищаємо помилку
+      const timeout = setTimeout(() => setError(""), 5000); 
       return () => clearTimeout(timeout);
     }
   }, [error, setError]);
