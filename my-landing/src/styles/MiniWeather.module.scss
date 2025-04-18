@@ -1,0 +1,19 @@
+.miniWeather {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.temp {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
