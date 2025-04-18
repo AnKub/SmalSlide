@@ -1,19 +1,26 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Slider from './components/Slider';
 import Footer from './components/Footer';
-import TextSection from './components/TextSection';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Login from './pages/Login';
 
-const App = () => {
+function App() {
   return (
-    <div className="wrapper">
+    <Router>
       <Header />
-      <main className="page">
-        <Slider />
-        <TextSection />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
       </main>
       <Footer />
-    </div>
+    </Router>
   );
-};
+}
 
 export default App;
