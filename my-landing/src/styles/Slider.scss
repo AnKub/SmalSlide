@@ -1,20 +1,30 @@
 .slider {
   overflow: hidden;
   width: 100%;
+  padding: 20px 0;
 }
 
 .slider__container {
   display: flex;
   gap: 16px;
+  transition: transform 0.3s ease;
 }
 
 .slider__slide {
   position: relative;
   min-width: 100%;
   flex: 0 0 auto;
+
   img {
     width: 100%;
     display: block;
     border-radius: 8px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider__slide img {
+    border-radius: 4px;
   }
 }

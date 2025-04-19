@@ -1,14 +1,27 @@
+import { useEffect, useRef, useState } from 'react';
 import '../styles/TextSection.scss';
 
 const TextSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="wr">
-      <div className="text-section">
+    <div className="wr" ref={sectionRef}>
+      <div className={`text-section ${isVisible ? 'visible' : 'hidden'}`}>
         <div className="text-section__wr">
-          <p className="text-section__value" data-text-speed="500" data-text-opacity="0.2">
-            <span>"The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents."</span><br />
-            <span>"The human beings, apparently, live their lives in serene ignorance of the dark abyss in which they lie."</span><br /><br />
-            <span>"The seas that lap the shores of the human world are teeming with darkness and strange creatures."</span>
+          <p className="text-section__value">
+            <span>"The most merciful thing in the world..."</span><br />
+            <span>"The human beings..."</span><br /><br />
+            <span>"The seas that lap..."</span>
           </p>
         </div>
         <div className="text-section__mask"></div>

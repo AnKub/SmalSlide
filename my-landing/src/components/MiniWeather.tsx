@@ -11,24 +11,16 @@ const MiniWeather: React.FC = () => {
   useEffect(() => {
     const saved = localStorage.getItem("weather");
     const lastFetch = localStorage.getItem("lastFetch");
-
-    if (!saved || !lastFetch || Date.now() - Number(lastFetch) > 30 * 60 * 1000) {
+  
+    const shouldFetch =
+      !saved ||
+      !lastFetch ||
+      Date.now() - Number(lastFetch) > 30 * 60 * 1000;
+  
+    if (shouldFetch) {
       fetchWeather("Magdeburg");
-    } else {
-      try {
-        const parsedWeather = JSON.parse(saved);
-        if (parsedWeather) {
-          fetchWeather("Magdeburg");
-        }
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("Unknown error occurred.");
-        }
-      }
     }
-  }, [fetchWeather, setError]);
+  }, [fetchWeather]);
 
   // трохи toast, якщо  помилка
   useEffect(() => {
@@ -37,7 +29,7 @@ const MiniWeather: React.FC = () => {
         title: "Weather Error",
         message: error,
         color: "red",
-        icon: <IconAlertCircle size="1.1rem" />,
+        icon: <IconAlertCircle size="0.2rem" />,
       });
   
       const timeout = setTimeout(() => setError(""), 5000); 

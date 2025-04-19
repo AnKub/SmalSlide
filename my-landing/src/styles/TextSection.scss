@@ -1,6 +1,19 @@
 .text-section {
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+  }
 }
 
 .text-section__wr {
@@ -30,4 +43,11 @@
   background-color: #fff;
   opacity: 0.2;
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .text-section__value {
+    font-size: 14px;
+    animation-duration: 20s;
+  }
 }

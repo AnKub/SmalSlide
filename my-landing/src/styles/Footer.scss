@@ -1,24 +1,40 @@
 .footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   padding: 20px;
   background-color: #333;
   color: white;
+  gap: 20px;
+}
+
+.footer__section {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer__left,
 .footer__center,
 .footer__right {
+  flex: 1 1 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .footer__logo img {
-  max-height: 100%;
+  max-height: 100px;
+  height: auto;
+  width: auto;
 }
 
 .footer__links {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -27,8 +43,17 @@
   color: white;
   display: flex;
   align-items: center;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.footer__links a:hover {
+  background-color: #444;
 }
 
 .footer__links img {
+  width: 20px;
+  height: 20px;
   margin-right: 5px;
 }
