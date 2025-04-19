@@ -3,7 +3,7 @@
 const Contakt = () => {
   return (
     <>
-    <h2>Yolololo</h2>
+    <h2>Yololo</h2>
     </>
   );
 };
