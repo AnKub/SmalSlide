@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useWeather } from "../Hooks/useWeather";
 import { Container, TextInput, Button, Card, Text, Image } from "@mantine/core";
 import { useDebounce } from 'use-debounce';
-import styles from "./WeatherApp.module.scss";
+import styles from '../styles/MiniWeather.module.scss';
 
 const Weather: React.FC = () => {
   const [city, setCity] = useState("");

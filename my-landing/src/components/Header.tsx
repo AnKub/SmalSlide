@@ -9,13 +9,13 @@ const Header = () => {
         <Link to="/" className="header__logo">My App</Link>
         <div className="header__links">
           <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
-        </div>
-
-        <div className="header__extras">
-          <Link to="/weather" className="header__weather">
+          <Link to="/contact">Contact</Link> 
+           <Link to="/weather" className="header__weather">
           <MiniWeather />
           </Link>
+        </div>
+
+        <div className="header__extras">        
           <Link to="/login" className="header__login-button">
             Login
           </Link>
