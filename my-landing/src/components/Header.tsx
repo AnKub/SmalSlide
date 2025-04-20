@@ -14,12 +14,12 @@ const Header = () => {
     <Link to="/contact">Contact</Link>
     <Link to="/weather">Weather</Link>
   </div>
-  
+
+    
+  <div className="header__extras">
     <div className="header__weather">
           <MiniWeather />
         </div>
-  <div className="header__extras">
-    
     <Link to="/login" className="header__login-button">Login</Link>
   </div>
 </nav>
