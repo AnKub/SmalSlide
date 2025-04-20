@@ -2,58 +2,79 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+  padding: 40px;
   background-color: #111;
   color: white;
-  gap: 20px;
+
+  .footer__section {
+    flex: 1 1 200px;
+    margin-bottom: 20px;
+
+    h4 {
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 8px;
+
+        a {
+          color: #bbb;
+          text-decoration: none;
+          font-size: 14px;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .footer__logo img {
+    max-height: 60px;
+    width: auto;
+  }
+
+  .footer__socials {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    a {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+
+      img {
+        width: 24px;
+        height: 24px;
+        margin-right: 6px;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
 }
 
-.footer__section {
-  flex: 1 1 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
-.footer__left,
-.footer__center,
-.footer__right {
-  flex: 1 1 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer__logo img {
-  max-height: 100px;
-  height: auto;
-  width: auto;
-}
-
-.footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.footer__links a {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 5px 10px;
-  transition: background-color 0.3s ease;
-  border-radius: 5px;
-}
-
-.footer__links a:hover {
-  background-color: #444;
-}
-
-.footer__links img {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
+  .footer__section {
+    flex: 1 1 100%;
+  }
 }
