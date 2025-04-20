@@ -1,0 +1,172 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(48, 1, 48, 0.8); // темно-фіолетовий з прозорістю
+  padding: 15px 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.7); // оранжева підсвітка
+}
+
+.input {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: rgba(48, 1, 48, 0.8);
+  color: white;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  width: 250px;
+}
+
+.input:hover,
+.input:focus {
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+}
+
+.button {
+  background-color: #cc7000; // темно-оранжева
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff8c00;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+}
+
+.card {
+  width: 30vw;
+  height: 30vh;
+  min-width: 280px;
+  min-height: 300px;
+  background-color: rgba(48, 1, 48, 0.95); // темно-фіолетовий
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 140, 0, 0.7); // оранжева рамка
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 35px rgba(255, 140, 0, 0.9);
+}
+
+.cityName {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.weatherDetails {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33%;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 66%;
+}
+
+.weatherIcon {
+  width: 60px;
+  height: 60px;
+  animation: floating 4s ease-in-out infinite alternate;
+  margin-bottom: 10px;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.weatherDescription {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+.temperature {
+  font-size: 48px;
+  font-weight: bold;
+  color: #fbf19a;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 80%;
+    height: auto;
+  }
+
+  .weatherDetails {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .leftSide, .rightSide {
+    width: 100%;
+  }
+
+  .inputContainer {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

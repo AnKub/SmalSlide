@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useWeather } from "../Hooks/useWeather";
 import { Container, TextInput, Button, Card, Text, Image } from "@mantine/core";
 import { useDebounce } from 'use-debounce';
-import styles from '../styles/MiniWeather.module.scss';
+import styles from '../styles/Weather.module.scss';
 
 const Weather: React.FC = () => {
   const [city, setCity] = useState("");
@@ -24,16 +24,16 @@ const Weather: React.FC = () => {
   return (
     <Container className={styles.container}>
       <div className={styles.inputContainer}>
-        <TextInput
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Enter city"
-          className={styles.input}
-          onKeyDown={handleKeyDown} 
-        />
-        <Button onClick={() => fetchWeather(city)} className={styles.button}>
-          Get Weather
-        </Button>
+      <TextInput
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Enter city"
+            className={styles.input}
+            onKeyDown={handleKeyDown}
+          />
+          <Button onClick={() => fetchWeather(city)} className={styles.button}>
+            Get Weather
+          </Button>   
       </div>
 
       {error && <Text className={styles.error}>{error}</Text>}
