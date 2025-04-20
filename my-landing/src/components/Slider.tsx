@@ -1,5 +1,7 @@
 import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import '../styles/Slider.scss';
+import { useRef } from 'react';
 
 const images = [
   { src: '/img/01.jfif', title: 'Some foto of somthing', alt: 'image' },
@@ -12,7 +14,14 @@ const images = [
 ];
 
 const Slider = () => {
-  const [emblaRef] = useEmblaCarousel({ loop: true });
+  const autoplay = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false }) // Автопрокрутка кожні 3 секунди
+  );
+
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true, align: 'center' },
+    [autoplay.current]
+  );
 
   return (
     <div className="slider" ref={emblaRef}>
