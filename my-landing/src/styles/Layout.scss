@@ -1,23 +1,28 @@
 .layout {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   transition: background-image 0.8s ease-in-out;
 
-  &.home-bg {
-    background-image: url('/images/bg-home.webp');
+  &.bg-home {
+    background-image: url('/img/bg-home.webp');
   }
 
-  &.about-bg {
-    background-image: url('/images/bg-about.webp');
+  &.bg-about {
+    background-image: url('/img/bg-about.webp');
   }
 
-  &.contact-bg {
-    background-image: url('/images/bg-contact.webp');
+  &.bg-contact {
+    background-image: url('/img/bg-contact.webp');
   }
 
-  &.weather-bg {
-    background-image: url('/images/bg-weather.webp');
+  &.bg-weather {
+    background-image: url('/img/bg-weather.webp');
   }
+}
+main {
+  flex: 1; 
 }

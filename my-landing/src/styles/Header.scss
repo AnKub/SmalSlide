@@ -1,8 +1,11 @@
 .header {
+  margin-top: 1rem;
+  border-radius: 30px;
+  opacity: 0.8;
   width: 100%;
   background-color: #111;
   padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.5);
   position: sticky;
   top: 0;
   z-index: 999;
@@ -27,12 +30,11 @@
 .header__weather {
   display: flex;
   align-items: center;
-  margin-left: 1rem;
+  justify-content: center;
 }
 
 .header__links {
   display: flex;
-  gap: 1.5rem;
   flex-grow: 1;
   justify-content: center;
 
@@ -52,10 +54,12 @@
   align-items: center;
 
   .header__login-button {
-    background-color: #4dabf7;
+    background-color: #1d4a6e;
     color: white;
+    // width: 35px;
+    // min-height: 35px;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border-radius: 30px;
     text-decoration: none;
     font-weight: 500;
     transition: background-color 0.3s ease;

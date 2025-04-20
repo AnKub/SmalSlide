@@ -15,7 +15,6 @@ function App() {
     <MantineProvider theme={theme}>
       <Router>
         <Routes>
-
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
