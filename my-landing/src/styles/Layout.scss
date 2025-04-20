@@ -1,23 +1,23 @@
-// .layout {
-//   min-height: 100vh;
-//   background-size: cover;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   transition: background-image 0.8s ease-in-out;
+.layout {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.8s ease-in-out;
 
-//   &.home-bg {
-//     background-image: url('/images/bg-home.webp');
-//   }
+  &.home-bg {
+    background-image: url('/images/bg-home.webp');
+  }
 
-//   &.about-bg {
-//     background-image: url('/images/bg-about.webp');
-//   }
+  &.about-bg {
+    background-image: url('/images/bg-about.webp');
+  }
 
-//   &.contact-bg {
-//     background-image: url('/images/bg-contact.webp');
-//   }
+  &.contact-bg {
+    background-image: url('/images/bg-contact.webp');
+  }
 
-//   &.weather-bg {
-//     background-image: url('/images/bg-weather.webp');
-//   }
-// }
+  &.weather-bg {
+    background-image: url('/images/bg-weather.webp');
+  }
+}
