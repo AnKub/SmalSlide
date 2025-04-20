@@ -1,11 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Weather from './pages/Weather';
+import Layout from './components/Layout';
 
 import { MantineProvider, createTheme } from "@mantine/core";
 
@@ -15,21 +14,20 @@ function App() {
   return (
     <MantineProvider theme={theme}>
       <Router>
-        <Header />
-        <main>
-          <Routes>
+        <Routes>
+
+          <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/weather" element={<Weather />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </main>
-        <Footer />
+            <Route path="/weather" element={<Weather />} />
+          </Route>
+
+          <Route path="/login" element={<Login />} />
+        </Routes>
       </Router>
     </MantineProvider>
   );
 }
 
 export default App;
-
