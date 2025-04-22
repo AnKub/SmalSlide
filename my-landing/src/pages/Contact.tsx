@@ -1,4 +1,4 @@
-
+import './ContactPage.scss';
 
 const Contakt = () => {
   return (
