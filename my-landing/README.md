@@ -19,7 +19,7 @@ Drop it in, slap your images inside .slide__picture, and Swipify will do its mag
 You don’t. Just copy-paste like it’s 2009.
 
 html
-Копировать код
+
 <script src="swiper.min.js"></script>
 <script src="swipify.js"></script>
 🧪 Use Case
