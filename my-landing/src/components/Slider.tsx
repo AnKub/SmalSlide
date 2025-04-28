@@ -15,7 +15,7 @@ const images = [
 
 const Slider = () => {
   const autoplay = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: false }) // Автопрокрутка кожні 3 секунди
+    Autoplay({ delay: 3000, stopOnInteraction: false }) 
   );
 
   const [emblaRef] = useEmblaCarousel(
