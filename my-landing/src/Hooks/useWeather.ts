@@ -9,61 +9,61 @@ interface WeatherResponse {
   weather: { description: string; icon: string }[];
 }
 
-interface GeoResponse {
-  lat: number;
-  lon: number;
-  name: string;
-}
-
 export const useWeather = () => {
   const [weather, setWeather] = useState<WeatherResponse | null>(null);
   const [error, setError] = useState("");
-  const [showHighlight, setShowHighlight] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const fetchWeather = async (city: string) => {
-    if (!API_KEY) {
-      setError("API key is missing. Please check your .env file.");
-      return;
-    }
-
-    if (!city.trim()) {
-      setError("Please enter a city name.");
-      return;
-    }
-
+  const fetchWeatherByCoords = async (lat: number, lon: number) => {
     try {
+      setLoading(true);
       setError("");
 
-      const geoResponse = await axios.get<GeoResponse[]>(
-        "https://api.openweathermap.org/geo/1.0/direct",
-        { params: { q: city, limit: 1, appid: API_KEY } }
-      );
-
-      if (geoResponse.data.length === 0) {
-        throw new Error("City not found.");
-      }
-
-      const { lat, lon } = geoResponse.data[0];
-
-      const weatherResponse = await axios.get<WeatherResponse>(
+      const response = await axios.get<WeatherResponse>(
         "https://api.openweathermap.org/data/2.5/weather",
-        { params: { lat, lon, appid: API_KEY, units: "metric" } }
+        {
+          params: {
+            lat,
+            lon,
+            appid: API_KEY,
+            units: "metric",
+          },
+        }
       );
 
-      setWeather(weatherResponse.data);
-      localStorage.setItem("weather", JSON.stringify(weatherResponse.data));
-      localStorage.setItem("lastFetch", Date.now().toString());
-
-      setShowHighlight(true);
-      setTimeout(() => setShowHighlight(false), 2000);
+      setWeather(response.data);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
         setError("Unknown error occurred.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
-  return { weather, error, fetchWeather, setError, showHighlight }; 
+  const fetchWeather = () => {
+    if (!API_KEY) {
+      setError("API key is missing. Please check your .env file.");
+      return;
+    }
+
+    if (!navigator.geolocation) {
+      setError("Geolocation is not supported by your browser.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        fetchWeatherByCoords(latitude, longitude);
+      },
+      () => {
+        setError("Unable to retrieve your location.");
+      }
+    );
+  };
+
+  return { weather, error, loading, fetchWeather };
 };

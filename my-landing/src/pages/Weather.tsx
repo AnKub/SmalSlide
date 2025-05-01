@@ -1,42 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useWeather } from "../Hooks/useWeather";
-import { Container, TextInput, Button, Card, Text, Image } from "@mantine/core";
-import { useDebounce } from 'use-debounce';
-import styles from '../styles/Weather.module.scss';
+import { Container, Button, Card, Text, Image, Loader } from "@mantine/core";
+import styles from "../styles/Weather.module.scss";
 
 const Weather: React.FC = () => {
-  const [city, setCity] = useState("");
-  const { weather, error, fetchWeather } = useWeather();
-  const [debouncedCity] = useDebounce(city, 1000); 
+  const { weather, error, loading, fetchWeather } = useWeather();
 
   useEffect(() => {
-    if (debouncedCity) {
-      fetchWeather(debouncedCity);
-    }
-  }, [debouncedCity, fetchWeather]);
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && city.trim()) {
-      fetchWeather(city); 
-    }
-  };
+    fetchWeather();
+  }, []);
 
   return (
     <Container className={styles.container}>
-      <div className={styles.inputContainer}>
-      <TextInput
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder="Enter city"
-            className={styles.input}
-            onKeyDown={handleKeyDown}
-          />
-          <Button onClick={() => fetchWeather(city)} className={styles.button}>
-            Get Weather
-          </Button>   
-      </div>
+      <div className={styles.inputWrapper}>
+        <Button onClick={fetchWeather} className={styles.button}>
+          Refresh Weather
+        </Button>
 
-      {error && <Text className={styles.error}>{error}</Text>}
+        <Text
+          className={`${styles.error} ${error ? styles.visible : ""}`}
+        >
+          {error ? error : ""}
+        </Text>
+
+        {loading && <Loader color="blue" className={styles.loader} />}
+      </div>
 
       {weather && (
         <Card className={styles.card}>
@@ -49,10 +37,14 @@ const Weather: React.FC = () => {
                 alt="weather icon"
                 className={styles.weatherIcon}
               />
-              <Text className={styles.weatherDescription}>{weather.weather[0].description}</Text>
+              <Text className={styles.weatherDescription}>
+                {weather.weather[0].description}
+              </Text>
             </div>
             <div className={styles.rightSide}>
-              <Text className={styles.temperature}>{Math.round(weather.main.temp)}°C</Text>
+              <Text className={styles.temperature}>
+                {Math.round(weather.main.temp)}°C
+              </Text>
             </div>
           </div>
         </Card>
