@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './ContactPage.scss';
+import '../styles/ContaktPage.scss';
 
 const Section = ({ title, image, text, className }: any) => {
   const [expanded, setExpanded] = useState(false);

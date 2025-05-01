@@ -17,10 +17,10 @@
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
-  background-color: rgba(48, 1, 48, 0.8); // темно-фіолетовий з прозорістю
+  background-color: rgba(48, 1, 48, 0.8); 
   padding: 15px 20px;
   border-radius: 30px;
-  box-shadow: 0 0 15px rgba(255, 140, 0, 0.7); // оранжева підсвітка
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.7); 
 }
 
 .input {
@@ -29,7 +29,7 @@
   padding: 12px 20px;
   font-size: 16px;
   background-color: rgba(48, 1, 48, 0.8);
-  color: white;
+  color: rgb(0, 0, 0);
   outline: none;
   transition: box-shadow 0.3s ease;
   width: 250px;
@@ -41,7 +41,7 @@
 }
 
 .button {
-  background-color: #cc7000; // темно-оранжева
+  background-color: #cc7000; 
   color: white;
   padding: 12px 20px;
   border-radius: 30px;
@@ -61,9 +61,9 @@
   height: 30vh;
   min-width: 280px;
   min-height: 300px;
-  background-color: rgba(48, 1, 48, 0.95); // темно-фіолетовий
+  background-color: rgba(48, 1, 48, 0.95); 
   border-radius: 20px;
-  box-shadow: 0 0 25px rgba(255, 140, 0, 0.7); // оранжева рамка
+  box-shadow: 0 0 25px rgba(255, 140, 0, 0.7); 
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -138,7 +138,8 @@
 .error {
   color: red;
   text-align: center;
-  margin-top: 10px;
+  margin-bottom: 10px;
+
 }
 
 @media (max-width: 768px) {
