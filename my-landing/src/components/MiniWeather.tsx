@@ -11,6 +11,7 @@ const MiniWeather: React.FC = () => {
   useEffect(() => {
     loadFromCache(); 
   }, []);
+ 
 
   useEffect(() => {
     if (error) {
