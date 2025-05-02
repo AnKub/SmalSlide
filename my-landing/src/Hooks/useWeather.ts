@@ -9,6 +9,8 @@ interface WeatherResponse {
   weather: { description: string; icon: string }[];
 }
 
+const CACHE_DURATION = 30 * 60 * 1000; // 30 хв
+
 export const useWeather = () => {
   const [weather, setWeather] = useState<WeatherResponse | null>(null);
   const [error, setError] = useState("");
@@ -32,6 +34,8 @@ export const useWeather = () => {
       );
 
       setWeather(response.data);
+      localStorage.setItem("weather", JSON.stringify(response.data));
+      localStorage.setItem("lastFetch", Date.now().toString());
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -44,6 +48,13 @@ export const useWeather = () => {
   };
 
   const fetchWeather = () => {
+    const lastFetch = localStorage.getItem("lastFetch");
+
+    const shouldFetch =
+      !lastFetch || Date.now() - Number(lastFetch) > CACHE_DURATION;
+
+    if (!shouldFetch) return;
+
     if (!API_KEY) {
       setError("API key is missing. Please check your .env file.");
       return;
@@ -65,5 +76,12 @@ export const useWeather = () => {
     );
   };
 
-  return { weather, error, loading, fetchWeather };
+  const loadFromCache = () => {
+    const cached = localStorage.getItem("weather");
+    if (cached) {
+      setWeather(JSON.parse(cached));
+    }
+  };
+
+  return { weather, error, loading, fetchWeather, loadFromCache, setError };
 };

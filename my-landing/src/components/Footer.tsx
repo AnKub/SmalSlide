@@ -4,6 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__section footer__logo-section">
+      <h4 className="footer__title"></h4>
         <div className="footer__logo">
           <img src="svg/lo.png" alt="Logo" />
         </div>

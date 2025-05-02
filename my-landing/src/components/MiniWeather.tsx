@@ -1,28 +1,17 @@
 import React, { useEffect } from "react";
 import { useWeather } from "../Hooks/useWeather";
 import { Image, Text } from "@mantine/core";
-import { showNotification } from "@mantine/notifications"; 
+import { showNotification } from "@mantine/notifications";
 import { IconAlertCircle } from "@tabler/icons-react";
 import styles from "../styles/MiniWeather.module.scss";
 
 const MiniWeather: React.FC = () => {
-  const { weather, fetchWeather, setError, error } = useWeather();
+  const { weather, fetchWeather, setError, error, loadFromCache } = useWeather();
 
   useEffect(() => {
-    const saved = localStorage.getItem("weather");
-    const lastFetch = localStorage.getItem("lastFetch");
+    loadFromCache(); 
+  }, []);
 
-    const shouldFetch =
-      !saved ||
-      !lastFetch ||
-      Date.now() - Number(lastFetch) > 30 * 60 * 1000;
-
-    if (shouldFetch) {
-      fetchWeather("Magdeburg");
-    }
-  }, [fetchWeather]);
-
-  // Показати повідомлення при помилці
   useEffect(() => {
     if (error) {
       showNotification({

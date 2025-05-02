@@ -4,10 +4,10 @@ import { Container, Button, Card, Text, Image, Loader } from "@mantine/core";
 import styles from "../styles/Weather.module.scss";
 
 const Weather: React.FC = () => {
-  const { weather, error, loading, fetchWeather } = useWeather();
+  const { weather, error, loading, fetchWeather, loadFromCache } = useWeather();
 
   useEffect(() => {
-    fetchWeather();
+    loadFromCache(); // показати кеш одразу
   }, []);
 
   return (
@@ -20,7 +20,7 @@ const Weather: React.FC = () => {
         <Text
           className={`${styles.error} ${error ? styles.visible : ""}`}
         >
-          {error ? error : ""}
+          {error || ""}
         </Text>
 
         {loading && <Loader color="blue" className={styles.loader} />}
