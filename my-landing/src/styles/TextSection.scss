@@ -41,12 +41,14 @@
 
 
 .text-section__wr {
-  width: 100%;
-  max-height: 200px; 
-  overflow-y: auto;
-  padding-right: 10px;
-  position: relative;
-  z-index: 2;
+ 
+    padding: 1rem;
+    padding-right: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
+  
 }
 
 .text-section__value {
@@ -65,17 +67,29 @@
   background: linear-gradient(to bottom, white 0%, transparent 10%, transparent 90%, white 100%);
   z-index: 3;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 @media (max-width: 768px) {
   .text-section__value {
     font-size: 14px;
   }
+
   .text-section__wr {
     max-height: 150px;
+    padding: 0.8rem;
+  }
+
+  .text-section__header h2 {
+    font-size: 1.2rem;
+  }
+
+  .text-section__header .lang-toggle {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
   }
 }
+
 .text-section__wr::-webkit-scrollbar {
   width: 6px;
 }
