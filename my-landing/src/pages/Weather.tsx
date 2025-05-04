@@ -13,6 +13,11 @@ const Weather: React.FC = () => {
   return (
     <Container className={styles.container}>
       <div className={styles.inputWrapper}>
+        <input
+            type="text"
+            className={styles.input}
+            placeholder="Enter city"
+        />
         <Button onClick={fetchWeather} className={styles.button}>
           Refresh Weather
         </Button>

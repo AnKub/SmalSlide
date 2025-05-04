@@ -10,6 +10,7 @@ const MiniWeather: React.FC = () => {
 
   useEffect(() => {
     loadFromCache(); 
+    fetchWeather(); 
   }, []);
  
 
