@@ -3,13 +3,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   padding: 40px 20px;
   width: 100%;
   background-color: #111;
   color: #bbb;
   box-sizing: border-box;
-  // overflow-x: hidden;
 }
 
 .footer__section {
@@ -29,7 +28,7 @@
 }
 
 .footer__logo img {
-  max-height: 80px;
+  max-height: 100px;
   width: auto;
   max-width: 100%;
   display: block;
