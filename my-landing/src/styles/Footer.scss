@@ -1,3 +1,4 @@
+
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -8,13 +9,13 @@
   background-color: #111;
   color: #bbb;
   box-sizing: border-box;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 .footer__section {
   flex: 1 1 200px;
-  min-width: 180px;
   max-width: 250px;
+  min-width: 180px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -86,6 +87,7 @@
     }
   }
 }
+
 
 @media (max-width: 768px) {
   .footer {

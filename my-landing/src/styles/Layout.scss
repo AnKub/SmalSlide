@@ -1,28 +1,38 @@
+
 .layout {
+  position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: background-image 0.8s ease-in-out;
+  min-height: 100%;
+  z-index: 1;
 
-  &.bg-home {
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('/img/bg-home.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+
+  &.bg-home::before {
     background-image: url('/img/bg-home.webp');
   }
 
-  &.bg-about {
+  &.bg-about::before {
     background-image: url('/img/bg-about.webp');
   }
 
-  &.bg-contact {
+  &.bg-contact::before {
     background-image: url('/img/bg-contact.webp');
   }
 
-  &.bg-weather {
+  &.bg-weather::before {
     background-image: url('/img/bg-weather.webp');
   }
-}
-main {
-  flex: 1; 
 }

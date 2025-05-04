@@ -2,12 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 @import url('reset.scss');
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
-  // background-color: #000;
   color: #fff;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+
   @media (max-width: 768px) {
     font-size: 14px;
   }
@@ -17,11 +27,22 @@ body {
   }
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+
 .wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
 
 .page {
   flex: 1;
@@ -30,23 +51,4 @@ body {
   align-items: center;
   padding: 10vh 0;
   position: relative;
-}
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1; 
 }

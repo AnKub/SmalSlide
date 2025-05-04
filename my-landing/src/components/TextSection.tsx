@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import '../styles/TextSection.scss';
+import StarImage from '../../public/img/star.jfif'; 
 
 const TextSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -49,16 +50,18 @@ Iron doesn’t just end a star — it begins a world."`
   return (
     <div className="wr" ref={sectionRef}>
       <div className={`text-section ${isVisible ? 'visible' : 'hidden'}`}>
-        <div className="text-section__header">
-          <h2>{texts[language].title}</h2>
-          <button className="lang-toggle" onClick={toggleLanguage}>
-            {language === 'en' ? 'Українською' : 'English'}
-          </button>
+        <div className="text-content">
+          <div className="text-section__header">
+            <h2>{texts[language].title}</h2>
+            <button className="lang-toggle" onClick={toggleLanguage}>
+              {language === 'en' ? 'Укр' : 'Eng'}
+            </button>
+          </div>
+          <div className="text-section__wr">
+            <p className="text-section__value">{texts[language].body}</p>
+          </div>
         </div>
-        <div className="text-section__wr">
-          <p className="text-section__value">{texts[language].body}</p>
-        </div>
-        <div className="text-section__mask"></div>
+        <img src={StarImage} alt="Stars" className="text-section__image" />
       </div>
     </div>
   );
