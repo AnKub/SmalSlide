@@ -7,7 +7,7 @@ const Weather: React.FC = () => {
   const { weather, error, loading, fetchWeather, loadFromCache } = useWeather();
 
   useEffect(() => {
-    loadFromCache(); // показати кеш одразу
+    loadFromCache(); 
   }, []);
 
   return (
