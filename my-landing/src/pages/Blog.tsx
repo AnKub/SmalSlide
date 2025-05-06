@@ -1,7 +1,7 @@
-const About = () => {
+const Blog = () => {
   return (
     <div className="page about-page">
-      <h1>About Us</h1>
+      <h1>Blog</h1>
       <p>
         Welcome to our site! This project showcases modern React with routing,
         animations, and API features. Here you can find the most exciting UI examples.
@@ -14,4 +14,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Blog;
