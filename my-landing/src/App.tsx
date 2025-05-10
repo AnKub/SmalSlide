@@ -5,6 +5,8 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Weather from './pages/Weather';
 import Layout from './components/Layout';
+import Library from './pages/Library';
+
 
 import { MantineProvider, createTheme } from "@mantine/core";
 
@@ -18,6 +20,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/library" element={<Library />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/weather" element={<Weather />} />
           </Route>
