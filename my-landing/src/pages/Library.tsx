@@ -1,21 +1,33 @@
-
 import { useEffect, useState } from "react";
 
-const Library = () => {
-  const [items, setItems] = useState([]);
+interface ArtObject {
+  objectID: number;
+  title: string;
+  primaryImageSmall: string;
+  artistDisplayName: string;
+}
+
+const Lybrary = () => {
+  const [items, setItems] = useState<ArtObject[]>([]);
 
   useEffect(() => {
     fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=sculpture")
-      .then(res => res.json())
-      .then(data => {
-        const objectIDs = data.objectIDs.slice(0, 5); // обмеження до 5 результатів
+      .then((res) => res.json())
+      .then((data) => {
+        const objectIDs: number[] = data.objectIDs?.slice(0, 5) || [];
+
         return Promise.all(
-          objectIDs.map(id =>
-            fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`).then(res => res.json())
+          objectIDs.map((id: number) =>
+            fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`).then((res) => res.json())
           )
         );
       })
-      .then(setItems);
+      .then((objects: ArtObject[]) => {
+        setItems(objects);
+      })
+      .catch((error) => {
+        console.error("Error fetching art objects:", error);
+      });
   }, []);
 
   return (
@@ -25,11 +37,11 @@ const Library = () => {
         <div key={item.objectID} style={{ marginBottom: "2rem" }}>
           <h2>{item.title}</h2>
           <img src={item.primaryImageSmall} alt={item.title} style={{ maxWidth: "200px" }} />
-          <p>{item.artistDisplayName}</p>
+          <p>{item.artistDisplayName || "Unknown Artist"}</p>
         </div>
       ))}
     </div>
   );
 };
 
-export default Library;
+export default Lybrary;
