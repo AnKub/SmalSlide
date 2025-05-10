@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/Library.scss";
 
 interface ArtObject {
   objectID: number;
@@ -31,13 +32,19 @@ const Lybrary = () => {
   }, []);
 
   return (
-    <div className="page library-page">
-      <h1>Library</h1>
+    <div className="library-page">
+      <h1 className="library-title">Library</h1>
       {items.map((item) => (
-        <div key={item.objectID} style={{ marginBottom: "2rem" }}>
-          <h2>{item.title}</h2>
-          <img src={item.primaryImageSmall} alt={item.title} style={{ maxWidth: "200px" }} />
-          <p>{item.artistDisplayName || "Unknown Artist"}</p>
+        <div className="library-item" key={item.objectID}>
+          <h2 className="library-item-title">{item.title}</h2>
+          <img
+            className="library-item-image"
+            src={item.primaryImageSmall}
+            alt={item.title}
+          />
+          <p className="library-item-artist">
+            {item.artistDisplayName || "Unknown Artist"}
+          </p>
         </div>
       ))}
     </div>

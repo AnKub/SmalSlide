@@ -9,8 +9,9 @@ const Layout = () => {
 
   const bgClass = (() => {
     if (path === '/') return 'bg-home';
-    if (path === '/about') return 'bg-about';
+    if (path === '/blog') return 'bg-about';
     if (path === '/contact') return 'bg-contact';
+    if (path === '/library') return 'bg-home';
     if (path === '/weather') return 'bg-weather';
     return '';
   })();
