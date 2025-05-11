@@ -11,6 +11,8 @@ const Section = ({ title, image, text, className }: any) => {
     setTimeout(() => setFlicker(false), 800);
   };
 
+  const validImage = image || 'https://placehold.co/400x300?text=No+Image';
+
   return (
     <div className={`section ${className} ${flicker ? 'flicker' : ''}`}>
       <div className="text-block">
@@ -23,42 +25,46 @@ const Section = ({ title, image, text, className }: any) => {
         </button>
       </div>
       <div className="image-block">
-        <img src={image} alt={title} />
+        <img src={validImage} alt={title} />
       </div>
     </div>
   );
 };
 
-const Card = ({ author, quote, img }: any) => (
-  <div className="card">
-    <div className="card-image">
-      <img src={img} alt={author} />
+const Card = ({ author, quote, img }: any) => {
+  const validImg = img || 'https://placehold.co/300x300?text=No+Image';
+
+  return (
+    <div className="card">
+      <div className="card-image">
+        <img src={validImg} alt={author} />
+      </div>
+      <div className="card-content">
+        <div className="author">{author}</div>
+        <div className="quote">“{quote}”</div>
+      </div>
     </div>
-    <div className="card-content">
-      <div className="author">{author}</div>
-      <div className="quote">“{quote}”</div>
-    </div>
-  </div>
-);
+  );
+};
 
 const Contact = () => {
   return (
     <div className="contact-page">
       <Section
         title="Stoicism"
-        image="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Marcus_Aurelius_Glyptothek_Munich_337.jpg/800px-Marcus_Aurelius_Glyptothek_Munich_337.jpg"
+        image="/img/stoic.jfif"
         text="Stoicism is a philosophy founded in Ancient Greece that teaches the development of self-control and fortitude as a means of overcoming destructive emotions."
         className="stoicism"
       />
       <Section
         title="Existentialism"
-        image="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Jean_Paul_Sartre_FP.JPG/800px-Jean_Paul_Sartre_FP.JPG"
+        image="/img/Kierkegaard.jfif"
         text="Existentialism emphasizes individual existence, freedom, and choice. It argues that humans define their own meaning in life, and try to make rational decisions despite existing in an irrational universe."
         className="existentialism reverse"
       />
       <Section
         title="Absurdism"
-        image="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Albert_Camus%2C_gagnant_de_prix_Nobel%2C_portrait_en_buste%2C_posant_au_bureau%2C_faisant_face_%C3%A0_l%27objectif.jpg/800px-Albert_Camus%2C_gagnant_de_prix_Nobel%2C_portrait_en_buste%2C_posant_au_bureau%2C_faisant_face_%C3%A0_l%27objectif.jpg"
+         image="/img/camus.jfif"
         text="Absurdism explores the conflict between the human tendency to seek inherent value and meaning in life and the inability to find any in a purposeless, meaningless or chaotic universe."
         className="absurdism"
       />
