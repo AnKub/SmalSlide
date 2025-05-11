@@ -73,17 +73,17 @@ const Contact = () => {
         <Card
           author="Ralph Waldo Emerson"
           quote="To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment."
-          img="https://upload.wikimedia.org/wikipedia/commons/2/2e/Ralph_Waldo_Emerson_ca1857_retouched.jpg"
+          img="img/emmerson.jfif"
         />
         <Card
           author="Arthur Schopenhauer"
           quote="Compassion is the basis of morality."
-          img="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Arthur_Schopenhauer_Portrait.jpg/800px-Arthur_Schopenhauer_Portrait.jpg"
+          img="img/Schop.jfif"
         />
         <Card
           author="Erich Maria Remarque"
           quote="A man is never afraid of a thing, but of the idea of it."
-          img="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Erich_Maria_Remarque.jpg/800px-Erich_Maria_Remarque.jpg"
+          img="img/Remarque.jfif"
         />
       </div>
     </div>
