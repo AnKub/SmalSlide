@@ -1,4 +1,3 @@
-
 .layout {
   position: relative;
   display: flex;
@@ -6,33 +5,48 @@
   min-height: 100%;
   z-index: 1;
 
-  &::before {
+  &::before,
+  &::after {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    background-image: url('/img/bg-home.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
+    transition: opacity 0.8s ease-in-out;
+    pointer-events: none;
   }
 
-  &.bg-home::before {
+
+  &::before {
+    opacity: 1;
+  }
+
+  &::after {
+    opacity: 0;
+  }
+
+  &.bg-home::after {
     background-image: url('/img/bg-home.webp');
+    opacity: 1;
   }
 
-  &.bg-about::before {
+  &.bg-about::after {
     background-image: url('/img/bg-about.webp');
+    opacity: 1;
   }
 
-  &.bg-contact::before {
+  &.bg-contact::after {
     background-image: url('/img/bg-contact.webp');
+    opacity: 1;
   }
 
-  &.bg-weather::before {
+  &.bg-weather::after {
     background-image: url('/img/bg-weather.webp');
+    opacity: 1;
   }
 }
