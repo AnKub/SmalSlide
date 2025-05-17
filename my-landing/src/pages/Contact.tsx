@@ -7,9 +7,9 @@ const Section = ({ id, activeId, setActiveId, title, image, text, className }: a
 
   const handleToggle = () => {
     if (expanded) {
-      setActiveId(null); // collapse if already expanded
+      setActiveId(null);
     } else {
-      setActiveId(id); // expand this section
+      setActiveId(id); 
     }
   };
 
