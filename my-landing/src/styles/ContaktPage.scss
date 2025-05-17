@@ -39,14 +39,16 @@
       }
 
       .description {
-        max-height: 100px;
-        overflow: hidden;
-        transition: max-height 0.4s ease;
-      }
+    max-height: 100px;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    opacity: 0.6;
+  }
 
-      &.expanded .description {
-        max-height: 500px;
-      }
+  &.expanded .description {
+    max-height: 500px;
+    opacity: 1;
+  }
 
       .read-more-btn {
         margin-top: 1rem;

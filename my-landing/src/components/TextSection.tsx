@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import '../styles/TextSection.scss';
-import StarImage from '../../public/img/star.jfif'; 
+import StarImage from '/img/star.jfif'; 
 
 const TextSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
