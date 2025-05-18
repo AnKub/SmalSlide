@@ -23,41 +23,48 @@ const categories = [
 ];
 
 const NYTNews = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
+  const [articlesByCategory, setArticlesByCategory] = useState<Record<string, Article[]>>({});
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
 
-  const selectedArticle = articles.find((a) => a.id === selectedArticleId);
+  const apiKey = import.meta.env.VITE_NYT_API_KEY;
+
+  const fetchCategoryArticles = async (category: string) => {
+    try {
+      const url =
+        category === 'all'
+          ? `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${apiKey}`
+          : `https://api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${apiKey}`;
+
+      const res = await axios.get(url);
+      const formatted = res.data.results.map((item: any) => ({
+        id: item.url,
+        title: item.title,
+        abstract: item.abstract,
+        imgUrl: item.multimedia?.[0]?.url || null,
+        section: item.section.toLowerCase(),
+      }));
+
+      setArticlesByCategory((prev) => ({
+        ...prev,
+        [category]: formatted.slice(0, 20),
+      }));
+    } catch (error) {
+      console.error(`Failed to fetch ${category} articles:`, error);
+    }
+  };
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const res = await axios.get(
-          `https://api.nytimes.com/svc/topstories/v2/technology.json?api-key=${import.meta.env.VITE_NYT_API_KEY}`
-        );
+    if (!articlesByCategory[activeCategory]) {
+      fetchCategoryArticles(activeCategory);
+    }
+  }, [activeCategory]);
 
-        const formatted = res.data.results.map((item: any) => ({
-          id: item.url,
-          title: item.title,
-          abstract: item.abstract,
-          imgUrl: item.multimedia?.[0]?.url || null,
-          section: item.section,
-        }));
-
-        setArticles(formatted.slice(0, 20));
-      } catch (error) {
-        console.error('Failed to fetch articles:', error);
-      }
-    };
-
-    fetchArticles();
-  }, []);
-
+  const allArticles = Object.values(articlesByCategory).flat();
   const filteredArticles =
-    activeCategory === 'all'
-      ? articles
-      : articles.filter((a) => a.section.toLowerCase() === activeCategory);
+    activeCategory === 'all' ? allArticles : articlesByCategory[activeCategory] || [];
 
+  const selectedArticle = filteredArticles.find((a) => a.id === selectedArticleId);
   const closeArticle = () => setSelectedArticleId(null);
 
   return (
@@ -77,33 +84,37 @@ const NYTNews = () => {
       </div>
 
       <div className="articles-list" role="list">
-        {filteredArticles.map(({ id, title, imgUrl }) => (
-          <article
-            key={id}
-            className={`article-card ${selectedArticleId === id ? 'selected' : ''}`}
-            tabIndex={0}
-            role="listitem"
-            onClick={() => setSelectedArticleId(id)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setSelectedArticleId(id);
-              }
-            }}
-            aria-expanded={selectedArticleId === id}
-          >
-            <div className="image-placeholder">
-              {imgUrl ? (
-                <img src={imgUrl} alt={title} />
-              ) : (
-                <span>No Image</span>
-              )}
-            </div>
-            <div className="article-content">
-              <h2>{title}</h2>
-            </div>
-          </article>
-        ))}
+        {filteredArticles.length === 0 ? (
+          <p className="loading-text">Loading articles...</p>
+        ) : (
+          filteredArticles.map(({ id, title, imgUrl }) => (
+            <article
+              key={id}
+              className={`article-card ${selectedArticleId === id ? 'selected' : ''}`}
+              tabIndex={0}
+              role="listitem"
+              onClick={() => setSelectedArticleId(id)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedArticleId(id);
+                }
+              }}
+              aria-expanded={selectedArticleId === id}
+            >
+              <div className="image-placeholder">
+                {imgUrl ? (
+                  <img src={imgUrl} alt={title} />
+                ) : (
+                  <span>No Image</span>
+                )}
+              </div>
+              <div className="article-content">
+                <h2>{title}</h2>
+              </div>
+            </article>
+          ))
+        )}
       </div>
 
       {selectedArticle && (

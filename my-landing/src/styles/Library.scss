@@ -1,13 +1,21 @@
 .library-page {
   padding: 2rem;
-  background-color: #000;
   color: #fff;
+
 
   .library-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 4rem;
     color: #fa6603;
+    letter-spacing: 1px;
+  }
+
+  .status-message {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin: 2rem auto;
   }
 
   .library-section {
@@ -18,7 +26,7 @@
     .section {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       gap: 2rem;
 
       &.reverse {
@@ -27,32 +35,28 @@
 
       .text-block {
         flex: 1;
-        padding: 1.5rem;
-        background: rgba(0, 0, 0, 0.9);
-        border-radius: 2rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        background: rgba(15, 15, 15, 0.95);
+        border-radius: 1.5rem;
         border: 1px solid #fa6603;
-        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        color: #ddd;
 
         .title {
-          position: absolute;
-          top: -1.5rem;
-          left: 50%;
-          transform: translateX(-50%);
-          background: rgba(0, 0, 0, 0.95);
-          padding: 0.3rem 1rem;
-          border-radius: 1rem;
-          font-size: x-large;
+          font-size: 1.6rem;
           font-weight: bold;
-          border: 1px solid #fa6603;
-          color: #fff;
+          margin-bottom: 1rem;
+          color: #fa6603;
+          text-align: center;
         }
 
-        .description {
-          margin-top: 2rem;
-          line-height: 1.6;
-          font-size: 1.1rem;
-          letter-spacing: 1.1px;
+        .description p {
+          margin: 0.4rem 0;
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        strong {
           color: #fa6603;
         }
       }
@@ -63,19 +67,18 @@
         justify-content: center;
 
         img {
-          width: 300px;
-          height: 300px;
-          border-radius: 50%;
+          width: 320px;
+          height: 320px;
+          border-radius: 1.5rem;
           object-fit: cover;
-          filter: brightness(80%);
-          transition: all 0.4s ease;
-          background: rgba(0, 0, 0, 0.6);
+          filter: brightness(85%);
           border: 2px solid #fa6603;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+          transition: all 0.3s ease;
 
           &:hover {
-            filter: brightness(100%);
             transform: scale(1.05);
+            filter: brightness(100%);
           }
         }
       }
@@ -88,14 +91,91 @@
         flex-direction: column;
 
         .image-block img {
-          width: 150px;
-          height: 150px;
+          width: 100%;
+          height: auto;
+          max-height: 250px;
         }
 
         .text-block .description {
-          font-size: 1rem;
+          font-size: 0.95rem;
         }
       }
     }
+  }
+}
+
+.circle-menu-container {
+  position: fixed;
+  top: 15%;
+  left: 1.5rem;
+  z-index: 20;
+}
+
+.circle-button {
+  width: 40px;
+  height: 40px;
+  background-color: #111;
+    opacity: 0.95;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.circle-menu {
+  position: absolute;
+  top: 60px;
+  // right: 0; 
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; 
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 20;
+
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+
+    .menu-item {
+      animation: slideIn 0.4s ease forwards;
+    }
+
+    .menu-item:nth-child(1) { animation-delay: 0.1s; }
+    .menu-item:nth-child(2) { animation-delay: 0.2s; }
+    .menu-item:nth-child(3) { animation-delay: 0.3s; }
+    .menu-item:nth-child(4) { animation-delay: 0.4s; }
+  }
+
+  .menu-item {
+    background-color: #111;
+    opacity: 0;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 0.6rem 1.2rem;
+    margin: 0.3rem 0;
+    border-radius: 1rem;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
