@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/Blog.scss';
+import '../styles/NYTNews.scss';
 
 interface Article {
   id: string;
@@ -22,7 +22,7 @@ const categories = [
   { key: 'arts', label: 'Arts' },
 ];
 
-const Blog = () => {
+const NYTNews = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -130,4 +130,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default NYTNews;

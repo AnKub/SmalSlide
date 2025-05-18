@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Blog from './pages/Blog';
+import NYTNews from './pages/NYTNews';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Weather from './pages/Weather';
@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/blog" element={<Blog />} />
+            <Route path="/nytnews" element={<NYTNews />} />
             <Route path="/library" element={<Library />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/weather" element={<Weather />} />
