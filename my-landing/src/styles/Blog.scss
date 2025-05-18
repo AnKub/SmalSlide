@@ -2,17 +2,17 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
   min-height: 100vh;
-  padding-top: 120px; 
+  padding-top: 100px; 
   .category-tabs {
     position: fixed;
-    top: 70px; 
+    top: 90px; 
     left: 0;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    padding: 1rem;
+   padding: 0.5rem 1rem;
     z-index: 100;
 
 button {
@@ -55,13 +55,14 @@ button {
 
   .articles-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     gap: 2rem;
-    padding:1rem;
+    padding: 1rem;
   }
 
   .article-card {
-    background: #ffffff;
+    background-color: #111;
+       opacity: 0.95;
     border-radius: 15px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     display: flex;
@@ -98,8 +99,8 @@ button {
       padding: 1rem;
 
       h2 {
-        font-size: 1.3rem;
-        color: #00264d;
+        font-size: 1.4rem;
+         color: white;
         margin: 0;
       }
     }
