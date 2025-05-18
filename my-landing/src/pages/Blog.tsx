@@ -7,11 +7,25 @@ interface Article {
   title: string;
   abstract: string;
   imgUrl: string | null;
+  section: string;
 }
+
+const categories = [
+  { key: 'all', label: 'All' },
+  { key: 'politics', label: 'Politics' },
+  { key: 'science', label: 'Science' },
+  { key: 'technology', label: 'Technology' },
+  { key: 'world', label: 'World' },
+  { key: 'health', label: 'Health' },
+  { key: 'business', label: 'Business' },
+  { key: 'sports', label: 'Sports' },
+  { key: 'arts', label: 'Arts' },
+];
 
 const Blog = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const selectedArticle = articles.find((a) => a.id === selectedArticleId);
 
@@ -27,9 +41,10 @@ const Blog = () => {
           title: item.title,
           abstract: item.abstract,
           imgUrl: item.multimedia?.[0]?.url || null,
+          section: item.section,
         }));
 
-        setArticles(formatted.slice(0, 12)); 
+        setArticles(formatted.slice(0, 20));
       } catch (error) {
         console.error('Failed to fetch articles:', error);
       }
@@ -38,12 +53,31 @@ const Blog = () => {
     fetchArticles();
   }, []);
 
+  const filteredArticles =
+    activeCategory === 'all'
+      ? articles
+      : articles.filter((a) => a.section.toLowerCase() === activeCategory);
+
   const closeArticle = () => setSelectedArticleId(null);
 
   return (
     <div className="page blog-page">
+      <div className="category-tabs" role="tablist">
+        {categories.map((cat) => (
+          <button
+            key={cat.key}
+            className={activeCategory === cat.key ? 'active' : ''}
+            onClick={() => setActiveCategory(cat.key)}
+            role="tab"
+            aria-selected={activeCategory === cat.key}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
       <div className="articles-list" role="list">
-        {articles.map(({ id, title, imgUrl }) => (
+        {filteredArticles.map(({ id, title, imgUrl }) => (
           <article
             key={id}
             className={`article-card ${selectedArticleId === id ? 'selected' : ''}`}
@@ -58,9 +92,9 @@ const Blog = () => {
             }}
             aria-expanded={selectedArticleId === id}
           >
-            <div className="image-placeholder" aria-label={`Image for ${title}`}>
+            <div className="image-placeholder">
               {imgUrl ? (
-                <img src={imgUrl} alt={title} style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
+                <img src={imgUrl} alt={title} />
               ) : (
                 <span>No Image</span>
               )}
