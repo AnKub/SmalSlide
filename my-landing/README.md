@@ -1,85 +1,96 @@
-# 🌦️ Weather Widget App
+🖼️ My Landing – Interactive Digital Museum Experience
+My Landing is a modern, interactive web application designed to deliver a museum-style experience directly in the browser. Combining elegant visuals, real-time weather updates, and curated articles from the New York Times, this application offers users a rich multimedia journey into knowledge, culture, and design.
 
-A lightweight and responsive weather widget built with React, Mantine UI, and OpenWeather API.  
-It fetches real-time weather data based on the user's geolocation and displays a compact mini-widget as well as a full weather card.
+🚀 Features
+🎨 Dynamic Theming – Easily switch between multiple visual themes with smooth transitions.
 
----
+🗽 Curated News Feed – Stay informed with the latest articles from the New York Times related to art, museums, and culture.
 
-## 🚀 Features
+🌦️ Live Weather Integration – Displays current weather data to enhance the atmospheric experience of the virtual museum.
 
-- 🌍 **Geolocation-Based Forecast** – Automatically detects user's location.
-- 🌤️ **Weather Data from OpenWeather API** – Temperature, description, and icon.
-- 💾 **Local Storage Caching** – Avoids repeated API calls (updates only every 30 mins).
-- 🔁 **Manual Refresh** – Users can refresh the data on demand.
-- 🧩 **Reusable Weather Hook** – Custom hook to manage API logic, errors, and loading state.
-- 🚨 **Error Notifications** – User-friendly error messages using Mantine notifications.
-- ⚡ **Optimized API Requests** – Reduces risk of exceeding free tier API limits.
-- 🎨 **Stylish UI** – Clean, modern design using Mantine and custom SCSS modules.
+📸 Gallery-Like UI – Interactive and animated image sections mimicking real museum displays.
 
----
+🎯 Optimized for UX – Responsive design, animated menus, and an immersive content layout.
 
-## 🛠️ Tech Stack
+🛠️ Tech Stack
+🌐 Frontend
+React 19 – Core framework for building modern UI.
 
-- **React** (TypeScript)
-- **Mantine UI** – UI components and notifications
-- **Axios** – For HTTP requests
-- **OpenWeatherMap API** – External weather data provider
-- **SCSS Modules** – Scoped styles
-- **Vite** – Fast development build tool
+React Router DOM v7 – Handles navigation between pages.
 
----
+Vite – Fast bundler for lightning-speed development and production builds.
 
-## 📂 Project Structure
+TypeScript – Ensures type safety and better DX (developer experience).
 
-src/ ├── components/ │ ├── MiniWeather.tsx # Compact widget version │ └── Weather.tsx # Full card with details ├── hooks/ │ └── useWeather.ts # Custom weather-fetching logic ├── styles/ │ ├── MiniWeather.module.scss │ └── Weather.module.scss ├── App.tsx └── main.tsx
+SCSS – Used for writing structured and modular styles.
 
-yaml
-Копировать код
+Mantine UI – Provides a powerful UI library with customizable components.
 
----
+Tabler Icons – Clean and consistent icon set integrated with Mantine.
 
-## 📦 Installation & Setup
+🔄 Animations & Interactivity
+Embla Carousel – Smooth, touch-friendly image carousels for showcasing museum items.
 
-1. **Clone the repository:**
+Swiper – Lightweight slider for content blocks.
 
-```bash
-git clone https://github.com/your-username/weather-widget.git
-cd weather-widget
-Install dependencies:
+Custom Circle Menu – Animated floating menu that allows quick theme switching with delay-staggered item reveal.
 
+📡 API Integrations
+Axios – For making API requests.
+
+New York Times API – Pulls cultural and museum-related news articles.
+
+Weather API (optional) – Displays real-time weather conditions to simulate the external environment of the digital museum.
+
+📁 Project Structure
 bash
 Копировать код
-npm install
-Create .env file:
+src/
+│
+├── components/         # Reusable UI components (carousel, menus, etc.)
+├── pages/              # Main pages like Home, Library, News
+├── styles/             # SCSS styling with animations and themes
+├── utils/              # Utility functions (e.g., fetch weather/news)
+└── main.tsx            # App entry point
+📦 Scripts
+Script	Description
+npm run dev	Starts the development server via Vite
+npm run build	Compiles TypeScript and builds the app
+npm run lint	Runs ESLint to check for code issues
+npm run preview	Previews the production build
 
-env
-Копировать код
-VITE_WEATHER_API_KEY=your_openweather_api_key
-Run the app locally:
+📷 UI Highlights
+Responsive sections with alternating text and image blocks
 
-bash
-Копировать код
-npm run dev
-🌐 API Reference
-OpenWeatherMap
-Free tier: 60 calls/minute (avoid excessive automatic polling).
+Hover animations for interactive feedback
 
-📸 Screenshots
-Mini Widget	Full Weather Card
+Smooth transitions when selecting a new theme
 
-🧠 Future Improvements
-Search weather by city name
+Menu that appears from the right, revealing options in staggered sequence
 
-Multi-language support
+Mobile-friendly layouts for seamless viewing on any device
 
-Dark/light theme toggle
+🌈 Theme Logic
+Themes are implemented using a floating circle menu that appears on click. Each item in the menu is revealed with an animation delay, and selecting a theme instantly applies the new style while automatically closing the menu.
 
-Display hourly forecast
+🔐 Linting & Code Quality
+ESLint with @eslint/js, react-hooks, and typescript-eslint plugins
 
-🧑‍💻 Author
-Andriy Kulyk
-Frontend Developer | React Enthusiast | UI Lover
-GitHub
+Type-safe codebase with TypeScript
 
-📄 License
-This project is open source and available under the MIT License.
+Modular and readable structure
+
+📅 Future Enhancements
+🔎 Searchable art & exhibit database
+
+🗺️ Interactive museum map
+
+🧠 AI-powered tour guide or chatbot (planned)
+
+📌 Requirements
+Node.js v18+
+
+Modern browser with JavaScript enabled
+
+✍️ Author
+Created by Andriy Kulyk – a passionate frontend developer bringing creativity and interactivity to life through code.
