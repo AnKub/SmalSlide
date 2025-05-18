@@ -1,46 +1,49 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../styles/Blog.scss';
 
-const articles = [
-  {
-    id: 1,
-    title: 'The Power of React',
-    body: 'React is a JavaScript library for building user interfaces...',
-    imgAlt: 'React Logo',
-  },
-  {
-    id: 2,
-    title: 'History of the Internet',
-    body: 'The Internet began as a research project funded by the US...',
-    imgAlt: 'Internet Globe',
-  },
-  {
-    id: 3,
-    title: 'The Science of Sleep',
-    body: 'Sleep is essential for human health...',
-    imgAlt: 'Sleeping Person',
-  },
-  {
-    id: 4,
-    title: 'Space Exploration Milestones',
-    body: 'From the Moon landing to Mars rovers...',
-    imgAlt: 'Space Rocket',
-  },
-];
+interface Article {
+  id: string;
+  title: string;
+  abstract: string;
+  imgUrl: string | null;
+}
 
 const Blog = () => {
-  const [selectedArticleId, setSelectedArticleId] = useState<number | null>(null);
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
 
   const selectedArticle = articles.find((a) => a.id === selectedArticleId);
 
-  const closeArticle = () => {
-    setSelectedArticleId(null);
-  };
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.nytimes.com/svc/topstories/v2/technology.json?api-key=${import.meta.env.VITE_NYT_API_KEY}`
+        );
+
+        const formatted = res.data.results.map((item: any) => ({
+          id: item.url,
+          title: item.title,
+          abstract: item.abstract,
+          imgUrl: item.multimedia?.[0]?.url || null,
+        }));
+
+        setArticles(formatted.slice(0, 12)); 
+      } catch (error) {
+        console.error('Failed to fetch articles:', error);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  const closeArticle = () => setSelectedArticleId(null);
 
   return (
     <div className="page blog-page">
       <div className="articles-list" role="list">
-        {articles.map(({ id, title, imgAlt }) => (
+        {articles.map(({ id, title, imgUrl }) => (
           <article
             key={id}
             className={`article-card ${selectedArticleId === id ? 'selected' : ''}`}
@@ -56,7 +59,11 @@ const Blog = () => {
             aria-expanded={selectedArticleId === id}
           >
             <div className="image-placeholder" aria-label={`Image for ${title}`}>
-              <span>{imgAlt}</span>
+              {imgUrl ? (
+                <img src={imgUrl} alt={title} style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
+              ) : (
+                <span>No Image</span>
+              )}
             </div>
             <div className="article-content">
               <h2>{title}</h2>
@@ -81,7 +88,7 @@ const Blog = () => {
               &times;
             </button>
             <h2>{selectedArticle.title}</h2>
-            <p>{selectedArticle.body}</p>
+            <p>{selectedArticle.abstract}</p>
           </div>
         </div>
       )}
