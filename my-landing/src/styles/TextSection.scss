@@ -75,10 +75,11 @@
 }
 
 .text-section__image {
-  max-width: 25vw;
-  // width: 100%;
-  height: 55vh;
-  border-radius: 60%;
+  max-width: 50svw;
+  width: 30%;
+  height: 50svh;
+  margin-left: 10%;
+  border-radius: 50%;
   object-fit: cover;  
   flex-shrink: 0;
 }
