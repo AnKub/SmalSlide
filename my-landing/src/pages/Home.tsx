@@ -1,13 +1,13 @@
-// import Slider from '../components/Slider';
-// import TextSection from '../components/TextSection';
+import Slider from '../components/Slider';
+import TextSection from '../components/TextSection';
 
-// const Home = () => {
-//   return (
-//     <>
-//     <Slider />
-//     <TextSection />
-//     </>
-//   );
-// };
+const Home = () => {
+  return (
+    <>
+    <Slider />
+    <TextSection />
+    </>
+  );
+};
 
-// export default Home;
+export default Home;
