@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import '../styles/TextSection.scss';
 import StarImage from '/img/star.jfif'; 
@@ -67,4 +68,4 @@ Iron doesn’t just end a star — it begins a world."`
   );
 };
 
-export default TextSection;
+export default React.memo(TextSection);
