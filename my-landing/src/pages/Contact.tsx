@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import '../styles/ContaktPage.scss';
 
@@ -112,4 +113,4 @@ Famous quote: “The struggle itself toward the heights is enough to fill a man'
   );
 };
 
-export default Contact;
+export default React.memo(Contact);
