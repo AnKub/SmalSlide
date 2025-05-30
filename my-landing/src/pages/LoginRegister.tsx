@@ -10,6 +10,7 @@ const LoginRegister = () => {
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isExploded, setIsExploded] = useState(false);
 
   const toggleMode = () => {
     setMode(mode === 'login' ? 'register' : 'login');
@@ -44,9 +45,30 @@ const LoginRegister = () => {
    
     <div className="page login-register-page"> 
     
-    <div className="Nice">
-      <Link to="/">Home</Link>
-    </div>
+      <div className="Nice">
+        <Link to="/">
+       <button className="house-button" onClick={() => setIsExploded(!isExploded)}>
+ <svg
+  className={`house-icon ${isExploded ? 'explode' : ''}`}
+  viewBox="0 0 100 100"
+  width="80"
+  height="80"
+>
+  <g className="roof">
+    <path d="M10,60 L50,20 L90,60" />
+  </g>
+  <g className="walls">
+    <rect x="30" y="60" width="40" height="30" />
+  </g>
+  <g className="window">
+    <rect x="45" y="70" width="10" height="10" />
+  </g>
+</svg>
+
+</button>
+
+        </Link>
+      </div>
       <div className={`form-wrapper flip-container ${mode === 'register' ? 'flipped' : ''}`}>
         <div className="form-header">
           <button className="mode-toggle" onClick={toggleMode}>

@@ -39,27 +39,54 @@
       }
     }
 
- .Nice {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+.house-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.house-icon {
+  stroke: #fa6603;
+  stroke-width: 4;
+  fill: none;
+  transition: all 0.5s ease;
 
-  a {
-    padding: 0.5rem 1rem;
-    background: #fa6603;
-    color: white;
-    border-radius: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.2s ease;
+  g {
+    transition: all 0.5s ease;
+  }
 
-    &:hover {
-      background: #ff8000;
-    }
+  .roof path {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 
-    &:active {
-      transform: scale(0.95) rotate(-2deg); 
-    }
+  .walls rect {
+    fill: none;
+    stroke: #fa6603;
+  }
+
+  .window rect {
+    fill: #fa6603;
+    stroke: none;
+  }
+}
+
+.house-icon.explode {
+  .roof {
+    transform: translateY(-20px) rotate(-10deg);
+    transform-origin: 50% 50%;
+    opacity: 0.2;
+  }
+
+  .walls {
+    transform: translateY(20px) scale(0.8);
+    transform-origin: 50% 50%;
+    opacity: 0.2;
+  }
+
+  .window {
+    transform: translateX(30px) rotate(45deg);
+    opacity: 0;
   }
 }
 
