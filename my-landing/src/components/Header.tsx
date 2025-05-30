@@ -21,7 +21,7 @@ const Header = () => {
     <div className="header__weather">
           <MiniWeather />
         </div>
-    <Link to="/login" className="header__login-button">Login</Link>
+    <Link to="/login" className="header__login-button">In</Link>
   </div>
 </nav>
 

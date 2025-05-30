@@ -5,7 +5,7 @@ import { Suspense, lazy } from 'react';
 const Home = lazy(() => import('./pages/Home'));
 const NYTNews = lazy(() => import('./pages/NYTNews'));
 const Contact = lazy(() => import('./pages/Contact'));
-const Login = lazy(() => import('./pages/Login'));
+const Login = lazy(() => import('./pages/LoginRegister'));
 const Weather = lazy(() => import('./pages/Weather'));
 const Library = lazy(() => import('./pages/Library'));
 
