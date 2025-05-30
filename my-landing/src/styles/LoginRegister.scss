@@ -1,9 +1,8 @@
 .login-register-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100svh;
-  background: #121212;
+   background-image: url('/img/bg-login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 2rem;
 
   .form-wrapper {
@@ -15,7 +14,7 @@
 
     .form-header {
       position: absolute;
-      top: -40px;
+      top: -50px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 10;
@@ -25,9 +24,9 @@
         height: 100px;
         border-radius: 50%;
         border: 1px solid #fa6603;
-        background: linear-gradient(45deg, #fa6603, #ff9933, #fa6603);
+        background: linear-gradient(-75deg, #000000, #1e1001, #fa6603);
         background-size: 200% 200%;
-        animation: glow 3s ease infinite;
+        animation: glow 10s ease infinite;
         color: white;
         font-weight: bold;
         cursor: pointer;
@@ -39,6 +38,31 @@
         }
       }
     }
+
+ .Nice {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+
+  a {
+    padding: 0.5rem 1rem;
+    background: #fa6603;
+    color: white;
+    border-radius: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background: #ff8000;
+    }
+
+    &:active {
+      transform: scale(0.95) rotate(-2deg); 
+    }
+  }
+}
+
 
     .flipper {
       position: relative;
@@ -52,7 +76,7 @@
     }
 
     .form-content {
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(0, 0, 0, 0.85);
       border: 1px solid #fa6603;
       border-radius: 2rem;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);

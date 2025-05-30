@@ -56,19 +56,21 @@
   align-items: center;
 
   .header__login-button {
-    background-color: #1d4a6e;
     color: white;
-    // width: 35px;
-    // min-height: 35px;
+     font-weight: bold;
+ border: 1px solid #fa6603;
+        background: linear-gradient(-75deg, #000000, #1e1001, #fa6603);
+        background-size: 200% 200%;
+        animation: glow 10s ease infinite;
     padding: 0.5rem 1rem;
     border-radius: 30px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
+   cursor: pointer;
+        box-shadow: 0 0 15px rgba(250, 102, 3, 0.7);
+        transition: transform 0.3s ease;
 
-    &:hover {
-      background-color: #339af0;
-    }
+   &:hover {
+          transform: scale(1.05);
+        }
   }
 }
 

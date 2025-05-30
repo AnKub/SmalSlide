@@ -49,4 +49,8 @@
     background-image: url('/img/bg-weather.webp');
     opacity: 1;
   }
+  &.bg-login::after {
+    background-image: url('/img/bg-login.jpg');
+    opacity: 1;
+  }
 }

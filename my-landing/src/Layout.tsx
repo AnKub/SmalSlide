@@ -13,6 +13,7 @@ const Layout = () => {
     if (path === '/contact') return 'bg-contact';
     if (path === '/library') return 'bg-home';
     if (path === '/weather') return 'bg-weather';
+    if (path === '/login') return 'bg-login';
     return '';
   })();
 

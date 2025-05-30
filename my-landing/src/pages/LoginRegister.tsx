@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/LoginRegister.scss';
 
 const LoginRegister = () => {
@@ -40,7 +41,12 @@ const LoginRegister = () => {
   };
 
   return (
-    <div className="page login-register-page">
+   
+    <div className="page login-register-page"> 
+    
+    <div className="Nice">
+      <Link to="/">Home</Link>
+    </div>
       <div className={`form-wrapper flip-container ${mode === 'register' ? 'flipped' : ''}`}>
         <div className="form-header">
           <button className="mode-toggle" onClick={toggleMode}>
