@@ -10,7 +10,7 @@ const Layout = () => {
   const bgClass = (() => {
     if (path === '/') return 'bg-home';
     if (path === '/nytnews') return 'bg-about';
-    if (path === '/contact') return 'bg-contact';
+    if (path === '/philo') return 'bg-contact';
     if (path === '/library') return 'bg-home';
     if (path === '/weather') return 'bg-weather';
     if (path === '/login') return 'bg-login';

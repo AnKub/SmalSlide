@@ -10,7 +10,13 @@ const LoginRegister = () => {
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+const [clicked, setClicked] = useState(false);
 
+const handleBackClick = () => {
+  setClicked(true);
+  setTimeout(() => {
+  }, 800); 
+};
 
   const toggleMode = () => {
     setMode(mode === 'login' ? 'register' : 'login');
@@ -44,10 +50,13 @@ const LoginRegister = () => {
   return (
    
     <div className="page login-register-page">     
-        <div className="Nice">
-          
-      <Link to="/" className="back-button">Back</Link>
-    </div>
+      <Link
+          to="/"
+          className={`back-button ${clicked ? 'clicked' : ''}`}
+          onClick={handleBackClick}
+        >
+        <img className="back-icon" src="/img/hombut.png" alt="Home" />
+      </Link>
       <div className={`form-wrapper flip-container ${mode === 'register' ? 'flipped' : ''}`}>
         <div className="form-header">
           <button className="mode-toggle" onClick={toggleMode}>

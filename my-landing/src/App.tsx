@@ -4,7 +4,7 @@ import { Suspense, lazy } from 'react';
 
 const Home = lazy(() => import('./pages/Home'));
 const NYTNews = lazy(() => import('./pages/NYTNews'));
-const Contact = lazy(() => import('./pages/Contact'));
+const Philo = lazy(() => import('./pages/Philo'));
 const Login = lazy(() => import('./pages/LoginRegister'));
 const Weather = lazy(() => import('./pages/Weather'));
 const Library = lazy(() => import('./pages/Library'));
@@ -25,7 +25,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/nytnews" element={<NYTNews />} />
               <Route path="/library" element={<Library />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/philo" element={<Philo />} />
               <Route path="/weather" element={<Weather />} />
             </Route>
             <Route path="/login" element={<Login />} />

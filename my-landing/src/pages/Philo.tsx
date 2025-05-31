@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import '../styles/ContaktPage.scss';
+import '../styles/Philo.scss';
 
 const Section = ({ id, activeId, setActiveId, title, image, text, className }: any) => {
   const flicker = activeId === id;
@@ -48,7 +48,7 @@ const Card = ({ author, quote, img }: any) => {
   );
 };
 
-const Contact = () => {
+const Philo = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   return (
@@ -113,4 +113,4 @@ Famous quote: “The struggle itself toward the heights is enough to fill a man'
   );
 };
 
-export default React.memo(Contact);
+export default React.memo(Philo);
