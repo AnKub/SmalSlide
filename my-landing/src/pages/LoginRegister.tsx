@@ -73,7 +73,6 @@ const LoginRegister = () => {
         </div>
 
         <div className="flipper">
-          {/* Login Form */}
           <form
             onSubmit={handleSubmit}
             className={`form-content front ${mode === 'login' ? 'visible' : 'hidden'}`}
@@ -105,7 +104,6 @@ const LoginRegister = () => {
             </button>
           </form>
 
-          {/* Register Form */}
           <form
             onSubmit={handleSubmit}
             className={`form-content back ${mode === 'register' ? 'visible' : 'hidden'}`}
