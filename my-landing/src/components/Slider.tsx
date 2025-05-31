@@ -4,13 +4,13 @@ import '../styles/Slider.scss';
 import { useRef } from 'react';
 
 const images = [
-  { src: '/img/01.jfif', title: 'Some foto of somthing', alt: 'image' },
-  { src: '/img/02.jfif', title: 'Some fo', alt: 'image' },
-  { src: '/img/03.jfif', title: 'Some foto of', alt: 'image' },
-  { src: '/img/04.jfif', title: 'Som', alt: 'image' },
-  { src: '/img/05.jfif', title: 'Something', alt: 'image' },
-  { src: '/img/06.jfif', title: 'Something', alt: 'image' },
-  { src: '/img/07.jfif', title: 'Something', alt: 'image' },
+  { src: '/img/01.webp', title: 'Some foto of somthing', alt: 'image' },
+  { src: '/img/02.webp', title: 'Some fo', alt: 'image' },
+  { src: '/img/03.webp', title: 'Some foto of', alt: 'image' },
+  { src: '/img/04.webp', title: 'Som', alt: 'image' },
+  { src: '/img/05.webp', title: 'Something', alt: 'image' },
+  { src: '/img/06.webp', title: 'Somethi', alt: 'image' },
+  { src: '/img/07.webp', title: 'Someth', alt: 'image' },
 ];
 
 const Slider = () => {
