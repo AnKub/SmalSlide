@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/LoginRegister.scss';
 
 const LoginRegister = () => {
@@ -10,16 +10,19 @@ const LoginRegister = () => {
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
-const handleBackClick = () => {
-  setClicked(true);
-  setTimeout(() => {
-  }, 800); 
-};
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    setClicked(true);
+    setTimeout(() => {
+      navigate('/');
+    }, 800);
+  };
 
   const toggleMode = () => {
-    setMode(mode === 'login' ? 'register' : 'login');
+    setMode((prevMode) => (prevMode === 'login' ? 'register' : 'login'));
     setError('');
   };
 
@@ -39,40 +42,48 @@ const handleBackClick = () => {
       }
     } catch (err: any) {
       setError(err.message || 'Something went wrong');
-      setTimeout(() => {
-      setError('');
-    }, 3000);
-  } finally {
-    setIsLoading(false);
-  }
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-   
-    <div className="page login-register-page">     
-      <Link
-          to="/"
-          className={`back-button ${clicked ? 'clicked' : ''}`}
-          onClick={handleBackClick}
-        >
-        <img className="back-icon" src="/img/hombut.png" alt="Home" />
-      </Link>
+    <div className="page login-register-page">
+      <button
+        className={`home-button ${clicked ? 'clicked' : ''}`}
+        onClick={handleBackClick}
+      >
+        Home
+      </button>
+
       <div className={`form-wrapper flip-container ${mode === 'register' ? 'flipped' : ''}`}>
         <div className="form-header">
           <button className="mode-toggle" onClick={toggleMode}>
-            {mode === 'login' ? 'Login' : 'Register'}
+            {mode === 'login' ? (
+              <>
+                Login <span className="arrow">→</span>
+              </>
+            ) : (
+              <>
+                <span className="arrow">←</span> Register
+              </>
+            )}
           </button>
         </div>
 
         <div className="flipper">
-          <form onSubmit={handleSubmit} className="form-content front">
+          {/* Login Form */}
+          <form
+            onSubmit={handleSubmit}
+            className={`form-content front ${mode === 'login' ? 'visible' : 'hidden'}`}
+          >
             <label>
               Email:
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
                 required
               />
             </label>
@@ -83,7 +94,6 @@ const handleBackClick = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••"
                 required
               />
             </label>
@@ -95,14 +105,17 @@ const handleBackClick = () => {
             </button>
           </form>
 
-          <form onSubmit={handleSubmit} className="form-content back">
+          {/* Register Form */}
+          <form
+            onSubmit={handleSubmit}
+            className={`form-content back ${mode === 'register' ? 'visible' : 'hidden'}`}
+          >
             <label>
               Username:
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Your name"
                 required
               />
             </label>
@@ -113,7 +126,6 @@ const handleBackClick = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
                 required
               />
             </label>
@@ -124,7 +136,6 @@ const handleBackClick = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••"
                 required
               />
             </label>
@@ -135,7 +146,6 @@ const handleBackClick = () => {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••••"
                 required
               />
             </label>
