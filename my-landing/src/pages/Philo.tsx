@@ -56,7 +56,7 @@ const Philo = () => {
       <Section
         id="stoicism"
         title="Stoicism"
-        image="/img/stoic.jfif"
+        image="/img/stoic.webp"
         text={`Stoicism is a philosophy founded in Ancient Greece that teaches the development of self-control and fortitude as a means of overcoming destructive emotions. 
 Zeno of Citium was one of the first and most influential Stoic philosophers. He taught that we should live in harmony with nature and accept things we cannot control. 
 A central idea of Stoicism is that virtue (such as wisdom, courage, and justice) is the highest good. 
@@ -69,7 +69,7 @@ Famous quote: “We suffer more in imagination than in reality.” – Seneca.`}
       <Section
         id="existentialism"
         title="Existentialism"
-        image="/img/Kierkegaard.jfif"
+        image="/img/Kierkegaard.webp"
         text={`Existentialism emphasizes individual existence, freedom, and choice. It argues that humans define their own meaning in life, and try to make rational decisions despite existing in an irrational universe. 
 Søren Kierkegaard is often considered the father of existentialism. He believed that truth is subjective and that each individual must take a leap of faith to live authentically. 
 He focused on anxiety, despair, and the concept of personal responsibility. 
@@ -82,7 +82,7 @@ Famous quote: “Life can only be understood backwards; but it must be lived for
       <Section
         id="absurdism"
         title="Absurdism"
-        image="/img/camus.jfif"
+        image="/img/camus.webp"
         text={`Absurdism explores the conflict between the human tendency to seek inherent value and meaning in life and the inability to find any in a purposeless, meaningless or chaotic universe. 
 Albert Camus was a key figure in Absurdism. He argued that although life is inherently absurd, we should embrace it and live with passion and integrity anyway. 
 His idea of the 'absurd hero' is someone who continues to seek meaning even in a meaningless world. 
@@ -96,17 +96,17 @@ Famous quote: “The struggle itself toward the heights is enough to fill a man'
         <Card
           author="Ralph Waldo Emerson"
           quote="To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment."
-          img="img/emmerson.jfif"
+          img="img/emmerson.webp"
         />
         <Card
           author="Arthur Schopenhauer"
           quote="Compassion is the basis of morality."
-          img="img/Schop.jfif"
+          img="img/Schop.webp"
         />
         <Card
           author="Erich Maria Remarque"
           quote="A man is never afraid of a thing, but of the idea of it."
-          img="img/Remarque.jfif"
+          img="img/Remarque.webp"
         />
       </div>
     </div>
