@@ -17,7 +17,7 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 1s ease-in-out;
     pointer-events: none;
   }
 
@@ -50,7 +50,7 @@
     opacity: 1;
   }
   &.bg-login::after {
-    background-image: url('/img/bg-login.jpg');
+    background-image: url('/img/bg-login.webp');
     opacity: 1;
   }
 }
