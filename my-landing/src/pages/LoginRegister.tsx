@@ -45,6 +45,7 @@ const LoginRegister = () => {
    
     <div className="page login-register-page">     
         <div className="Nice">
+          
       <Link to="/" className="back-button">Back</Link>
     </div>
       <div className={`form-wrapper flip-container ${mode === 'register' ? 'flipped' : ''}`}>
