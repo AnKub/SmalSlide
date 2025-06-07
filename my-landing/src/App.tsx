@@ -19,7 +19,7 @@ function App() {
     <MantineProvider theme={theme}>
       <Router>
          <ScrollToTop />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Loading..</div>}>
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
