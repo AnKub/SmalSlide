@@ -2,7 +2,8 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
   min-height: 100vh;
-  padding-top: 100px; 
+  padding-top: 70px; 
+  margin: 1rem;
   .category-tabs {
     position: fixed;
     top: 90px; 
@@ -55,9 +56,10 @@ button {
 
   .articles-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
+  
 
   .article-card {
     background-color: #111;
