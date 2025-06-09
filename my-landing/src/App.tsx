@@ -9,7 +9,6 @@ const Login = lazy(() => import('./pages/LoginRegister'));
 const Weather = lazy(() => import('./pages/Weather'));
 const Library = lazy(() => import('./pages/Library'));
 
-import ScrollToTop from './components/ScrollToTop'; 
 import Layout from './Layout';
 
 const theme = createTheme({});
@@ -18,7 +17,6 @@ function App() {
   return (
     <MantineProvider theme={theme}>
       <Router>
-         <ScrollToTop />
         <Suspense fallback={<div>Loading..</div>}>
           <Routes>
             <Route element={<Layout />}>
