@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './ScrollToTopButton.scss';
+import '../styles/ScrollToTopButton.scss';
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,11 +13,10 @@ const ScrollToTopButton = () => {
     setClicked(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Після анімації зникнення ховаємо кнопку
     setTimeout(() => {
       setClicked(false);
       setIsVisible(false);
-    }, 800); // тривалість має відповідати анімації fade-out
+    }, 800); 
   };
 
   useEffect(() => {
