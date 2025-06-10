@@ -1,64 +1,64 @@
-.scroll-to-top-button {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 40%;
-  border: 1px solid #fa6603;
-  background: linear-gradient(75deg, #000000, #1e1001, #fa6603);
-  background-size: 200% 200%;
-  animation: glow 10s ease infinite;
-  color: white;
-  font-weight: bold;
-  font-size: 1.4rem;
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(250, 102, 3, 0.7);
-  transition: transform 0.3s ease, opacity 0.8s ease;
-  z-index: 999;
+// .scroll-to-top-button {
+//   position: fixed;
+//   bottom: 2rem;
+//   right: 2rem;
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 40%;
+//   border: 1px solid #fa6603;
+//   background: linear-gradient(75deg, #000000, #1e1001, #fa6603);
+//   background-size: 200% 200%;
+//   animation: glow 10s ease infinite;
+//   color: white;
+//   font-weight: bold;
+//   font-size: 1.4rem;
+//   cursor: pointer;
+//   box-shadow: 0 0 15px rgba(250, 102, 3, 0.7);
+//   transition: transform 0.3s ease, opacity 0.8s ease;
+//   z-index: 999;
 
-  &:hover {
-    transform: scale(1.1);
-  }
+//   &:hover {
+//     transform: scale(1.1);
+//   }
 
-  &.clicked {
-    animation: shake 0.5s ease, fade-out 0.8s forwards;
-  }
-}
+//   &.clicked {
+//     animation: shake 0.5s ease, fade-out 0.8s forwards;
+//   }
+// }
 
-@keyframes glow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+// @keyframes glow {
+//   0% {
+//     background-position: 0% 50%;
+//   }
+//   50% {
+//     background-position: 100% 50%;
+//   }
+//   100% {
+//     background-position: 0% 50%;
+//   }
+// }
 
-@keyframes shake {
-  0% {
-    transform: translate(0px, 0px) rotate(0deg);
-  }
-  25% {
-    transform: translate(2px, -2px) rotate(1deg);
-  }
-  50% {
-    transform: translate(-2px, 2px) rotate(-1deg);
-  }
-  75% {
-    transform: translate(1px, -1px) rotate(1deg);
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(0deg);
-  }
-}
+// @keyframes shake {
+//   0% {
+//     transform: translate(0px, 0px) rotate(0deg);
+//   }
+//   25% {
+//     transform: translate(2px, -2px) rotate(1deg);
+//   }
+//   50% {
+//     transform: translate(-2px, 2px) rotate(-1deg);
+//   }
+//   75% {
+//     transform: translate(1px, -1px) rotate(1deg);
+//   }
+//   100% {
+//     transform: translate(0px, 0px) rotate(0deg);
+//   }
+// }
 
-@keyframes fade-out {
-  to {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
+// @keyframes fade-out {
+//   to {
+//     opacity: 0;
+//     transform: scale(0.5);
+//   }
+// }
