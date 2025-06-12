@@ -1,0 +1,32 @@
+.user-dashboard {
+  @extend .container;
+
+  .card {
+    @extend .card;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .description {
+    color: #ddd;
+    margin: 20px 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .button {
+      @extend .button;
+      min-width: 140px;
+    }
+  }
+}

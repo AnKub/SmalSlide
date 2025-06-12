@@ -8,6 +8,7 @@ const Philo = lazy(() => import('./pages/Philo'));
 const Login = lazy(() => import('./pages/LoginRegister'));
 const Weather = lazy(() => import('./pages/Weather'));
 const Library = lazy(() => import('./pages/Library'));
+const UserDashboard = lazy(() => import('./features/user/UserDashboard'));
 
 import Layout from './Layout';
 
@@ -24,6 +25,7 @@ function App() {
               <Route path="/nytnews" element={<NYTNews />} />
               <Route path="/library" element={<Library />} />
               <Route path="/philo" element={<Philo />} />
+              <Route path="/user" element={<UserDashboard />} />
               <Route path="/weather" element={<Weather />} />
             </Route>
             <Route path="/login" element={<Login />} />
