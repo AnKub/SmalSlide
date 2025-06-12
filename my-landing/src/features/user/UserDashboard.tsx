@@ -1,18 +1,18 @@
 import '../../styles/UserDashboard.scss';
+import UserProfile from './UserProfile';
 import { useEffect, useState } from 'react';
 
-const UserDashboard =() =>{
-  const [userName, setUserName] = useState ('User');
+const UserDashboard = () => {
+  const [userName, setUserName] = useState('User');
 
-  useEffect(() =>{
-    // TODO: take from back in the future
-    const name = localStorage.getItem('userName')||'User';
+  useEffect(() => {
+    const name = localStorage.getItem('userName') || 'User';
     setUserName(name);
   }, []);
- 
+
   return (
     <div className="user-dashboard">
-      <div className="card">
+      <div className="welcome-card">
         <h1 className="title">Welcome back, {userName}!</h1>
         <p className="description">This is your personal space. More features coming soon.</p>
         <div className="actions">
@@ -20,6 +20,8 @@ const UserDashboard =() =>{
           <button className="button">Logout</button>
         </div>
       </div>
+
+      <UserProfile />
     </div>
   );
 };
