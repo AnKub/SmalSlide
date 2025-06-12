@@ -1,4 +1,5 @@
 import { Navigate} from "react-router-dom";
+import { JSX } from 'react';
 
   const ProtectedRoute = ({children} : { children: JSX.Element })=>{
    const isAuthenticated = !!localStorage.getItem('token');

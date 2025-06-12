@@ -1,4 +1,4 @@
-import './UserDashBoard.scss';
+import '../../styles/UserDashboard.scss';
 import { useEffect, useState } from 'react';
 
 const UserDashboard =() =>{

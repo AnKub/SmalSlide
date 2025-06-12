@@ -26,14 +26,15 @@ function App() {
               <Route path="/nytnews" element={<NYTNews />} />
               <Route path="/library" element={<Library />} />
               <Route path="/philo" element={<Philo />} />
-            <Route
+              <Route path="/user" element={<UserDashboard />} />
+            {/* <Route
                 path="/user"
                 element={
                   <ProtectedRoute>
                     <UserDashboard />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
               <Route path="/weather" element={<Weather />} />
             </Route>
             <Route path="/login" element={<Login />} />

@@ -1,32 +1,52 @@
 .user-dashboard {
-  @extend .container;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 
   .card {
-    @extend .card;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 40px;
     max-width: 500px;
+    width: 100%;
     text-align: center;
-  }
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
-  .title {
-    font-size: 30px;
-    font-weight: 700;
-    color: #fff;
-  }
+    .title {
+      font-size: 30px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
 
-  .description {
-    color: #ddd;
-    margin: 20px 0;
-  }
+    .description {
+      color: #ddd;
+      margin: 20px 0;
+    }
 
-  .actions {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
+    .actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
 
-    .button {
-      @extend .button;
-      min-width: 140px;
+      .button {
+        background-color: #ffffff22;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #ffffff44;
+        }
+      }
     }
   }
 }
