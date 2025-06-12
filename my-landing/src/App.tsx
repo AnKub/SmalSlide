@@ -11,6 +11,7 @@ const Library = lazy(() => import('./pages/Library'));
 const UserDashboard = lazy(() => import('./features/user/UserDashboard'));
 
 import Layout from './Layout';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 const theme = createTheme({});
 
@@ -25,7 +26,14 @@ function App() {
               <Route path="/nytnews" element={<NYTNews />} />
               <Route path="/library" element={<Library />} />
               <Route path="/philo" element={<Philo />} />
-              <Route path="/user" element={<UserDashboard />} />
+            <Route
+                path="/user"
+                element={
+                  <ProtectedRoute>
+                    <UserDashboard />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/weather" element={<Weather />} />
             </Route>
             <Route path="/login" element={<Login />} />
