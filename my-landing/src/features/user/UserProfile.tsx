@@ -1,10 +1,14 @@
 import '../../styles/UserProfile.scss';
 import defaultAvatar from '/svg/avatar.png';
 
-const UserProfile = () => {
+type UserProfileProps = {
+  onEditClick: () => void;
+};
+
+const UserProfile = ({ onEditClick }: UserProfileProps) => {
   return (
     <div className="user-profile-container">
-      <button className="edit-button">Edit</button>
+      <button className="edit-button" onClick={onEditClick}>Edit</button>
 
       <div className="profile-glass">
         <div className="avatar-section">
