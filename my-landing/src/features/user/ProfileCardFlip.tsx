@@ -9,10 +9,10 @@ interface ProfileCardFlipProps {
 
 const ProfileCardFlip: React.FC<ProfileCardFlipProps> = ({ flipped, front, back }) => {
   return (
-    <div className={`flip-container ${flipped ? 'flipped' : ''}`}>
-      <div className="flipper">
-        <div className="front">{front}</div>
-        <div className="back">{back}</div>
+    <div className="card-flip-wrapper">
+      <div className={`card-inner ${flipped ? 'flipped' : ''}`}>
+        <div className="card-face card-front">{front}</div>
+        <div className="card-face card-back">{back}</div>
       </div>
     </div>
   );

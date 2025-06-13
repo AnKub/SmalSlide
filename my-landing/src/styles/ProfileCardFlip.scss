@@ -1,27 +1,34 @@
-.flip-container {
-  perspective: 1000px;
-  width: 80%;
-  margin-bottom: 2rem;
+.card-flip-wrapper {
+  perspective: 1500px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.flipper {
+.card-inner {
   position: relative;
-  transition: transform 0.6s;
+  width: 80%;
   transform-style: preserve-3d;
+  transition: transform 0.8s ease;
 }
 
-.flipped .flipper {
+.card-inner.flipped {
   transform: rotateY(180deg);
 }
 
-.front, .back {
-  backface-visibility: hidden;
+.card-face {
   position: absolute;
   width: 100%;
+  backface-visibility: hidden;
   top: 0;
   left: 0;
 }
 
-.back {
+.card-front {
+  z-index: 2;
+}
+
+.card-back {
   transform: rotateY(180deg);
+  z-index: 1;
 }
