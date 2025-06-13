@@ -1,113 +1,113 @@
-.user-profile-container {
-  width: 80%;
-  margin: 1rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+// .user-profile-container {
+//   width: 80%;
+//   margin: 1rem;
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 2rem;
 
-  .edit-button {
-    position: absolute;
-    top: 2rem;
-    right: 10vw;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid #fa6603;
-    background: linear-gradient(75deg, #000000, #1e1001, #fa6603);
-    background-size: 200% 200%;
-    animation: glow 10s ease infinite;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(250, 102, 3, 0.7);
-    transition: transform 0.3s ease;
+//   .edit-button {
+//     position: absolute;
+//     top: 2rem;
+//     right: 10vw;
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 50%;
+//     border: 1px solid #fa6603;
+//     background: linear-gradient(75deg, #000000, #1e1001, #fa6603);
+//     background-size: 200% 200%;
+//     animation: glow 10s ease infinite;
+//     color: white;
+//     font-weight: bold;
+//     cursor: pointer;
+//     box-shadow: 0 0 15px rgba(250, 102, 3, 0.7);
+//     transition: transform 0.3s ease;
 
-    &:hover {
-      transform: scale(1.05);
-    }
+//     &:hover {
+//       transform: scale(1.05);
+//     }
 
-    &.clicked {
-      animation: shake 0.5s ease, fade-out 0.8s forwards;
-    }
-  }
+//     &.clicked {
+//       animation: shake 0.5s ease, fade-out 0.8s forwards;
+//     }
+//   }
 
-  .profile-glass {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
+//   .profile-glass {
+//     display: flex;
+//     justify-content: space-between;
+//     gap: 2rem;
+//     background: rgba(255, 255, 255, 0.1);
+//     backdrop-filter: blur(10px);
+//     border-radius: 16px;
+//     padding: 2rem;
+//     border: 1px solid rgba(255, 255, 255, 0.2);
+//   }
 
-  .avatar-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+//   .avatar-section {
+//     flex: 1;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
 
-    .avatar-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 2px solid #fff;
-      object-fit: cover;
-    }
+//     .avatar-img {
+//       width: 120px;
+//       height: 120px;
+//       border-radius: 50%;
+//       border: 2px solid #fff;
+//       object-fit: cover;
+//     }
 
-    .upload-btn {
-      margin-top: 1rem;
-      background-color: #ffffff22;
-      border: 1px solid #fff;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
+//     .upload-btn {
+//       margin-top: 1rem;
+//       background-color: #ffffff22;
+//       border: 1px solid #fff;
+//       color: #fff;
+//       padding: 8px 16px;
+//       border-radius: 8px;
+//       cursor: pointer;
 
-      &:hover {
-        background-color: #ffffff44;
-      }
-    }
-  }
+//       &:hover {
+//         background-color: #ffffff44;
+//       }
+//     }
+//   }
 
-  .info-section {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    color: #fff;
+//   .info-section {
+//     flex: 2;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     gap: 10px;
+//     color: #fff;
 
-    p {
-      font-size: 18px;
-    }
-  }
+//     p {
+//       font-size: 18px;
+//     }
+//   }
 
-  .extra-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+//   .extra-section {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 1rem;
 
-    .slogan,
-    .bio {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #fff;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      font-size: 16px;
-      resize: none;
+//     .slogan,
+//     .bio {
+//       width: 100%;
+//       padding: 10px;
+//       border-radius: 8px;
+//       border: 1px solid #fff;
+//       background: rgba(255, 255, 255, 0.1);
+//       color: white;
+//       font-size: 16px;
+//       resize: none;
 
-      &::placeholder {
-        color: #ccc;
-      }
-    }
+//       &::placeholder {
+//         color: #ccc;
+//       }
+//     }
 
-    .bio {
-      min-height: 100px;
-    }
-  }
-}
+//     .bio {
+//       min-height: 100px;
+//     }
+//   }
+// }
