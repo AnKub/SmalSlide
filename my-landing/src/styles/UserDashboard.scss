@@ -1,4 +1,6 @@
 .user-dashboard {
+  flex: 1;  
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,31 +8,22 @@
 
   .welcome-card {
     width: 80%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     padding: 40px;
     margin-bottom: 2rem;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255,255,255,0.2);
 
-    .title {
-      font-size: 36px;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .description {
-      color: #ddd;
-      margin: 20px 0;
-    }
+    .title { font-size: 36px; font-weight: bold; color: #fff; }
+    .description { color: #ddd; margin: 20px 0; }
 
     .actions {
       display: flex;
       gap: 20px;
       justify-content: center;
-      flex-wrap: wrap;
 
       .button {
         background-color: #ffffff22;
@@ -39,11 +32,9 @@
         padding: 10px 20px;
         border-radius: 8px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: background 0.3s;
 
-        &:hover {
-          background-color: #ffffff44;
-        }
+        &:hover { background-color: #ffffff44; }
       }
     }
   }

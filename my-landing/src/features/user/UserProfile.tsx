@@ -25,8 +25,8 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
       </div>
 
       <div className="extra-section">
-        <textarea className="slogan" placeholder="Your personal slogan..."></textarea>
-        <textarea className="bio" placeholder="A few words about yourself..."></textarea>
+        <textarea className="slogan" placeholder="Your personal slogan..." readOnly />
+        <textarea className="bio" placeholder="A few words about yourself..." readOnly />
       </div>
     </div>
   );
