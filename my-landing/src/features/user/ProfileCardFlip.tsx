@@ -1,22 +1,18 @@
-import { useState } from 'react';
-import UserProfile from './UserProfile';
-import EditProfileForm from './EditProfileForm';
-import '../styles/ProfileCardFlip.scss';
+import React from 'react';
+import '../../styles/ProfileCardFlip.scss';
 
-const ProfileCardFlip = () => {
-  const [flipped, setFlipped] = useState(false);
+interface ProfileCardFlipProps {
+  flipped: boolean;
+  front: React.ReactNode;
+  back: React.ReactNode;
+}
 
-  const toggle = () => setFlipped(!flipped);
-
+const ProfileCardFlip: React.FC<ProfileCardFlipProps> = ({ flipped, front, back }) => {
   return (
-    <div className={`form-wrapper flip-container ${flipped ? 'flipped' : ''}`}>
+    <div className={`flip-container ${flipped ? 'flipped' : ''}`}>
       <div className="flipper">
-        <div className="form-content front">
-          <UserProfile onEditClick={toggle} />
-        </div>
-        <div className="form-content back">
-          <EditProfileForm onSave={toggle} onCancel={toggle} />
-        </div>
+        <div className="front">{front}</div>
+        <div className="back">{back}</div>
       </div>
     </div>
   );
