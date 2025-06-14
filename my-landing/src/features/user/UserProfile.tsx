@@ -1,5 +1,5 @@
 import '../../styles/style-user/UserProfile.scss';
-import defaultAvatar from '/svg/avatar.png';
+import defaultAvatar from '/svg/avatar.svg';
 
 type UserProfileProps = {
   onEditClick: () => void;
