@@ -16,7 +16,7 @@ type UserProfileData = {
   bio: string;
   phone: string;
   github: string;
-  pronouns: string;
+  linkedin: string;
   dob: string;
 };
 
@@ -32,8 +32,8 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
     bio: initialData.bio || '',
     phone: initialData.phone || '',
     github: initialData.github || '',
-    pronouns: initialData.pronouns || '',
-    dob: initialData.dob || ''
+    linkedin: initialData.linkedin || '',
+    dob: initialData.dob || '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -59,7 +59,6 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
 
         <div className="info-section">
           <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
-          <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
           <input type="text" name="country" value={formData.country} onChange={handleChange} placeholder="Country" />
           <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder="City" />
         </div>
@@ -81,6 +80,13 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
             onChange={handleChange}
             placeholder="A few words about yourself..."
           />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+          />
         </div>
 
         <div className="info-section">
@@ -99,11 +105,11 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
             placeholder="GitHub profile link"
           />
           <input
-            type="text"
-            name="pronouns"
-            value={formData.pronouns}
+            type="url"
+            name="linkedin"
+            value={formData.linkedin}
             onChange={handleChange}
-            placeholder="Your pronouns"
+            placeholder="LinkedIn profile link"
           />
           <input
             type="date"

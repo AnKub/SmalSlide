@@ -14,7 +14,7 @@ type UserProfileData = {
   bio?: string;
   phone?: string;
   github?: string;
-  pronouns?: string;
+  linkedin?: string;
   dob?: string;
 };
 
@@ -22,7 +22,15 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
   const rawData = localStorage.getItem('userProfile');
   const data: UserProfileData = rawData ? JSON.parse(rawData) : {};
 
-  const hasExtraInfo = data.slogan || data.bio || data.phone || data.github || data.pronouns || data.dob;
+  const hasExtraInfo =
+    data.slogan ||
+    data.bio ||
+    data.phone ||
+    data.github ||
+    data.linkedin ||
+    data.email ||
+    data.dob;
+
 
   return (
     <div className="user-profile-container">
@@ -35,8 +43,7 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
         </div>
 
         <div className="info-section">
-          <p><strong>Name:</strong> {data.name || 'any info'}</p>
-          <p><strong>Email:</strong> {data.email || 'any info'}</p>
+          <p><strong>Name:</strong> {data.name || 'any info'}</p>          
           <p><strong>Country:</strong> {data.country || 'any info'}</p>
           <p><strong>City:</strong> {data.city || 'any info'}</p>
         </div>
@@ -73,20 +80,31 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
               />
             )}
             {data.github && (
-              <input
-                type="url"
-                value={data.github}
-                readOnly
-                placeholder="GitHub profile link"
-              />
+              <a
+                href={data.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {data.github}
+              </a>
             )}
-            {data.pronouns && (
-              <input
-                type="text"
-                value={data.pronouns}
-                readOnly
-                placeholder="Your pronouns"
-              />
+            {data.linkedin && (
+              <a
+                href={data.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {data.linkedin}
+              </a>
+            )}
+            {data.email && (
+              <a
+                href={`mailto:${data.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {data.email}
+              </a>
             )}
             {data.dob && (
               <input
