@@ -16,7 +16,11 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
     country: initialData.country || '',
     city: initialData.city || '',
     slogan: initialData.slogan || '',
-    bio: initialData.bio || ''
+    bio: initialData.bio || '',
+    phone: initialData.phone || '',
+    github: initialData.github || '',
+    pronouns: initialData.pronouns || '',
+    dob: initialData.dob || ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -27,7 +31,7 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     localStorage.setItem('userProfile', JSON.stringify(formData));
-    onSave(); 
+    onSave();
   };
 
   return (
@@ -48,9 +52,30 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
         </div>
       </div>
 
-      <div className="extra-section">
-        <textarea name="slogan" className="slogan" value={formData.slogan} onChange={handleChange} placeholder="Your personal slogan..." />
-        <textarea name="bio" className="bio" value={formData.bio} onChange={handleChange} placeholder="A few words about yourself..." />
+      <div className="extra-columns-wrapper">
+        <div className="extra-section">
+          <textarea
+            name="slogan"
+            className="slogan"
+            value={formData.slogan}
+            onChange={handleChange}
+            placeholder="Your personal slogan..."
+          />
+          <textarea
+            name="bio"
+            className="bio"
+            value={formData.bio}
+            onChange={handleChange}
+            placeholder="A few words about yourself..."
+          />
+        </div>
+
+        <div className="info-section">
+          <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone number" />
+          <input type="url" name="github" value={formData.github} onChange={handleChange} placeholder="GitHub profile link" />
+          <input type="text" name="pronouns" value={formData.pronouns} onChange={handleChange} placeholder="Your pronouns" />
+          <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
+        </div>
       </div>
     </form>
   );
