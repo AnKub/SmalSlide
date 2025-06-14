@@ -5,8 +5,24 @@ type UserProfileProps = {
   onEditClick: () => void;
 };
 
+type UserProfileData = {
+  name?: string;
+  email?: string;
+  country?: string;
+  city?: string;
+  slogan?: string;
+  bio?: string;
+  phone?: string;
+  github?: string;
+  pronouns?: string;
+  dob?: string;
+};
+
 const UserProfile = ({ onEditClick }: UserProfileProps) => {
-  const data = JSON.parse(localStorage.getItem('userProfile') || '{}');
+  const rawData = localStorage.getItem('userProfile');
+  const data: UserProfileData = rawData ? JSON.parse(rawData) : {};
+
+  const hasExtraInfo = data.slogan || data.bio || data.phone || data.github || data.pronouns || data.dob;
 
   return (
     <div className="user-profile-container">
@@ -23,27 +39,65 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
           <p><strong>Email:</strong> {data.email || 'any info'}</p>
           <p><strong>Country:</strong> {data.country || 'any info'}</p>
           <p><strong>City:</strong> {data.city || 'any info'}</p>
-
-          {data.phone && <p><strong>Phone:</strong> {data.phone}</p>}
-          {data.github && <p><strong>GitHub:</strong> {data.github}</p>}
-          {data.pronouns && <p><strong>Pronouns:</strong> {data.pronouns}</p>}
-          {data.dob && <p><strong>Date of Birth:</strong> {data.dob}</p>}
         </div>
       </div>
 
-      <div className="extra-columns-wrapper">
-        <div className="extra-section">
-          <textarea className="slogan" value={data.slogan || ''} placeholder="Your personal slogan..." readOnly />
-          <textarea className="bio" value={data.bio || ''} placeholder="A few words about yourself..." readOnly />
-        </div>
+      {hasExtraInfo && (
+        <div className="extra-columns-wrapper">
+          <div className="extra-section">
+            {data.slogan && (
+              <textarea
+                className="slogan"
+                value={data.slogan}
+                placeholder="Your personal slogan..."
+                readOnly
+              />
+            )}
+            {data.bio && (
+              <textarea
+                className="bio"
+                value={data.bio}
+                placeholder="A few words about yourself..."
+                readOnly
+              />
+            )}
+          </div>
 
-        <div className="info-section">
-          {data.phone && <input value={data.phone} readOnly />}
-          {data.github && <input value={data.github} readOnly />}
-          {data.pronouns && <input value={data.pronouns} readOnly />}
-          {data.dob && <input value={data.dob} readOnly />}
+          <div className="info-section readonly-fields">
+            {data.phone && (
+              <input
+                type="text"
+                value={data.phone}
+                readOnly
+                placeholder="Phone number"
+              />
+            )}
+            {data.github && (
+              <input
+                type="url"
+                value={data.github}
+                readOnly
+                placeholder="GitHub profile link"
+              />
+            )}
+            {data.pronouns && (
+              <input
+                type="text"
+                value={data.pronouns}
+                readOnly
+                placeholder="Your pronouns"
+              />
+            )}
+            {data.dob && (
+              <input
+                type="date"
+                value={data.dob}
+                readOnly
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

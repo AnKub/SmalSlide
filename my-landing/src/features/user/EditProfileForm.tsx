@@ -7,10 +7,23 @@ type EditProfileFormProps = {
   onCancel: () => void;
 };
 
-const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
-  const initialData = JSON.parse(localStorage.getItem('userProfile') || '{}');
+type UserProfileData = {
+  name: string;
+  email: string;
+  country: string;
+  city: string;
+  slogan: string;
+  bio: string;
+  phone: string;
+  github: string;
+  pronouns: string;
+  dob: string;
+};
 
-  const [formData, setFormData] = useState({
+const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
+  const initialData: UserProfileData = JSON.parse(localStorage.getItem('userProfile') || '{}');
+
+  const [formData, setFormData] = useState<UserProfileData>({
     name: initialData.name || '',
     email: initialData.email || '',
     country: initialData.country || '',
@@ -71,10 +84,33 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
         </div>
 
         <div className="info-section">
-          <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone number" />
-          <input type="url" name="github" value={formData.github} onChange={handleChange} placeholder="GitHub profile link" />
-          <input type="text" name="pronouns" value={formData.pronouns} onChange={handleChange} placeholder="Your pronouns" />
-          <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
+          <input
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Phone number"
+          />
+          <input
+            type="url"
+            name="github"
+            value={formData.github}
+            onChange={handleChange}
+            placeholder="GitHub profile link"
+          />
+          <input
+            type="text"
+            name="pronouns"
+            value={formData.pronouns}
+            onChange={handleChange}
+            placeholder="Your pronouns"
+          />
+          <input
+            type="date"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
+          />
         </div>
       </div>
     </form>
