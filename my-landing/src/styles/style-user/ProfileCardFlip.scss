@@ -1,13 +1,16 @@
 .card-flip-wrapper {
-  perspective: 1500px;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  height: 500px;
+  min-height: 500px;
+  position: relative;
+  perspective: 1500px;
+  align-items:center;
 }
 
 .card-inner {
+  width: 100%;
+  height: 100%;
   position: relative;
-  width: 80%;
   transform-style: preserve-3d;
   transition: transform 0.8s ease;
 }
@@ -17,11 +20,19 @@
 }
 
 .card-face {
-  position: absolute;
   width: 100%;
-  backface-visibility: hidden;
+  height: 100%;
+  align-items: stretch;
+  position: absolute;
   top: 0;
   left: 0;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 2rem;
+  overflow: hidden;
 }
 
 .card-front {

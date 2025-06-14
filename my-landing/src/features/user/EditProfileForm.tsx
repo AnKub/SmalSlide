@@ -1,4 +1,4 @@
-import '../../styles/UserProfile.scss';
+import '../../styles/style-user/UserProfile.scss';
 import defaultAvatar from '/svg/avatar.png';
 import { useState } from 'react';
 
@@ -7,14 +7,16 @@ type EditProfileFormProps = {
   onCancel: () => void;
 };
 
-const EditProfileForm = ({ onSave, onCancel }: EditProfileFormProps) => {
+const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
+  const initialData = JSON.parse(localStorage.getItem('userProfile') || '{}');
+
   const [formData, setFormData] = useState({
-    name: 'Andriy',
-    email: 'andriy@example.com',
-    country: 'Ukraine',
-    city: 'Khmelnytskyi',
-    slogan: '',
-    bio: ''
+    name: initialData.name || '',
+    email: initialData.email || '',
+    country: initialData.country || '',
+    city: initialData.city || '',
+    slogan: initialData.slogan || '',
+    bio: initialData.bio || ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -24,13 +26,13 @@ const EditProfileForm = ({ onSave, onCancel }: EditProfileFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: зберегти в localStorage або бек
-    onSave();
+    localStorage.setItem('userProfile', JSON.stringify(formData));
+    onSave(); 
   };
 
   return (
     <form className="user-profile-container" onSubmit={handleSubmit}>
-      <button type="button" className="edit-button" onClick={onCancel}>←</button>
+      <button type="submit" className="edit-button">Save</button>
 
       <div className="profile-glass">
         <div className="avatar-section">
@@ -50,8 +52,6 @@ const EditProfileForm = ({ onSave, onCancel }: EditProfileFormProps) => {
         <textarea name="slogan" className="slogan" value={formData.slogan} onChange={handleChange} placeholder="Your personal slogan..." />
         <textarea name="bio" className="bio" value={formData.bio} onChange={handleChange} placeholder="A few words about yourself..." />
       </div>
-
-      <button type="submit" className="upload-btn">Save</button>
     </form>
   );
 };

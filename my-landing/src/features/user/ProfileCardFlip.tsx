@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/ProfileCardFlip.scss';
+import '../../styles/style-user/ProfileCardFlip.scss';
 
 interface ProfileCardFlipProps {
   flipped: boolean;

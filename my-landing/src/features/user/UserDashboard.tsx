@@ -1,4 +1,4 @@
-import '../../styles/UserDashboard.scss';
+import '../../styles/style-user/UserDashboard.scss';
 import { useEffect, useState } from 'react';
 import ProfileCardFlip from './ProfileCardFlip';
 import UserProfile from './UserProfile';
@@ -28,11 +28,13 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <ProfileCardFlip
-        flipped={isEditing}
-        front={<UserProfile onEditClick={handleEditClick} />}
-        back={<EditProfileForm onSave={handleSave} onCancel={handleCancel} />}
-      />
+     <div className="profile-page-wrapper">
+  <ProfileCardFlip
+    flipped={isEditing}
+    front={<UserProfile onEditClick={handleEditClick} />}
+    back={<EditProfileForm onSave={handleSave} onCancel={handleCancel} />}
+  />
+</div>
     </div>
   );
 };

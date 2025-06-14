@@ -1,17 +1,18 @@
 .user-profile-container {
   width: 80%;
-  margin: 1rem 0;
   position: relative;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   gap: 2rem;
 
   .edit-button {
     position: absolute;
-    top: 1.5rem;
-    right: calc(10vw - 10px);
-    width: 50px;
-    height: 50px;
+    top: -1rem;
+    z-index: 1;
+    right: 10%;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 1px solid #fa6603;
     background: linear-gradient(75deg, #000, #1e1001, #fa6603);
@@ -24,6 +25,9 @@
 
     &:hover { transform: scale(1.05); }
   }
+  .user-profile-container {
+  overflow-x: hidden;
+}
 
   .profile-glass {
     display: flex;
@@ -43,24 +47,30 @@
     align-items: center;
 
     .avatar-img {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
-      border: 2px solid #fff;
+       border: 1px solid #fa6603;
       object-fit: cover;
     }
 
     .upload-btn {
       margin-top: 1rem;
-      background-color: #ffffff22;
-      border: 1px solid #fff;
       color: #fff;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
+      padding: 12px;
+    border: 1px solid #fa6603;
+    border-radius:50%;
+    background: linear-gradient(75deg, #000, #1e1001, #fa6603);
+    background-size: 200% 200%;
+    animation: glow 10s ease infinite;
+    color: white;
+    cursor: pointer;
+    // box-shadow: 0 0 15px rgba(250,102,3,0.7);
+    transition: transform 0.3s;
 
-      &:hover { background-color: #ffffff44; }
-    }
+    &:hover { transform: scale(1);
+     box-shadow: 0 0 15px rgba(250,102,3,0.7); }
+  }
   }
 
   .info-section {
@@ -68,11 +78,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 12px;
+    gap: 12px;    
     color: #fff;
 
     p, input {
       font-size: 18px;
+      max-width: 60%;
     }
 
     input {
@@ -92,7 +103,7 @@
     gap: 1rem;
 
     .slogan, .bio {
-      width: 100%;
+      width: 90%;
       padding: 10px;
       border-radius: 8px;
       border: 1px solid #fff;
@@ -112,4 +123,25 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 768px) {
+  .user-profile-container {
+    width: 95%;
+    .profile-glass {
+      flex-direction: column;
+    }
+
+    .info-section, .avatar-section {
+      align-items: center;
+      text-align: center;
+    }
+
+    .edit-button {
+      top: -2rem;
+      right: 1rem;
+      width: 60px;
+      height: 60px;
+    }
+  }
 }

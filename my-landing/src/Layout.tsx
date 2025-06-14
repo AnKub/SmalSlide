@@ -15,7 +15,7 @@ const Layout = () => {
     if (path === '/library') return 'bg-home';
     if (path === '/weather') return 'bg-weather';
     if (path === '/login') return 'bg-login';
-    if (path === '/user') return 'bg-weather';
+    if (path === '/user') return 'bg-home';
     return '';
   })();
 

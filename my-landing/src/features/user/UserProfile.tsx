@@ -1,4 +1,4 @@
-import '../../styles/UserProfile.scss';
+import '../../styles/style-user/UserProfile.scss';
 import defaultAvatar from '/svg/avatar.png';
 
 type UserProfileProps = {
@@ -6,6 +6,8 @@ type UserProfileProps = {
 };
 
 const UserProfile = ({ onEditClick }: UserProfileProps) => {
+  const data = JSON.parse(localStorage.getItem('userProfile') || '{}');
+
   return (
     <div className="user-profile-container">
       <button className="edit-button" onClick={onEditClick}>Edit</button>
@@ -17,16 +19,16 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
         </div>
 
         <div className="info-section">
-          <p><strong>Name:</strong> Andriy</p>
-          <p><strong>Email:</strong> andriy@example.com</p>
-          <p><strong>Country:</strong> Ukraine</p>
-          <p><strong>City:</strong> Khmelnytskyi</p>
+          <p><strong>Name:</strong> {data.name || 'any info'}</p>
+          <p><strong>Email:</strong> {data.email || 'any info'}</p>
+          <p><strong>Country:</strong> {data.country || 'any info'}</p>
+          <p><strong>City:</strong> {data.city || 'any info'}</p>
         </div>
       </div>
 
       <div className="extra-section">
-        <textarea className="slogan" placeholder="Your personal slogan..." readOnly />
-        <textarea className="bio" placeholder="A few words about yourself..." readOnly />
+        <textarea className="slogan" value={data.slogan || ''} placeholder="Your personal slogan..." readOnly />
+        <textarea className="bio" value={data.bio || ''} placeholder="A few words about yourself..." readOnly />
       </div>
     </div>
   );
