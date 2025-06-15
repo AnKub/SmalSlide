@@ -45,16 +45,18 @@
   .avatar-section {
     flex: 1;
     display: flex;
-    flex-direction: column;
+       flex-direction: column;
     align-items: center;
 
     .avatar-img {
       width: 150px;
       height: 150px;
-      border-radius: 50%;
+        padding: 1rem;
+      border-radius: 45%;
        border: 1px solid #fa6603;
       object-fit: cover;
     }
+    
 
     .upload-btn {
       margin-top: 1rem;
@@ -80,12 +82,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 12px;    
+    gap: 5px;    
     color: #fff;
 
     p, input {
-      font-size: 18px;
-      max-width: 50%;
+      font-size: 16px;
+      max-width: 80%;
     }
 
     input {

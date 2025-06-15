@@ -1,5 +1,5 @@
 import '../../styles/style-user/UserProfile.scss';
-import defaultAvatar from '/svg/avatar.png';
+import defaultAvatar from '/svg/avatar.svg';
 import { useState } from 'react';
 
 type EditProfileFormProps = {
@@ -78,15 +78,8 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
             className="bio"
             value={formData.bio}
             onChange={handleChange}
-            placeholder="A few words about yourself..."
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
+            placeholder="A few words about yourself..."          />
+     
         </div>
 
         <div className="info-section">
@@ -96,6 +89,13 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
             value={formData.phone}
             onChange={handleChange}
             placeholder="Phone number"
+          />     
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
           />
           <input
             type="url"
