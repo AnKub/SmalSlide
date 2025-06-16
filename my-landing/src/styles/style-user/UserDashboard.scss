@@ -37,13 +37,15 @@
     .actions {
       display: flex;
       justify-content: center;
+      gap:1rem;
 
       .button {
-        background-color: #ffffff22;
-        border: 1px solid #fff;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 8px;
+        padding: 10px;
+      border: 1px solid #fa6603;
+      border-radius: 10px;
+      background: linear-gradient(75deg, #000, #1e1001, #fa6603);
+      background-size: 200% 200%;
+      animation: glow 10s ease infinite;
         cursor: pointer;
         transition: background 0.3s;
 

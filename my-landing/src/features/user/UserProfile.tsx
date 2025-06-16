@@ -31,7 +31,6 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
     data.email ||
     data.dob;
 
-
   return (
     <div className="user-profile-container">
       <button className="edit-button" onClick={onEditClick}>Edit</button>
@@ -42,11 +41,14 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
           <button className="upload-btn">Upload</button>
         </div>
 
-        <div className="info-section">
-          <p><strong>Name:</strong> {data.name || 'any info'}</p>          
-          <p><strong>Country:</strong> {data.country || 'any info'}</p>
-          <p><strong>City:</strong> {data.city || 'any info'}</p>
-        </div>
+      <div className="info-section">
+          <p className="label-name">Who you gonna call?</p><br />
+          <p className="label-name"><strong>{data.name || 'No info'}</strong></p>
+           {data.dob && (
+           <p><strong>{data.dob}</strong> </p>)}
+           <p><strong>{data.country || 'No info'}</strong></p>
+           <p><strong>{data.city || 'No info'}</strong></p>
+      </div>
       </div>
 
       {hasExtraInfo && (
@@ -72,48 +74,24 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
 
           <div className="info-section readonly-fields">
             {data.phone && (
-              <input
-                type="text"
-                value={data.phone}
-                readOnly
-                placeholder="Phone number"
-              />
+              <a href={`tel:${data.phone}`}>{data.phone}</a>
             )}
             {data.github && (
-              <a
-                href={data.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {data.github}
+              <a href={data.github} target="_blank" rel="noopener noreferrer">
+                <strong>GitHub</strong>
               </a>
             )}
             {data.linkedin && (
-              <a
-                href={data.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {data.linkedin}
+              <a href={data.linkedin} target="_blank" rel="noopener noreferrer">
+                <strong>Linkedin</strong>
               </a>
             )}
             {data.email && (
-              <a
-                href={`mailto:${data.email}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {data.email}
+              <a href={`mailto:${data.email}`} target="_blank" rel="noopener noreferrer">
+               <strong>Mail</strong>
               </a>
             )}
-            {data.dob && (
-              <input
-                type="date"
-                value={data.dob}
-                readOnly
-              />
-            )}
-          </div>
+           </div>
         </div>
       )}
     </div>

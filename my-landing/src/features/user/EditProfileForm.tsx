@@ -57,11 +57,42 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
           <button className="upload-btn">Upload</button>
         </div>
 
-        <div className="info-section">
-          <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
-          <input type="text" name="country" value={formData.country} onChange={handleChange} placeholder="Country" />
-          <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder="City" />
-        </div>
+       <div className="info-sectionEd">
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Name"
+          />
+
+          {formData.dob !== undefined && (
+            <input
+              type="date"
+              name="dob"
+              value={formData.dob}
+              onChange={handleChange}
+              placeholder="Date of Birth"
+            />
+          )}
+
+              <input
+                type="text"
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                placeholder="Country"
+              />
+
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                placeholder="City"
+              />
+            </div>
+
       </div>
 
       <div className="extra-columns-wrapper">
@@ -82,7 +113,7 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
      
         </div>
 
-        <div className="info-section">
+        <div className="info-sectionEd">
           <input
             type="text"
             name="phone"
@@ -110,13 +141,7 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
             value={formData.linkedin}
             onChange={handleChange}
             placeholder="LinkedIn profile link"
-          />
-          <input
-            type="date"
-            name="dob"
-            value={formData.dob}
-            onChange={handleChange}
-          />
+          />      
         </div>
       </div>
     </form>

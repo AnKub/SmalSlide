@@ -19,7 +19,7 @@ function App() {
   return (
     <MantineProvider theme={theme}>
       <Router>
-        <Suspense fallback={<div>Loading..</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Philo />} />
