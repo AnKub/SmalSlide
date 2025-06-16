@@ -23,11 +23,11 @@ const Header = () => {
         <Link to="/" className="header__logo">Nice</Link>
 
         <div className="header__links">
-          <Link to="/">Home</Link>
-          <Link to="/nytnews">NY-Times</Link>
-          <Link to="/philo">Philo</Link>
+          <Link to="/">Philo</Link>
+          <Link to="/nytnews">NY-Times</Link>         
           <Link to="/library">Library</Link>
-          <Link to="/weather">Weather</Link>
+          <Link to="/weather">Weather</Link> 
+          <Link to="/philo">About us</Link>
         </div>
 
         <div className="header__extras">

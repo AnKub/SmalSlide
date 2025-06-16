@@ -25,7 +25,7 @@ function App() {
               <Route path="/" element={<Philo />} />
               <Route path="/nytnews" element={<NYTNews />} />
               <Route path="/library" element={<Library />} />
-              <Route path="/hone" element= {<Home />}/>
+              <Route path="/philo" element= {<Home />}/>
               <Route path="/user" element={<UserDashboard />} />
             {/* <Route
                 path="/user"

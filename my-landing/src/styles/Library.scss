@@ -114,12 +114,13 @@
 .circle-button {
   width: 40px;
   height: 40px;
-  background-color: #111;
+   background: linear-gradient(-35deg, #000000, #1e1001);
     opacity: 0.95;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+    border: 1px solid #fa6603;
   color: white;
   font-size: 1rem;
   cursor: pointer;
@@ -159,10 +160,9 @@
   }
 
   .menu-item {
-    background-color: #111;
-    opacity: 0;
-    color: #fff;
-    border: 1px solid #555;
+    border: 1px solid #fa6603;
+    background: linear-gradient(-35deg, #000000, #1e1001);
+ 
     padding: 0.6rem 1.2rem;
     margin: 0.3rem 0;
     border-radius: 1rem;
