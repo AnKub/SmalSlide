@@ -85,12 +85,12 @@
     gap: 5px;    
     color: #fff;
 
-    p, input {
+    p, input, a {
       font-size: 16px;
       max-width: 80%;
     }
 
-    input {
+    input,a {
       padding: 8px;
       border-radius: 10px;
      border: 1px solid #fa6603;
@@ -180,10 +180,49 @@
   gap: 1rem;
 }
 
-.readonly-fields input {
-  background-color: transparent;
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  font-style: italic;
+.readonly-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  input,
+  a {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #fa6603;
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: #f5f5f5;
+    font-size: 15px;
+    font-style: italic;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(250, 102, 3, 0.5);
+    }
+
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    word-break: break-all;
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(250, 102, 3, 0.2), transparent);
+    padding: 10px;
+    border-radius: 12px;
+
+    &:hover {
+      background: rgba(250, 102, 3, 0.3);
+      color: #fff;
+      text-decoration: underline;
+    }
+  }
+
+  input[type='date'] {
+    background-color: #1e1e1e;
+    color-scheme: dark;
+  }
 }
 
