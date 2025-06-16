@@ -22,10 +22,10 @@ function App() {
         <Suspense fallback={<div>Loading..</div>}>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Philo />} />
               <Route path="/nytnews" element={<NYTNews />} />
               <Route path="/library" element={<Library />} />
-              <Route path="/philo" element={<Philo />} />
+              <Route path="/hone" element= {<Home />}/>
               <Route path="/user" element={<UserDashboard />} />
             {/* <Route
                 path="/user"
