@@ -10,7 +10,7 @@
 
 .ghost-wrapper {
   position: absolute;
-  top: 40%;
+  top: 30%;
   left: 100vw;
   animation: floatGhostWave 12s linear forwards;
 }
@@ -29,7 +29,7 @@
   // border: 2px solid black;
   border-radius: 12px;
   padding: 5px 10px;
-  font-weight:400;
+  font-weight:normal;
   animation: fadeInOut 4s ease-in-out;
   white-space: nowrap;
 }
