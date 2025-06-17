@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import GhostAnnouncer from './components/GhostAnnouncer/GhostAnnouncer';
 import './styles/Layout.scss';
 
 const Layout = () => {
@@ -22,6 +23,7 @@ const Layout = () => {
   return (
     <div className={`layout ${bgClass}`}>
       <Header />
+      <GhostAnnouncer />
       <main>
         <Outlet />
       </main>

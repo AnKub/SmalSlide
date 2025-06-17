@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import ProfileCardFlip from './ProfileCardFlip';
 import UserProfile from './UserProfile';
 import EditProfileForm from './EditProfileForm';
-import GhostAnnouncer from '../../components/GhostAnnouncer/GhostAnnouncer';
 
 const UserDashboard = () => {
   const [userName, setUserName] = useState('User');
@@ -27,7 +26,6 @@ const UserDashboard = () => {
           <button className="button" onClick={handleEditClick}>Edit Profile</button>
           <button className="button">Logout</button>
         </div>
-        <GhostAnnouncer />
       </div>
 
      <div className="profile-page-wrapper">

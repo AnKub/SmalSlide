@@ -42,7 +42,6 @@ const UserProfile = ({ onEditClick }: UserProfileProps) => {
         </div>
 
       <div className="info-section">
-          <p className="label-name">Who you gonna call?</p><br />
           <p className="label-name"><strong>{data.name || 'No info'}</strong></p>
            {data.dob && (
            <p><strong>{data.dob}</strong> </p>)}
