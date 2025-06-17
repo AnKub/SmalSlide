@@ -11,20 +11,20 @@ const bubbleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const triggerGhost = () => {
     setShowGhost(true);
-    setTimeout(() => setShowBubble(true), 1000); // Через 1с
-    bubbleTimer.current = setTimeout(() => setShowBubble(false), 2000); // Через 2с
-    setTimeout(() => setShowGhost(false), 8000); // Припустимо рух 8 секунд
+    setTimeout(() => setShowBubble(true), 3000); 
+    bubbleTimer.current = setTimeout(() => setShowBubble(false), 5000); 
+    setTimeout(() => setShowGhost(false), 30000); 
   };
 
   const resetInactivityTimer = () => {
     if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
-    inactivityTimer.current = setTimeout(triggerGhost, 3000); // 30 секунд бездіяльності
+    inactivityTimer.current = setTimeout(triggerGhost, 3000); 
   };
 
   useEffect(() => {
     document.addEventListener('mousemove', resetInactivityTimer);
     document.addEventListener('keydown', resetInactivityTimer);
-    resetInactivityTimer(); // Запускаємо з самого початку
+    resetInactivityTimer(); 
 
     return () => {
       document.removeEventListener('mousemove', resetInactivityTimer);
