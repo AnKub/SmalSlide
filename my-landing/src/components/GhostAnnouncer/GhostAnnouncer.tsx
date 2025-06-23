@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import defaultAvatar from '/svg/avatar.svg';
 import './GhostAnnouncer.scss';
 
-const INACTIVITY_DELAY = 4000; 
+const INACTIVITY_DELAY = 5000; 
 const GHOST_DURATION = 10000;  
 const BUBBLE_APPEAR_TIME = GHOST_DURATION / 2; 
 const BUBBLE_DURATION = GHOST_DURATION - BUBBLE_APPEAR_TIME; 
