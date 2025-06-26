@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import '../styles/Philo.scss';
+import './Philo.scss';
 
 const Section = ({ id, activeId, setActiveId, title, image, text, className }: any) => {
   const flicker = activeId === id;

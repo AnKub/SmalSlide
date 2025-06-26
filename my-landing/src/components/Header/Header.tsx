@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import MiniWeather from "./MiniWeather";
+import MiniWeather from "../MiniWeather/MiniWeather";
 import defaultAvatar from '/svg/avatar.svg'; 
-import '../styles/Header.scss';
+import './Header.scss';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useWeather } from "../Hooks/useWeather";
+import { useWeather } from "../../Hooks/useWeather";
 import { Container, Button, Card, Text, Image, Loader } from "@mantine/core";
-import styles from "../styles/Weather.module.scss";
+import styles from "./Weather.module.scss";
 
 const Weather: React.FC = () => {
   const { weather, error, loading, fetchWeather, loadFromCache } = useWeather();

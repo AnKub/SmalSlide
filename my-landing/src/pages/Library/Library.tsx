@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/Library.scss";
+import "./Library.scss";
 
 interface ArtObject {
   objectID: number;

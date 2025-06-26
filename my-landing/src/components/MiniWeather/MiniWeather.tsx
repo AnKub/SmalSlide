@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useWeather } from "../Hooks/useWeather";
+import { useWeather } from "../../Hooks/useWeather";
 import { Image, Text } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { IconAlertCircle } from "@tabler/icons-react";
-import styles from "../styles/MiniWeather.module.scss";
+import styles from "./MiniWeather.module.scss";
 
 const MiniWeather: React.FC = () => {
   const { weather, fetchWeather, setError, error, loadFromCache } = useWeather();

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../styles/TextSection.scss';
+import './TextSection.scss';
 import StarImage from '/img/star.webp';
 
 const TextSection = () => {
