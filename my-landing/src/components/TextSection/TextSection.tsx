@@ -25,8 +25,8 @@ As stars age and hydrogen is exhausted, they begin to fuse helium into carbon. T
 But the process has a limit. When a star finally begins to create iron, the game changes. Unlike previous elements, iron does not release energy when fused — it demands it. The core collapses under its own gravity, and in massive stars, this triggers a supernova.
 This dramatic death scatters elements across the cosmos — seeding future stars, planets, and even us. The iron in your blood was forged in the heart of a dying star.
 Iron doesn’t just end a star — it begins a world.`, 
-      showMore: 'Show More',
-      showLess: 'Show Less',
+      showMore: 'more',
+      showLess: 'less',
       toggleLang: 'Укр'
     },
     uk: {
@@ -36,7 +36,7 @@ Iron doesn’t just end a star — it begins a world.`,
 Але цей процес має межу. Коли зірка починає створювати залізо — все змінюється. На відміну від попередніх елементів, залізо не виділяє енергії при злитті — навпаки, воно її поглинає. Ядро зірки обвалюється під дією власної гравітації, і в масивних зірках це спричиняє наднову.
 Ця драматична смерть розкидає елементи по всьому космосу — формуючи майбутні зірки, планети й навіть нас. Залізо в твоїй крові було створене в серці вмираючої зірки.
 Залізо не лише завершує життя зірки — воно починає новий світ.`,
-      showMore: 'Показати більше',
+      showMore: 'Показати',
       showLess: 'Сховати',
       toggleLang: 'Eng'
     }
