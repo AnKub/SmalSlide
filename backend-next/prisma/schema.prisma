@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // для старту можна SQLite, потім легко перейти на PostgreSQL
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  avatar    String?  // шлях до аватарки
+  contacts  String?  // JSON-рядок з контактами
+  createdAt DateTime @default(now())
+}
