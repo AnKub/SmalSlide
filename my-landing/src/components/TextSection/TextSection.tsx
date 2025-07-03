@@ -27,7 +27,7 @@ This dramatic death scatters elements across the cosmos — seeding future stars
 Iron doesn’t just end a star — it begins a world.`, 
       showMore: 'more',
       showLess: 'Less',
-      toggleLang: 'Укр'
+      toggleLang: 'UA'
     },
     uk: {
       title: 'Життєвий цикл зірок: від гелію до заліза',
@@ -38,7 +38,7 @@ Iron doesn’t just end a star — it begins a world.`,
 Залізо не лише завершує життя зірки — воно починає новий світ.`,
       showMore: 'Показати',
       showLess: 'Сховати',
-      toggleLang: 'Eng'
+      toggleLang: 'EN'
     }
   };
 
