@@ -24,7 +24,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_key';
     });
 
     if (!user) {
-      return NextResponse.json({ error: 'User not fo' }, { status: 404 });
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
     return NextResponse.json({ user });
