@@ -1,39 +1,15 @@
-import '../../styles/style-user/UserProfile.scss';
-import defaultAvatar from '/svg/avatar.svg';
 import { useState } from 'react';
+import { User } from '../../types';
 
 type EditProfileFormProps = {
-  onSave: () => void;
+  user: User | null;
+  onSave: (updatedUser: User) => void;
   onCancel: () => void;
 };
 
-type UserProfileData = {
-  name: string;
-  email: string;
-  country: string;
-  city: string;
-  slogan: string;
-  bio: string;
-  phone: string;
-  github: string;
-  linkedin: string;
-  dob: string;
-};
-
-const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
-  const initialData: UserProfileData = JSON.parse(localStorage.getItem('userProfile') || '{}');
-
-  const [formData, setFormData] = useState<UserProfileData>({
-    name: initialData.name || '',
-    email: initialData.email || '',
-    country: initialData.country || '',
-    city: initialData.city || '',
-    slogan: initialData.slogan || '',
-    bio: initialData.bio || '',
-    phone: initialData.phone || '',
-    github: initialData.github || '',
-    linkedin: initialData.linkedin || '',
-    dob: initialData.dob || '',
+const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
+  const [formData, setFormData] = useState<User>({
+    ...user
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,107 +17,47 @@ const EditProfileForm = ({ onSave }: EditProfileFormProps) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('userProfile', JSON.stringify(formData));
-    onSave();
+    const token = localStorage.getItem('token');
+    const res = await fetch('http://localhost:3000/api/user/profile', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(formData)
+    });
+    const data = await res.json();
+    onSave(data.user);
   };
 
   return (
     <form className="user-profile-container" onSubmit={handleSubmit}>
       <button type="submit" className="edit-button">Save</button>
-
+      <button type="button" className="edit-button" onClick={onCancel}>Cancel</button>
       <div className="profile-glass">
         <div className="avatar-section">
-          <img src={defaultAvatar} alt="User avatar" className="avatar-img" />
-          <button className="upload-btn">Upload</button>
+          <img src={formData.avatar || '/svg/avatar.svg'} alt="User avatar" className="avatar-img" />
+          <button className="upload-btn" type="button">Upload</button>
         </div>
-
-       <div className="info-sectionEd">
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Name"
-          />
-
-          {formData.dob !== undefined && (
-            <input
-              type="date"
-              name="dob"
-              value={formData.dob}
-              onChange={handleChange}
-              placeholder="Date of Birth"
-            />
-          )}
-
-              <input
-                type="text"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                placeholder="Country"
-              />
-
-              <input
-                type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                placeholder="City"
-              />
-            </div>
-
+        <div className="info-sectionEd">
+          <input type="text" name="name" value={formData.name || ''} onChange={handleChange} placeholder="Name" />
+          <input type="date" name="dob" value={formData.dob || ''} onChange={handleChange} placeholder="Date of Birth" />
+          <input type="text" name="country" value={formData.country || ''} onChange={handleChange} placeholder="Country" />
+          <input type="text" name="city" value={formData.city || ''} onChange={handleChange} placeholder="City" />
+        </div>
       </div>
-
       <div className="extra-columns-wrapper">
         <div className="extra-section">
-          <textarea
-            name="slogan"
-            className="slogan"
-            value={formData.slogan}
-            onChange={handleChange}
-            placeholder="Your personal slogan..."
-          />
-          <textarea
-            name="bio"
-            className="bio"
-            value={formData.bio}
-            onChange={handleChange}
-            placeholder="A few words about yourself..."          />
-     
+          <textarea name="slogan" className="slogan" value={formData.slogan || ''} onChange={handleChange} placeholder="Your personal slogan..." />
+          <textarea name="bio" className="bio" value={formData.bio || ''} onChange={handleChange} placeholder="A few words about yourself..." />
         </div>
-
         <div className="info-sectionEd">
-          <input
-            type="text"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder="Phone number"
-          />     
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
-          <input
-            type="url"
-            name="github"
-            value={formData.github}
-            onChange={handleChange}
-            placeholder="GitHub profile link"
-          />
-          <input
-            type="url"
-            name="linkedin"
-            value={formData.linkedin}
-            onChange={handleChange}
-            placeholder="LinkedIn profile link"
-          />      
+          <input type="text" name="phone" value={formData.phone || ''} onChange={handleChange} placeholder="Phone number" />
+          <input type="email" name="email" value={formData.email || ''} onChange={handleChange} placeholder="Email" />
+          <input type="url" name="github" value={formData.github || ''} onChange={handleChange} placeholder="GitHub profile link" />
+          <input type="url" name="linkedin" value={formData.linkedin || ''} onChange={handleChange} placeholder="LinkedIn profile link" />
         </div>
       </div>
     </form>
