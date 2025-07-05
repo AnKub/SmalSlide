@@ -8,13 +8,26 @@ type EditProfileFormProps = {
 };
 
 const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
-  const [formData, setFormData] = useState<User>({
-    ...user
-  });
+  const [formData, setFormData] = useState<User>(user || {});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const token = localStorage.getItem('token');
+    const form = new FormData();
+    form.append('avatar', file);
+    const res = await fetch('http://localhost:3000/api/user/avatar', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: form
+    });
+    const data = await res.json();
+    setFormData(prev => ({ ...prev, avatar: data.url }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,7 +52,13 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
       <div className="profile-glass">
         <div className="avatar-section">
           <img src={formData.avatar || '/svg/avatar.svg'} alt="User avatar" className="avatar-img" />
-          <button className="upload-btn" type="button">Upload</button>
+     
+          {/* <input
+            type="file"
+            accept="image/*"
+            onChange={handleAvatarChange}
+            style={{ display: 'block', marginTop: '8px' }}
+          /> */}
         </div>
         <div className="info-sectionEd">
           <input type="text" name="name" value={formData.name || ''} onChange={handleChange} placeholder="Name" />
