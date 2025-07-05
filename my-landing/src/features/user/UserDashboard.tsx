@@ -3,6 +3,8 @@ import ProfileCardFlip from './ProfileCardFlip';
 import UserProfile from './UserProfile';
 import EditProfileForm from './EditProfileForm';
 import { User } from '../../types';
+import '../../style/style-user/UserDashboard.scss';
+
 
 const UserDashboard = () => {
   const [user, setUser] = useState<User | null>(null);

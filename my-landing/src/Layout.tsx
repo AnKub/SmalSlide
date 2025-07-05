@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import ScrollToTopButton from './components/ScrollToTopButton';
+import Header from '../src/components/Header/Header';
+import Footer from '../src/components/Footer/Footer';
+import ScrollToTopButton from '../src/components/ScrollToTopButton/ScrollToTopButton';
 import GhostAnnouncer from './components/GhostAnnouncer/GhostAnnouncer';
 import './styles/Layout.scss';
 
