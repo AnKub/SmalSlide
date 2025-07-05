@@ -26,28 +26,54 @@ const LoginRegister = () => {
     setError('');
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setError('');
+  setIsLoading(true);
 
-    try {
-      if (mode === 'register') {
-        if (password !== confirmPassword) {
-          throw new Error('Passwords do not match');
-        }
-        console.log('Register:', { username, email, password });
-      } else {
-        console.log('Login:', { email, password });
+  try {
+    if (mode === 'register') {
+      if (password !== confirmPassword) {
+        throw new Error('Passwords do not match');
       }
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong');
-      setTimeout(() => setError(''), 3000);
-    } finally {
-      setIsLoading(false);
+      const res = await fetch('http://localhost:3000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password,
+          name: username
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Registration failed');
+      setMode('login');
+      setError('Registration successful! Please log in.');
+      setPassword('');
+      setConfirmPassword('');
+      setUsername('');
+      return;
+    } else {
+      const res = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Login failed');
+      localStorage.setItem('token', data.token);
+      navigate('/user');
     }
-  };
-
+  } catch (err: any) {
+    setError(err.message || 'Something went wrong');
+    setTimeout(() => setError(''), 3000);
+  } finally {
+    setIsLoading(false);
+  }
+};
   return (
     <div className="page login-register-page">
       <button

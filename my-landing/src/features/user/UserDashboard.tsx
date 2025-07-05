@@ -23,8 +23,12 @@ const UserDashboard = () => {
     setUser(updatedUser);
     setIsEditing(false);
   };
+  const handleLogout = () => {
+  localStorage.removeItem('token');
+  window.location.href = '/login'; 
+};
   const handleCancel = () => setIsEditing(false);
-
+  
   return (
     <div className="user-dashboard">
       <div className="welcome-card">
@@ -32,7 +36,7 @@ const UserDashboard = () => {
         <p className="description">This is your personal space. More features coming soon.</p>
         <div className="actions">
           <button className="button" onClick={handleEditClick}>Edit Profile</button>
-          <button className="button">Logout</button>
+          <button className="button" onClick={handleLogout}>Logout</button>
         </div>
       </div>
 
