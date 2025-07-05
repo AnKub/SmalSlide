@@ -53,12 +53,12 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
         <div className="avatar-section">
           <img src={formData.avatar || '/svg/avatar.svg'} alt="User avatar" className="avatar-img" />
      
-          {/* <input
+          <input
             type="file"
             accept="image/*"
             onChange={handleAvatarChange}
             style={{ display: 'block', marginTop: '8px' }}
-          /> */}
+          />
         </div>
         <div className="info-sectionEd">
           <input type="text" name="name" value={formData.name || ''} onChange={handleChange} placeholder="Name" />
