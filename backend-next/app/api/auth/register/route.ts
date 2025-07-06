@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../lib/prisma';
 import bcrypt from 'bcryptjs';
 
-// Обробка preflight-запиту
+
 export async function OPTIONS() {
   return NextResponse.json(
     {},

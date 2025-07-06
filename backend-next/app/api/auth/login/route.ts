@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_key';
 
-// Додаємо обробку preflight-запиту
+
 export async function OPTIONS() {
   return NextResponse.json(
     {},
