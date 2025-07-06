@@ -12,6 +12,10 @@ const LoginRegister = () => {
   const [error, setError] = useState('');
   const [clicked, setClicked] = useState(false);
 
+  // стейти для видимості паролів
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const handleBackClick = () => {
@@ -26,54 +30,55 @@ const LoginRegister = () => {
     setError('');
   };
 
- const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError('');
-  setIsLoading(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
 
-  try {
-    if (mode === 'register') {
-      if (password !== confirmPassword) {
-        throw new Error('Passwords do not match');
+    try {
+      if (mode === 'register') {
+        if (password !== confirmPassword) {
+          throw new Error('Passwords do not match');
+        }
+        const res = await fetch('http://localhost:3000/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            password,
+            name: username
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Registration failed');
+        setMode('login');
+        setError('Registration successful! Please log in.');
+        setPassword('');
+        setConfirmPassword('');
+        setUsername('');
+        return;
+      } else {
+        const res = await fetch('http://localhost:3000/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            password
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Login failed');
+        localStorage.setItem('token', data.token);
+        navigate('/user');
       }
-      const res = await fetch('http://localhost:3000/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          password,
-          name: username
-        })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Registration failed');
-      setMode('login');
-      setError('Registration successful! Please log in.');
-      setPassword('');
-      setConfirmPassword('');
-      setUsername('');
-      return;
-    } else {
-      const res = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          password
-        })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Login failed');
-      localStorage.setItem('token', data.token);
-      navigate('/user');
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong');
+      setTimeout(() => setError(''), 3000);
+    } finally {
+      setIsLoading(false);
     }
-  } catch (err: any) {
-    setError(err.message || 'Something went wrong');
-    setTimeout(() => setError(''), 3000);
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
+
   return (
     <div className="page login-register-page">
       <button
@@ -115,12 +120,23 @@ const LoginRegister = () => {
 
             <label>
               Password:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  className="show-password-btn"
+                  onClick={() => setShowPassword((v) => !v)}
+                  tabIndex={-1}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? '🙈' : '👁️'}
+                </button>
+              </div>
             </label>
 
             {error && <div className="error-message">{error}</div>}
@@ -156,22 +172,44 @@ const LoginRegister = () => {
 
             <label>
               Password:
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  className="show-password-btn"
+                  onClick={() => setShowPassword((v) => !v)}
+                  tabIndex={-1}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? '🙈' : '👁️'}
+                </button>
+              </div>
             </label>
 
             <label>
               Confirm Password:
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  className="show-password-btn"
+                  onClick={() => setShowConfirmPassword((v) => !v)}
+                  tabIndex={-1}
+                  aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showConfirmPassword ? '🙈' : '👁️'}
+                </button>
+              </div>
             </label>
 
             {error && <div className="error-message">{error}</div>}

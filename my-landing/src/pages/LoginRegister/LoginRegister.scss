@@ -141,6 +141,30 @@
       transform: rotateY(180deg);
     }
   }
+.password-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.show-password-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-left: 8px;
+  padding: 0 4px;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.show-password-btn:focus {
+  outline: none;
+  color: #333;
+}
+
+
+
 
   @keyframes glow {
     0% { background-position: 0% 50%; }
