@@ -141,20 +141,32 @@
       transform: rotateY(180deg);
     }
   }
-.password-input-wrapper {
+  
+  
+  .password-input-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 2.2em; 
+  box-sizing: border-box;
 }
 
 .show-password-btn {
+  position: absolute;
+  right: 0.7em;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.2em;
-  margin-left: 8px;
-  padding: 0 4px;
   color: #888;
+  padding: 0 4px;
+  z-index: 2;
   transition: color 0.2s;
 }
 
@@ -162,8 +174,6 @@
   outline: none;
   color: #333;
 }
-
-
 
 
   @keyframes glow {
