@@ -12,7 +12,7 @@ const LoginRegister = () => {
   const [error, setError] = useState('');
   const [clicked, setClicked] = useState(false);
 
-  // стейти для видимості паролів
+ 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
