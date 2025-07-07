@@ -36,16 +36,13 @@ const LoginRegister = () => {
 
     try {
       if (mode === 'register') {
-        // Валідація імені
         if (username.trim().length < 3) {
           throw new Error('Name must be at least 3 characters');
         }
-        // Валідація email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
           throw new Error('Invalid email address');
         }
-        // Валідація пароля
         const passwordRegex = /^(?=.*[A-Za-z]).{5,}$/;
         if (!passwordRegex.test(password)) {
           throw new Error('Password must be at least 5 characters and contain at least one letter');
@@ -71,7 +68,6 @@ const LoginRegister = () => {
         setUsername('');
         return;
       } else {
-        // Для логіну можна додати просту перевірку email і пароля
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
           throw new Error('Invalid email address');
@@ -106,7 +102,7 @@ const LoginRegister = () => {
         className={`home-button ${clicked ? 'clicked' : ''}`}
         onClick={handleBackClick}
       >
-        Home
+        Back
       </button>
 
       <div className={`form-wrapper flip-container ${mode === 'register' ? 'flipped' : ''}`}>
