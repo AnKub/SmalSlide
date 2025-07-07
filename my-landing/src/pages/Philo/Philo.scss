@@ -173,7 +173,6 @@
 .absurdism .text-block.flicker {
   box-shadow: 0 0 25px #d0aaff;
 }
-
 @media (max-width: 900px) {
   .contact-page {
     .section {
@@ -192,9 +191,15 @@
     .cards-section {
       flex-direction: column;
       align-items: center;
+      gap: 2.5rem; 
+      margin-top: 4rem;
 
       .card {
-        width: 80%;
+        width: 95%;
+        min-width: unset;
+        max-width: 400px;
+        padding: 1.2rem 0.7rem 0.7rem;
+        margin: 0 auto;
       }
     }
   }
