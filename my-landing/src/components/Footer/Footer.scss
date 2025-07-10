@@ -1,14 +1,33 @@
 .footer {
+  background-color: #111;
+  color: #bbb;
+  padding: 40px 20px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer__logo-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .footer__logo {
+    max-height: 90px;
+    width: auto;
+  }
+}
+
+.footer__sections {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
   gap: 40px 30px;
-  padding: 40px 20px 20px 20px;
   width: 100%;
-  background-color: #111;
-  color: #bbb;
-  box-sizing: border-box;
+  max-width: 1100px;
 }
 
 .footer__section {
@@ -18,22 +37,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-.footer__logo-section {
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.footer__logo img {
-  max-height: 90px;
-  width: auto;
-  max-width: 100%;
-  display: block;
 }
 
 .footer__title {
@@ -92,26 +95,23 @@
   }
 }
 
-
+/* Адаптація для планшетів */
 @media (max-width: 900px) {
-  .footer {
-    flex-direction: column;
-    align-items: center;
+  .footer__logo-section {
+    display: none;
+  }
+
+  .footer__sections {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 20px;
+    width: 100%;
+    max-width: 600px;
     text-align: center;
-    gap: 30px;
-    padding: 32px 10px 10px 10px;
   }
 
   .footer__section {
     align-items: center;
-    text-align: center;
-    max-width: 350px;
-    width: 100%;
-    margin-bottom: 18px;
-  }
-
-  .footer__logo-section {
-    margin-bottom: 18px;
   }
 
   .footer__socials {
@@ -119,20 +119,16 @@
   }
 }
 
-
+/* Адаптація для мобільних */
 @media (max-width: 600px) {
   .footer {
-    padding: 20px 4vw 8px 4vw;
-    gap: 18px;
+    padding: 20px 10px;
+    gap: 20px;
   }
 
-  .footer__section {
-    max-width: 100%;
-    margin-bottom: 12px;
-  }
-
-  .footer__logo img {
-    max-height: 30px;
+  .footer__sections {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
   .footer__title {
