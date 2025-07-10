@@ -95,8 +95,7 @@
   }
 }
 
-/* Адаптація для планшетів */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .footer__logo-section {
     display: none;
   }
@@ -119,7 +118,7 @@
   }
 }
 
-/* Адаптація для мобільних */
+
 @media (max-width: 600px) {
   .footer {
     padding: 20px 10px;

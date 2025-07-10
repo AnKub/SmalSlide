@@ -3,9 +3,9 @@ import './Footer.scss';
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer__logo-section">
+      {/* <div className="footer__logo-section">
         <img src="svg/lo.png" alt="Logo" className="footer__logo" />
-      </div>
+      </div> */}
 
       <div className="footer__sections">
         <div className="footer__section">
@@ -26,16 +26,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="footer__section">
-          <h4 className="footer__title">Legal</h4>
-          <ul className="footer__list">
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Cookie Policy</a></li>
-          </ul>
-        </div>
 
-        <div className="footer__section">
+             <div className="footer__section">
           <h4 className="footer__title">Follow Us</h4>
           <div className="footer__socials">
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
@@ -52,6 +44,17 @@ const Footer = () => {
             </a>
           </div>
         </div>
+
+        <div className="footer__section">
+          <h4 className="footer__title">Legal</h4>
+          <ul className="footer__list">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+
+   
       </div>
     </footer>
   );
