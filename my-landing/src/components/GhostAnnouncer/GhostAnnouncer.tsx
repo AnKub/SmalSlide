@@ -5,7 +5,7 @@ import './GhostAnnouncer.scss';
 const INACTIVITY_DELAY = 30000; 
 const GHOST_DURATION = 10000;  
 const BUBBLE_APPEAR_TIME = GHOST_DURATION / 2; 
-const BUBBLE_DURATION = GHOST_DURATION - BUBBLE_APPEAR_TIME; 
+ 
 
 const GhostAnnouncer = () => {
   const [showGhost, setShowGhost] = useState(false);
