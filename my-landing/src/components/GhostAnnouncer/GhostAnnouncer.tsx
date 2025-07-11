@@ -47,7 +47,7 @@ const GhostAnnouncer = () => {
     <div className="ghost-container">
       {showGhost && (
         <div className="ghost-wrapper">
-          {showBubble && <div className="ghost-bubble">Who you gonna call?</div>}
+          {showBubble && <div className="ghost-bubble">WHO Y GONNA CALL?</div>}
           <img src={defaultAvatar} alt="Ghost" className="ghost-image" />
         </div>
       )}
