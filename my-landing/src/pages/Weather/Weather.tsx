@@ -1,32 +1,23 @@
-// Weather.tsx
-import React, { useEffect, useState, useCallback } from "react";
-import { useWeather } from "../../Hooks/useWeather";
-import { Container, Button, Card, Text, Image, Loader } from "@mantine/core";
-import styles from "./Weather.module.scss";
+import React, { useEffect, useState } from 'react';
+import { useWeather } from '../../Hooks/useWeather';
+import { Container, Button, Card, Text, Image, Loader } from '@mantine/core';
+import styles from './Weather.module.scss';
 
 const Weather: React.FC = () => {
-  const { weather, error, loading, fetchWeather, loadFromCache } = useWeather();
-  const [city, setCity] = useState("");
-  const [debouncedCity, setDebouncedCity] = useState("");
+  const { weather, error, loading, fetchWeatherByCity, loadFromCache, setError } = useWeather();
+  const [city, setCity] = useState('');
 
-  // Debounce input
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedCity(city);
-    }, 1000); // 1 секунда затримки
-    return () => clearTimeout(handler);
-  }, [city]);
-
- 
   useEffect(() => {
     loadFromCache();
   }, []);
 
-  const handleFetch = useCallback(() => {
-    if (debouncedCity.trim()) {
-      fetchWeather(debouncedCity.trim());
+  const handleFetch = () => {
+    if (!city.trim()) {
+      setError('Please enter a city name.');
+      return;
     }
-  }, [debouncedCity, fetchWeather]);
+    fetchWeatherByCity(city.trim());
+  };
 
   return (
     <Container className={styles.container}>
@@ -34,25 +25,21 @@ const Weather: React.FC = () => {
         <input
           type="text"
           className={styles.input}
-          placeholder="Enter city (English preferred)"
+          placeholder="Enter city"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <Button onClick={handleFetch} className={styles.button} disabled={!debouncedCity}>
+        <Button onClick={handleFetch} className={styles.button}>
           Refresh Weather
         </Button>
 
-        <Text className={`${styles.error} ${error ? styles.visible : ""}`}>
-          {error || ""}
-        </Text>
-
+        {error && <Text className={styles.error}>{error}</Text>}
         {loading && <Loader color="blue" className={styles.loader} />}
       </div>
 
       {weather && (
         <Card className={styles.card}>
           <Text className={styles.cityName}>{weather.name}</Text>
-
           <div className={styles.weatherDetails}>
             <div className={styles.leftSide}>
               <Image
@@ -60,14 +47,10 @@ const Weather: React.FC = () => {
                 alt="weather icon"
                 className={styles.weatherIcon}
               />
-              <Text className={styles.weatherDescription}>
-                {weather.weather[0].description}
-              </Text>
+              <Text className={styles.weatherDescription}>{weather.weather[0].description}</Text>
             </div>
             <div className={styles.rightSide}>
-              <Text className={styles.temperature}>
-                {Math.round(weather.main.temp)}°C
-              </Text>
+              <Text className={styles.temperature}>{Math.round(weather.main.temp)}°C</Text>
             </div>
           </div>
         </Card>
