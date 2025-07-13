@@ -99,20 +99,20 @@
   }
 }
 
-@media (max-width: 768px) {
-  .header__nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+// @media (max-width: 768px) {
+//   .header__nav {
+//     flex-direction: column;
+//     align-items: flex-start;
+//   }
 
-  .header__links {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
+//   .header__links {
+//     justify-content: flex-start;
+//     flex-wrap: wrap;
+//   }
 
-  .header__extras {
-    width: 100%;
-    justify-content: flex-end;
-    margin-top: 0.5rem;
-  }
-}
+//   .header__extras {
+//     width: 100%;
+//     justify-content: flex-end;
+//     margin-top: 0.5rem;
+//   }
+// }
