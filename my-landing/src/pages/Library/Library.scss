@@ -88,12 +88,13 @@
   @media (max-width: 900px) {
     .library-section {
       .section {
-        flex-direction: column;
+        align-items: flex-start;
 
         .image-block img {
           width: 100%;
           height: auto;
           max-height: 250px;
+          max-width: 250px;
         }
 
         .text-block .description {
@@ -102,20 +103,26 @@
       }
     }
   }
+  .circle-menu-container {
+  position: fixed;
+  top: 20%;
+}
 }
 
 .circle-menu-container {
   position: fixed;
   top: 18%;
-  right: 1.5rem;
+  right: 2rem;
   z-index: 20;
 }
 
 .circle-button {
   width: 40px;
   height: 40px;
-   background: linear-gradient(-35deg, #000000, #1e1001);
+   background: linear-gradient(-270deg, #000000, #1e1001, #fa6603);
     opacity: 0.95;
+     animation: glow 15s ease infinite;
+      background-size: 200% 200%;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -128,13 +135,13 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
 .circle-menu {
   position: absolute;
   top: 60px;
-  // right: 0; 
+  right: 1.5rem; 
   list-style: none;
   padding: 0;
   margin: 0;
@@ -157,6 +164,8 @@
     .menu-item:nth-child(2) { animation-delay: 0.2s; }
     .menu-item:nth-child(3) { animation-delay: 0.3s; }
     .menu-item:nth-child(4) { animation-delay: 0.4s; }
+    .menu-item:nth-child(5) { animation-delay: 0.5s; }
+    .menu-item:nth-child(6) { animation-delay: 0.6s; }
   }
 
   .menu-item {
@@ -165,11 +174,12 @@
  
     padding: 0.6rem 1.2rem;
     margin: 0.3rem 0;
+    // right: 1.5rem;
     border-radius: 1rem;
     cursor: pointer;
     text-align: center;
     font-weight: bold;
-    transform: translateX(20px);
+    transform: translateX(160px);
   }
 }
 
