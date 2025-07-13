@@ -1,30 +1,48 @@
-import React, { useEffect } from "react";
+// Weather.tsx
+import React, { useEffect, useState, useCallback } from "react";
 import { useWeather } from "../../Hooks/useWeather";
 import { Container, Button, Card, Text, Image, Loader } from "@mantine/core";
 import styles from "./Weather.module.scss";
 
 const Weather: React.FC = () => {
   const { weather, error, loading, fetchWeather, loadFromCache } = useWeather();
+  const [city, setCity] = useState("");
+  const [debouncedCity, setDebouncedCity] = useState("");
 
+  // Debounce input
   useEffect(() => {
-    loadFromCache(); 
+    const handler = setTimeout(() => {
+      setDebouncedCity(city);
+    }, 1000); // 1 секунда затримки
+    return () => clearTimeout(handler);
+  }, [city]);
+
+ 
+  useEffect(() => {
+    loadFromCache();
   }, []);
+
+  const handleFetch = useCallback(() => {
+    if (debouncedCity.trim()) {
+      fetchWeather(debouncedCity.trim());
+    }
+  }, [debouncedCity, fetchWeather]);
 
   return (
     <Container className={styles.container}>
       <div className={styles.inputWrapper}>
         <input
-            type="text"
-            className={styles.input}
-            placeholder="Enter city"
+          type="text"
+          className={styles.input}
+          placeholder="Enter city (English preferred)"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
         />
-        <Button onClick={fetchWeather} className={styles.button}>
+        <Button onClick={handleFetch} className={styles.button} disabled={!debouncedCity}>
           Refresh Weather
         </Button>
 
-        <Text
-          className={`${styles.error} ${error ? styles.visible : ""}`}
-        >
+        <Text className={`${styles.error} ${error ? styles.visible : ""}`}>
           {error || ""}
         </Text>
 
