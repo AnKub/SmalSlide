@@ -8,7 +8,7 @@ const Philo = lazy(() => import('./pages/Philo/Philo'));
 const Login = lazy(() => import('./pages/LoginRegister/LoginRegister'));
 const Weather = lazy(() => import('./pages/Weather/Weather'));
 const Library = lazy(() => import('./pages/Library/Library'));
-const UserDashboard = lazy(() => import('./features/user/UserDashboard'));
+const UserDashboard = lazy(() => import('./features/user/userdashbord/UserDashboard'));
 
 import Layout from './Layout';
 import ProtectedRoute from './routes/ProtectedRoute';

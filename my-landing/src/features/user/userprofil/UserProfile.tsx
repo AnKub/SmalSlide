@@ -1,6 +1,6 @@
 import defaultAvatar from '/svg/avatar.svg';
-import { User } from '../../types';
-import '../../style/style-user/UserProfil.scss';
+import { User } from '../../../types';
+import './UserProfile.scss';
 
 type UserProfileProps = {
   user: User | null;

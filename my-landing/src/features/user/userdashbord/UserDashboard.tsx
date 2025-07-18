@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import ProfileCardFlip from './ProfileCardFlip';
-import UserProfile from './UserProfile';
-import EditProfileForm from './EditProfileForm';
-import { User } from '../../types';
-import '../../style/style-user/UserDashboard.scss';
+import ProfileCardFlip from '../ProfileCardFlip';
+import UserProfile from '../userprofil/UserProfile';
+import EditProfileForm from '../EditProfileForm';
+import { User } from '../../../types';
+import './UserDashboard.scss';
 
 
 const UserDashboard = () => {
