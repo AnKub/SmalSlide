@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { User } from '../../types';
 
 type EditProfileFormProps = {
@@ -10,6 +10,10 @@ type EditProfileFormProps = {
 const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
   const [formData, setFormData] = useState<User>(user || {});
 
+  useEffect(() => {
+    if (user) setFormData(user);
+  }, [user]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -18,14 +22,17 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
     const token = localStorage.getItem('token');
     const form = new FormData();
     form.append('avatar', file);
+
     const res = await fetch('http://localhost:3000/api/user/avatar', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
       body: form
     });
+
     const data = await res.json();
     setFormData(prev => ({ ...prev, avatar: data.url }));
   };
@@ -33,6 +40,7 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
+
     const res = await fetch('http://localhost:3000/api/user/profile', {
       method: 'PATCH',
       headers: {
@@ -41,18 +49,18 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
       },
       body: JSON.stringify(formData)
     });
+
     const data = await res.json();
     onSave(data.user);
   };
 
   return (
     <form className="user-profile-container" onSubmit={handleSubmit}>
-      <button type="submit" className="edit-button" onClick={onCancel}>Save</button>
-      {/* <button type="button" className="edit-button" onClick={onCancel}>Cancel</button> */}
+      <button type="submit" className="edit-button">Save</button>
+
       <div className="profile-glass">
         <div className="avatar-section">
           <img src={formData.avatar || '/svg/avatar.svg'} alt="User avatar" className="avatar-img" />
-     
           <input
             type="file"
             accept="image/*"
@@ -67,6 +75,7 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
           <input type="text" name="city" value={formData.city || ''} onChange={handleChange} placeholder="City" />
         </div>
       </div>
+
       <div className="extra-columns-wrapper">
         <div className="extra-section">
           <textarea name="slogan" className="slogan" value={formData.slogan || ''} onChange={handleChange} placeholder="Your personal slogan..." />
@@ -79,6 +88,8 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
           <input type="url" name="linkedin" value={formData.linkedin || ''} onChange={handleChange} placeholder="LinkedIn profile link" />
         </div>
       </div>
+
+      <button type="button" className="edit-button" onClick={onCancel}>Cancel</button>
     </form>
   );
 };

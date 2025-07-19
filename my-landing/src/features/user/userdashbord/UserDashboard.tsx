@@ -5,7 +5,6 @@ import EditProfileForm from '../EditProfileForm';
 import { User } from '../../../types';
 import './UserDashboard.scss';
 
-
 const UserDashboard = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -21,16 +20,19 @@ const UserDashboard = () => {
   }, []);
 
   const handleEditClick = () => setIsEditing(true);
+
   const handleSave = (updatedUser: User) => {
     setUser(updatedUser);
     setIsEditing(false);
   };
+
   const handleLogout = () => {
-  localStorage.removeItem('token');
-  window.location.href = '/login'; 
-};
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
+
   const handleCancel = () => setIsEditing(false);
-  
+
   return (
     <div className="user-dashboard">
       <div className="welcome-card">
