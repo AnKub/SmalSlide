@@ -9,29 +9,33 @@ const UserDashboard = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  useEffect(() => {
+  const fetchUser = async () => {
     const token = localStorage.getItem('token');
     if (!token) return;
-    fetch('http://localhost:3000/api/user/profile', {
+    const res = await fetch('http://localhost:3000/api/user/profile', {
       headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(res => res.json())
-      .then(data => setUser(data.user));
+    });
+    const data = await res.json();
+    setUser(data.user);
+  };
+
+  useEffect(() => {
+    fetchUser();
   }, []);
 
   const handleEditClick = () => setIsEditing(true);
 
-  const handleSave = (updatedUser: User) => {
-    setUser(updatedUser);
+  const handleSave = async () => {
+    await fetchUser(); 
     setIsEditing(false);
   };
+
+  const handleCancel = () => setIsEditing(false);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     window.location.href = '/login';
   };
-
-  const handleCancel = () => setIsEditing(false);
 
   return (
     <div className="user-dashboard">

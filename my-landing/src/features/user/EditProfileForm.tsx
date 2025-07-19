@@ -56,7 +56,7 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
 
   return (
     <form className="user-profile-container" onSubmit={handleSubmit}>
-      <button type="submit" className="edit-button">Save</button>
+      {/* <button type="submit" className="edit-button">Save</button> */}
 
       <div className="profile-glass">
         <div className="avatar-section">
@@ -89,7 +89,7 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
         </div>
       </div>
 
-      <button type="button" className="edit-button" onClick={onCancel}>Cancel</button>
+      <button type="button" className="edit-button" onClick={onCancel}>Save</button>
     </form>
   );
 };

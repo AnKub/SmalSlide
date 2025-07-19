@@ -50,7 +50,7 @@ const UserProfile = ({ user, onEditClick }: UserProfileProps) => {
               <a href={user.github} target="_blank" rel="noopener noreferrer"><strong>GitHub</strong></a>
             )}
             {user.linkedin && (
-              <a href={user.linkedin} target="_blank" rel="noopener noreferrer"><strong>LinkedIn</strong></a>
+              <a href={user.linkedin} target="_blank" rel="noopener noreferrer"><strong>Linkedin</strong></a>
             )}
             {user.email && (
               <a href={`mailto:${user.email}`} target="_blank" rel="noopener noreferrer"><strong>Mail</strong></a>
