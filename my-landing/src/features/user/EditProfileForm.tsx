@@ -82,6 +82,7 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
           <textarea name="bio" className="bio" value={formData.bio || ''} onChange={handleChange} placeholder="A few words about yourself..." />
         </div>
         <div className="info-sectionEd">
+           <button type="button" className="edit-button cancel" onClick={onCancel}>Cancel</button>
           <input type="text" name="phone" value={formData.phone || ''} onChange={handleChange} placeholder="Phone number" />
           <input type="email" name="email" value={formData.email || ''} onChange={handleChange} placeholder="Email" />
           <input type="url" name="github" value={formData.github || ''} onChange={handleChange} placeholder="GitHub profile link" />
@@ -89,7 +90,8 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
         </div>
       </div>
 
-      <button type="button" className="edit-button" onClick={onCancel}>Save</button>
+     <button type="submit" className="edit-button">Save</button>
+
     </form>
   );
 };
