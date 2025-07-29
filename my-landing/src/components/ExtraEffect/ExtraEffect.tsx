@@ -15,6 +15,18 @@ const ExtraEffect = () => {
     return () => observer.disconnect(); 
   }, []);
 
+  class User {
+    constructor(name){
+      this.name= name;
+    }
+    saiHi() {
+      console.log(`Hello, my name is ${this.name}`);
+    }
+  }
+
+
+
+
   const text = {
     en: 'This is an extra effect component that can be expanded or collapsed.',
     uk: 'Це компонент додаткового ефекту, який можна розгорнути або згортати.'
