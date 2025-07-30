@@ -18,7 +18,7 @@ const ExtraEffect = () => {
 
   const text = {
     en: 'This is an extra effect component that can be expanded or collapsed.',
-    uk: 'Це компонент додаткового ефекту, який можна розгорнути або згортати.'
+    uk: 'Це компонент додаткового ефекту,'
   };
   return (
     <div className={`extra-effect ${isVisisble ? 'visible' : 'hidden'}`} 
