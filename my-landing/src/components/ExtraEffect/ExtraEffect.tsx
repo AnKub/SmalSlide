@@ -21,26 +21,32 @@ const ExtraEffect = () => {
     en: 'This is an extra effect component that can be expanded or collapsed.',
     uk: 'Це компонент додаткового ефекту, який можна розгорнути або згортати.'
   };
-  return (
-    <div className={`extra-effect ${isVisisble ? 'visible' : 'hidden'}`} 
-    ref={sectionRef}>
-         <div className="extra-effect__content">
-              <div style={{position: 'relative', height: '500px', overflow: 'hidden'}}>
-                <ShapeBlur
-                  variation={0}
-                  pixelRatioProp={window.devicePixelRatio || 1}
-                  shapeSize={0.5}
-                  roundness={0.5}
-                  borderSize={0.05}
-                  circleSize={0.5}
-                  circleEdge={1}
-                /> <p>{text[language]}</p>
-              </div>       
+ return (
+  <div style={{ position: 'relative', height: '700px', overflow: 'hidden' }}>
+    <div className="shape-blur-wrapper">
+      <ShapeBlur
+        variation={0}
+        pixelRatioProp={window.devicePixelRatio || 1}
+        shapeSize={0.5}
+        roundness={0.2}
+        borderSize={0.05}
+        circleSize={0.5}
+        circleEdge={1}
+      />
+    </div>
+
+    <div
+      className={`extra-effect ${isVisisble ? 'visible' : 'hidden'}`}
+      ref={sectionRef}
+    >
+      <div className="extra-effect__content">
+        <p>{text[language]}</p>
         <button onClick={() => setLanguage(prev => (prev === 'en' ? 'uk' : 'en'))}>
-          {language === 'en' ? 'Switch to Ukrainian' : 'Switch to English'}
+          {language === 'en' ? 'Switch to UA' : 'Switch to EN'}
         </button>
       </div>
     </div>
-  );
+  </div>
+);
 };
   export default React.memo(ExtraEffect);
