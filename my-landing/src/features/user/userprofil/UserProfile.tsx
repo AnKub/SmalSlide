@@ -30,8 +30,8 @@ const UserProfile = ({ user, onEditClick }: UserProfileProps) => {
         <div className="info-section">
           <p className="label-name"><strong>{user.name || 'No info'}</strong></p>
           {user.dob && <p><strong>{user.dob}</strong></p>}
-          <p><strong>{user.contacts?.country || 'No info'}</strong></p>
-          <p><strong>{user.contacts?.city || 'No info'}</strong></p>
+          <p><strong>{user?.country || 'No info'}</strong></p>
+          <p><strong>{user?.city || 'No info'}</strong></p>
         </div>
       </div>
       {hasExtraInfo && (

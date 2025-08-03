@@ -10,14 +10,9 @@ type EditProfileFormProps = {
 const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
  const [formData, setFormData] = useState<User & { [key: string]: any }>(user || {});
 
- useEffect(() => {
-  if (user) {
-    setFormData({
-      ...user,
-      ...user.contacts, 
-    });
-  }
-}, [user]);
+  useEffect(() => {
+    if (user) setFormData(user);
+  }, [user]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
