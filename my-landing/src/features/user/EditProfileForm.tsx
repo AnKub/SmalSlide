@@ -8,11 +8,16 @@ type EditProfileFormProps = {
 };
 
 const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
-  const [formData, setFormData] = useState<User>(user || {});
+ const [formData, setFormData] = useState<User & { [key: string]: any }>(user || {});
 
-  useEffect(() => {
-    if (user) setFormData(user);
-  }, [user]);
+ useEffect(() => {
+  if (user) {
+    setFormData({
+      ...user,
+      ...user.contacts, 
+    });
+  }
+}, [user]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -37,36 +42,54 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
     setFormData(prev => ({ ...prev, avatar: data.url }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const token = localStorage.getItem('token');
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  const token = localStorage.getItem('token');
 
-    const res = await fetch('http://localhost:3000/api/user/profile', {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(formData)
-    });
+  const { name, avatar, dob, country, city, slogan, bio, phone, email, github, linkedin } = formData;
 
-    const data = await res.json();
-    onSave(data.user);
+  const contacts = {
+    dob,
+    country,
+    city,
+    slogan,
+    bio,
+    phone,
+    email,
+    github,
+    linkedin,
   };
+
+  const res = await fetch('http://localhost:3000/api/user/profile', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar, contacts }),
+  });
+
+  const data = await res.json();
+  onSave(data.user);
+};
+
 
   return (
     <form className="user-profile-container" onSubmit={handleSubmit}>
-      {/* <button type="submit" className="edit-button">Save</button> */}
+      <button type="submit" className="edit-button">Save</button>
 
       <div className="profile-glass">
         <div className="avatar-section">
           <img src={formData.avatar || '/svg/avatar.svg'} alt="User avatar" className="avatar-img" />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleAvatarChange}
-            style={{ display: 'block', marginTop: '8px' }}
-          />
+       <label className="upload-btn">
+    Upload
+    <input         
+      type="file"
+      accept="image/*"
+      onChange={handleAvatarChange}      
+      style={{ display: 'none' }}
+    />
+  </label>
         </div>
         <div className="info-sectionEd">
           <input type="text" name="name" value={formData.name || ''} onChange={handleChange} placeholder="Name" />

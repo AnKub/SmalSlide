@@ -25,9 +25,10 @@ const UserDashboard = () => {
 
   const handleEditClick = () => setIsEditing(true);
 
-  const handleSave = async () => {
-    await fetchUser(); 
-    setIsEditing(false);
+  const handleSave = async (updatedUser:User) => {
+    setUser(updatedUser); 
+      await fetchUser(); 
+  setIsEditing(false);
   };
 
   const handleCancel = () => setIsEditing(false);
