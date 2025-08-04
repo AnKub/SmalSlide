@@ -1,25 +1,18 @@
-export type User = {
-  id?: string;
-  name?: string;
-  email?: string;
+export interface Contacts {
+  dob?: string;
   country?: string;
   city?: string;
-  slogan?: string;
-  bio?: string;
   phone?: string;
   github?: string;
   linkedin?: string;
-  dob?: string;
+}
+
+export interface User {
+  id: string;
+  name?: string;
+  email?: string;
   avatar?: string;
-  contacts?: {
-    dob?: string;
-    country?: string;
-    city?: string;
-    slogan?: string;
-    bio?: string;
-    phone?: string;
-    email?: string;
-    github?: string;
-    linkedin?: string;
-  };
-};
+  bio?: string;
+  slogan?: string;
+  contacts?: Contacts;
+}
