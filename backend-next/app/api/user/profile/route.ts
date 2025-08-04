@@ -67,43 +67,37 @@ export async function PATCH(req: NextRequest) {
   try {
     const authHeader = req.headers.get('authorization');
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { error: 'No token provided' },
-        { status: 401, headers: { 'Access-Control-Allow-Origin': '*' } }
-      );
+      return NextResponse.json({ error: 'No token provided' }, { status: 401 });
     }
+
     const token = authHeader.replace('Bearer ', '');
+    const payload = jwt.verify(token, JWT_SECRET) as { userId: string };
 
-    let payload;
-    try {
-      payload = jwt.verify(token, JWT_SECRET) as { userId: string };
-    } catch {
-      return NextResponse.json(
-        { error: 'Invalid token' },
-        { status: 401, headers: { 'Access-Control-Allow-Origin': '*' } }
-      );
-    }
+    const { name, avatar, bio, slogan, contacts } = await req.json();
 
-    const { name, contacts, avatar } = await req.json();
-
-    const user = await prisma.user.update({
+    const updatedUser = await prisma.user.update({
       where: { id: payload.userId },
       data: {
         name,
-        contacts,
         avatar,
+        bio,
+        slogan,
+        contacts,
       },
-      select: { id: true, email: true, name: true, avatar: true, contacts: true }
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        avatar: true,
+        bio: true,
+        slogan: true,
+        contacts: true,
+      }
     });
 
-    return NextResponse.json(
-      { user },
-      { status: 200, headers: { 'Access-Control-Allow-Origin': '*' } }
-    );
+    return NextResponse.json({ user: updatedUser }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error: 'Server error' },
-      { status: 500, headers: { 'Access-Control-Allow-Origin': '*' } }
-    );
+    console.error(error);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

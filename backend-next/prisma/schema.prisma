@@ -12,7 +12,9 @@ model User {
   email     String   @unique
   password  String
   name      String?
-  avatar    String?  // шлях до аватарки
-  contacts  String?  // JSON-рядок з контактами
+  avatar    String?
+  bio       String?
+  slogan    String?
+  contacts  Json?
   createdAt DateTime @default(now())
 }
