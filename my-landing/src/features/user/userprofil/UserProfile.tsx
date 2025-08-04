@@ -10,30 +10,35 @@ type UserProfileProps = {
 const UserProfile = ({ user, onEditClick }: UserProfileProps) => {
   if (!user) return <div>Loading...</div>;
 
+  const contacts = user.contacts || {};
+
   const hasExtraInfo =
     user.slogan ||
     user.bio ||
-    user.phone ||
-    user.github ||
-    user.linkedin ||
+    contacts.phone ||
+    contacts.github ||
+    contacts.linkedin ||
     user.email ||
-    user.dob;
+    contacts.dob;
 
   return (
     <div className="user-profile-container">
       <button className="edit-button" onClick={onEditClick}>Edit</button>
+
       <div className="profile-glass">
         <div className="avatar-section">
           <img src={user.avatar || defaultAvatar} alt="User avatar" className="avatar-img" />
           <button className="upload-btn">Upload</button>
         </div>
+
         <div className="info-section">
-          <p className="label-name"><strong>{user.name || 'No info'}</strong></p>
-          {user.dob && <p><strong>{user.dob}</strong></p>}
-          <p><strong>{user?.country || 'No info'}</strong></p>
-          <p><strong>{user?.city || 'No info'}</strong></p>
+          <p><strong>{user.name || 'No info'}</strong></p>
+          <p><strong>{contacts.dob || 'No info'}</strong></p>
+          <p><strong>{contacts.country || 'No info'}</strong></p>
+          <p><strong>{contacts.city || 'No info'}</strong></p>
         </div>
       </div>
+
       {hasExtraInfo && (
         <div className="extra-columns-wrapper">
           <div className="extra-section">
@@ -44,13 +49,16 @@ const UserProfile = ({ user, onEditClick }: UserProfileProps) => {
               <textarea className="bio" value={user.bio} placeholder="A few words about yourself..." readOnly />
             )}
           </div>
+
           <div className="info-section readonly-fields">
-            {user.phone && <a href={`tel:${user.phone}`}>{user.phone}</a>}
-            {user.github && (
-              <a href={user.github} target="_blank" rel="noopener noreferrer"><strong>GitHub</strong></a>
+            {contacts.phone && (
+              <a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
             )}
-            {user.linkedin && (
-              <a href={user.linkedin} target="_blank" rel="noopener noreferrer"><strong>Linkedin</strong></a>
+            {contacts.github && (
+              <a href={contacts.github} target="_blank" rel="noopener noreferrer"><strong>GitHub</strong></a>
+            )}
+            {contacts.linkedin && (
+              <a href={contacts.linkedin} target="_blank" rel="noopener noreferrer"><strong>LinkedIn</strong></a>
             )}
             {user.email && (
               <a href={`mailto:${user.email}`} target="_blank" rel="noopener noreferrer"><strong>Mail</strong></a>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { User } from '../../types';
+import { User, Contacts } from '../../types';
 
 type EditProfileFormProps = {
   user: User | null;
@@ -8,7 +8,22 @@ type EditProfileFormProps = {
 };
 
 const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
- const [formData, setFormData] = useState<User & { [key: string]: any }>(user || {});
+  const [formData, setFormData] = useState<User>({
+    id: '',
+    name: '',
+    avatar: '',
+    bio: '',
+    slogan: '',
+    contacts: {
+      dob: '',
+      country: '',
+      city: '',
+      phone: '',
+      github: '',
+      linkedin: ''
+    },
+    email: ''
+  });
 
   useEffect(() => {
     if (user) setFormData(user);
@@ -16,7 +31,18 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (['dob', 'country', 'city', 'phone', 'github', 'linkedin'].includes(name)) {
+      setFormData(prev => ({
+        ...prev,
+        contacts: { ...prev.contacts, [name]: value }
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,60 +63,46 @@ const EditProfileForm = ({ user, onSave, onCancel }: EditProfileFormProps) => {
     setFormData(prev => ({ ...prev, avatar: data.url }));
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const token = localStorage.getItem('token');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
 
-  const { name, avatar, dob, country, city, slogan, bio, phone, email, github, linkedin } = formData;
+    const { name, avatar, bio, slogan, contacts } = formData;
 
-  const contacts = {
-    dob,
-    country,
-    city,
-    slogan,
-    bio,
-    phone,
-    email,
-    github,
-    linkedin,
+    const res = await fetch('http://localhost:3000/api/user/profile', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ name, avatar, bio, slogan, contacts })
+    });
+
+    const data = await res.json();
+    onSave(data.user);
   };
-
-  const res = await fetch('http://localhost:3000/api/user/profile', {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ name, avatar, contacts }),
-  });
-
-  const data = await res.json();
-  onSave(data.user);
-};
-
 
   return (
     <form className="user-profile-container" onSubmit={handleSubmit}>
       <button type="submit" className="edit-button">Save</button>
-
       <div className="profile-glass">
         <div className="avatar-section">
           <img src={formData.avatar || '/svg/avatar.svg'} alt="User avatar" className="avatar-img" />
-       <label className="upload-btn">
-    Upload
-    <input         
-      type="file"
-      accept="image/*"
-      onChange={handleAvatarChange}      
-      style={{ display: 'none' }}
-    />
-  </label>
+          <label className="upload-btn">
+            Upload
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarChange}
+              style={{ display: 'none' }}
+            />
+          </label>
         </div>
         <div className="info-sectionEd">
           <input type="text" name="name" value={formData.name || ''} onChange={handleChange} placeholder="Name" />
-          <input type="date" name="dob" value={formData.dob || ''} onChange={handleChange} placeholder="Date of Birth" />
-          <input type="text" name="country" value={formData.country || ''} onChange={handleChange} placeholder="Country" />
-          <input type="text" name="city" value={formData.city || ''} onChange={handleChange} placeholder="City" />
+          <input type="date" name="dob" value={formData.contacts?.dob || ''} onChange={handleChange} placeholder="Date of Birth" />
+          <input type="text" name="country" value={formData.contacts?.country || ''} onChange={handleChange} placeholder="Country" />
+          <input type="text" name="city" value={formData.contacts?.city || ''} onChange={handleChange} placeholder="City" />
         </div>
       </div>
 
@@ -100,16 +112,14 @@ const handleSubmit = async (e: React.FormEvent) => {
           <textarea name="bio" className="bio" value={formData.bio || ''} onChange={handleChange} placeholder="A few words about yourself..." />
         </div>
         <div className="info-sectionEd">
-           <button type="button" className="edit-button cancel" onClick={onCancel}>Cancel</button>
-          <input type="text" name="phone" value={formData.phone || ''} onChange={handleChange} placeholder="Phone number" />
-          <input type="email" name="email" value={formData.email || ''} onChange={handleChange} placeholder="Email" />
-          <input type="url" name="github" value={formData.github || ''} onChange={handleChange} placeholder="GitHub profile link" />
-          <input type="url" name="linkedin" value={formData.linkedin || ''} onChange={handleChange} placeholder="LinkedIn profile link" />
+          <button type="button" className="edit-button cancel" onClick={onCancel}>Cancel</button>
+          <input type="text" name="phone" value={formData.contacts?.phone || ''} onChange={handleChange} placeholder="Phone number" />
+          <input type="url" name="github" value={formData.contacts?.github || ''} onChange={handleChange} placeholder="GitHub profile link" />
+          <input type="url" name="linkedin" value={formData.contacts?.linkedin || ''} onChange={handleChange} placeholder="LinkedIn profile link" />
         </div>
       </div>
 
-     <button type="submit" className="edit-button">Save</button>
-
+      <button type="submit" className="edit-button">Save</button>
     </form>
   );
 };
