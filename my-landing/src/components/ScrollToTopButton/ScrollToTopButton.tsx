@@ -31,7 +31,7 @@ const ScrollToTopButton = () => {
       className={`scroll-to-top-button ${clicked ? 'clicked' : ''}`}
       onClick={scrollToTop}
     >
-      ↑
+      ^
     </button>
   );
 };
