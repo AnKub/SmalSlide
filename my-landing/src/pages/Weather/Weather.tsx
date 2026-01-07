@@ -39,7 +39,10 @@ const Weather: React.FC = () => {
 
       {weather && (
         <Card className={styles.card}>
-          <Text className={styles.cityName}>{weather.name}</Text>
+          <div className={styles.locationInfo}>
+            <Text className={styles.cityName}>{weather.name}</Text>
+            <Text className={styles.countryName}>{weather.sys.country}</Text>
+          </div>
           <div className={styles.weatherDetails}>
             <div className={styles.leftSide}>
               <Image

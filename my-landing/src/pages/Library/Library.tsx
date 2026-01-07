@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, memo } from "react";
 import "./Library.scss";
 
 interface ArtObject {
@@ -24,14 +24,52 @@ const CATEGORIES = [
 
 const formatCategoryForQuery = (category: string) => category.toLowerCase();
 
-const Library = () => {
+const Library = memo(() => {
   const [artworks, setArtworks] = useState<ArtObject[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Architecture");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchArtworks = async (category: string) => {
+  // Кешування для Metropolitan Museum API
+  const cacheKey = (category: string) => `met_artworks_${category.toLowerCase()}`;
+  const CACHE_DURATION = 10 * 60 * 1000; // 10 хвилин
+  
+  const getCachedArtworks = (category: string) => {
+    try {
+      const cached = localStorage.getItem(cacheKey(category));
+      if (cached) {
+        const { data, timestamp } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_DURATION) {
+          return data;
+        }
+      }
+    } catch (e) {
+      console.warn('Cache read error:', e);
+    }
+    return null;
+  };
+  
+  const setCachedArtworks = (category: string, data: ArtObject[]) => {
+    try {
+      localStorage.setItem(cacheKey(category), JSON.stringify({
+        data,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      console.warn('Cache write error:', e);
+    }
+  };
+
+  const fetchArtworks = useCallback(async (category: string) => {
+    // Перевірити кеш
+    const cachedData = getCachedArtworks(category);
+    if (cachedData) {
+      setArtworks(cachedData);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(false);
     setArtworks([]);
@@ -51,36 +89,53 @@ const Library = () => {
       }
 
       const objectIDs = searchData.objectIDs.slice(0, 20);
-      const artworkPromises = objectIDs.map((id: number) =>
-        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-          .then((res) => {
-            if (!res.ok) throw new Error("Object API error");
-            return res.json();
-          })
-      );
+      
+      // Оптимізація: обмежити кількість одночасних запитів
+      const batchSize = 5;
+      const artworks: ArtObject[] = [];
+      
+      for (let i = 0; i < objectIDs.length; i += batchSize) {
+        const batch = objectIDs.slice(i, i + batchSize);
+        const artworkPromises = batch.map((id: number) =>
+          fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+            .then((res) => {
+              if (!res.ok) throw new Error("Object API error");
+              return res.json();
+            })
+            .catch(() => null) // Ігнорувати помилки окремих об'єктів
+        );
 
-      const artworksData = await Promise.all(artworkPromises);
-      const filteredArtworks = artworksData.filter(
-        (artwork) => artwork.primaryImageSmall
-      );
+        const batchResults = await Promise.all(artworkPromises);
+        const validArtworks = batchResults.filter(
+          (artwork) => artwork && artwork.primaryImageSmall
+        );
+        artworks.push(...validArtworks);
+        
+        // Невелика пауза між batch'ами
+        if (i + batchSize < objectIDs.length) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+      }
 
-      setArtworks(filteredArtworks);
+      // Зберегти в кеш
+      setCachedArtworks(category, artworks);
+      setArtworks(artworks);
     } catch (err) {
       console.error("Error fetching artworks:", err);
       setError(true);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchArtworks(selectedCategory);
-  }, [selectedCategory]);
+  }, [selectedCategory, fetchArtworks]);
 
-  const handleCategorySelect = (category: string) => {
+  const handleCategorySelect = useCallback((category: string) => {
     setSelectedCategory(category);
     setMenuOpen(false);
-  };
+  }, []);
 
   return (
     <div className="library-page">
@@ -150,6 +205,8 @@ const Library = () => {
       </div>
     </div>
   );
-};
+});
+
+Library.displayName = 'Library';
 
 export default Library;

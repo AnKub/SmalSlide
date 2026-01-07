@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { useWeather } from '../../Hooks/useWeather';
 import { Image, Text } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
-import { IconAlertCircle } from '@tabler/icons-react';
+// Оптимізований імпорт іконки для зменшення bundle size
+import IconAlertCircle from '@tabler/icons-react/icons-js/alert-circle.js';
 import styles from './MiniWeather.module.scss';
 
-const MiniWeather: React.FC = () => {
+const MiniWeather: React.FC = memo(() => {
   const { weather, fetchWeather, setError, error, loadFromCache } = useWeather();
 
   useEffect(() => {
@@ -46,6 +47,8 @@ const MiniWeather: React.FC = () => {
       )}
     </div>
   );
-};
+});
+
+MiniWeather.displayName = 'MiniWeather';
 
 export default MiniWeather;

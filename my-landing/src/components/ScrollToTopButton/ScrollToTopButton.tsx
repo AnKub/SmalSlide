@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, memo } from 'react';
 import './ScrollToTopButton.scss';
 
-const ScrollToTopButton = () => {
+const ScrollToTopButton = memo(() => {
   const [isVisible, setIsVisible] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  const toggleVisibility = () => {
+  // Оптимізація з useCallback для запобігання зайвим ре-рендерам
+  const toggleVisibility = useCallback(() => {
     setIsVisible(window.scrollY > 300);
-  };
+  }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     setClicked(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -17,12 +18,25 @@ const ScrollToTopButton = () => {
       setClicked(false);
       setIsVisible(false);
     }, 800); 
-  };
+  }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
+    // Throttling для оптимізації scroll events
+    let timeoutId: number;
+    const throttledToggleVisibility = () => {
+      if (timeoutId) return;
+      timeoutId = window.setTimeout(() => {
+        toggleVisibility();
+        timeoutId = 0;
+      }, 100);
+    };
+
+    window.addEventListener('scroll', throttledToggleVisibility, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', throttledToggleVisibility);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [toggleVisibility]);
 
   if (!isVisible) return null;
 
@@ -30,10 +44,13 @@ const ScrollToTopButton = () => {
     <button
       className={`scroll-to-top-button ${clicked ? 'clicked' : ''}`}
       onClick={scrollToTop}
+      aria-label="Scroll to top"
     >
       ^
     </button>
   );
-};
+});
+
+ScrollToTopButton.displayName = 'ScrollToTopButton';
 
 export default ScrollToTopButton;

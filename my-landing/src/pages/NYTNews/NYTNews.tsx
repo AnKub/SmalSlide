@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback, memo } from 'react';
 import axios from 'axios';
 import './NYTNews.scss';
 
@@ -22,14 +22,54 @@ const categories = [
   { key: 'arts', label: 'Arts' },
 ];
 
-const NYTNews = () => {
+const NYTNews = memo(() => {
   const [articlesByCategory, setArticlesByCategory] = useState<Record<string, Article[]>>({});
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
 
   const apiKey = import.meta.env.VITE_NYT_API_KEY;
 
-  const fetchCategoryArticles = async (category: string) => {
+  // Кешування для збереження результатів API
+  const cacheKey = (category: string) => `nyt_articles_${category}`;
+  const CACHE_DURATION = 5 * 60 * 1000; // 5 хвилин
+  
+  const getCachedData = (category: string) => {
+    try {
+      const cached = localStorage.getItem(cacheKey(category));
+      if (cached) {
+        const { data, timestamp } = JSON.parse(cached);
+        if (Date.now() - timestamp < CACHE_DURATION) {
+          return data;
+        }
+      }
+    } catch (e) {
+      console.warn('Cache read error:', e);
+    }
+    return null;
+  };
+  
+  const setCachedData = (category: string, data: Article[]) => {
+    try {
+      localStorage.setItem(cacheKey(category), JSON.stringify({
+        data,
+        timestamp: Date.now()
+      }));
+    } catch (e) {
+      console.warn('Cache write error:', e);
+    }
+  };
+
+  const fetchCategoryArticles = useCallback(async (category: string) => {
+    // Перевірити кеш
+    const cachedData = getCachedData(category);
+    if (cachedData) {
+      setArticlesByCategory((prev) => ({
+        ...prev,
+        [category]: cachedData,
+      }));
+      return;
+    }
+
     try {
       const url =
         category === 'all'
@@ -45,27 +85,38 @@ const NYTNews = () => {
         section: item.section.toLowerCase(),
       }));
 
+      const articles = formatted.slice(0, 20);
+      
+      // Зберегти в кеш
+      setCachedData(category, articles);
+      
       setArticlesByCategory((prev) => ({
         ...prev,
-        [category]: formatted.slice(0, 20),
+        [category]: articles,
       }));
     } catch (error) {
       console.error(`Failed to fetch ${category} articles:`, error);
     }
-  };
+  }, [apiKey]);
 
   useEffect(() => {
     if (!articlesByCategory[activeCategory]) {
       fetchCategoryArticles(activeCategory);
     }
-  }, [activeCategory]);
+  }, [activeCategory, fetchCategoryArticles]);
 
-  const allArticles = Object.values(articlesByCategory).flat();
-  const filteredArticles =
-    activeCategory === 'all' ? allArticles : articlesByCategory[activeCategory] || [];
-
-  const selectedArticle = filteredArticles.find((a) => a.id === selectedArticleId);
-  const closeArticle = () => setSelectedArticleId(null);
+  // Мемоізація для оптимізації фільтрації
+  const filteredArticles = useMemo(() => {
+    const allArticles = Object.values(articlesByCategory).flat();
+    return activeCategory === 'all' ? allArticles : articlesByCategory[activeCategory] || [];
+  }, [articlesByCategory, activeCategory]);
+  
+  const selectedArticle = useMemo(() => 
+    filteredArticles.find((a) => a.id === selectedArticleId),
+    [filteredArticles, selectedArticleId]
+  );
+  
+  const closeArticle = useCallback(() => setSelectedArticleId(null), []);
 
   return (
     <div className="page blog-page">
@@ -139,6 +190,8 @@ const NYTNews = () => {
       )}
     </div>
   );
-};
+});
+
+NYTNews.displayName = 'NYTNews';
 
 export default NYTNews;

@@ -6,6 +6,7 @@ const ONE_HOUR = 60 * 60 * 1000;
 
 interface WeatherResponse {
   name: string;
+  sys: { country: string };
   main: { temp: number };
   weather: { description: string; icon: string }[];
 }
