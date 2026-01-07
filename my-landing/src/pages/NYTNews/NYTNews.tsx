@@ -29,9 +29,8 @@ const NYTNews = memo(() => {
 
   const apiKey = import.meta.env.VITE_NYT_API_KEY;
 
-  // Кешування для збереження результатів API
   const cacheKey = (category: string) => `nyt_articles_${category}`;
-  const CACHE_DURATION = 5 * 60 * 1000; // 5 хвилин
+  const CACHE_DURATION = 5 * 60 * 1000; 
   
   const getCachedData = (category: string) => {
     try {
@@ -60,7 +59,7 @@ const NYTNews = memo(() => {
   };
 
   const fetchCategoryArticles = useCallback(async (category: string) => {
-    // Перевірити кеш
+   
     const cachedData = getCachedData(category);
     if (cachedData) {
       setArticlesByCategory((prev) => ({
@@ -87,7 +86,6 @@ const NYTNews = memo(() => {
 
       const articles = formatted.slice(0, 20);
       
-      // Зберегти в кеш
       setCachedData(category, articles);
       
       setArticlesByCategory((prev) => ({
@@ -105,7 +103,6 @@ const NYTNews = memo(() => {
     }
   }, [activeCategory, fetchCategoryArticles]);
 
-  // Мемоізація для оптимізації фільтрації
   const filteredArticles = useMemo(() => {
     const allArticles = Object.values(articlesByCategory).flat();
     return activeCategory === 'all' ? allArticles : articlesByCategory[activeCategory] || [];

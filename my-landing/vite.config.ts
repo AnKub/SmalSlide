@@ -61,10 +61,11 @@ export default defineConfig({
       '@mantine/core',
       '@mantine/hooks',
       'react-router-dom',
-      'axios'
+      'axios',
+      '@tabler/icons-react'
     ],
-    // Виключення проблемних пакетів з pre-bundling
-    exclude: ['@tabler/icons-react']
+    // Виключення проблемних пакетів з pre-bundling (видалено @tabler/icons-react)
+    exclude: []
   },
   
   // CSS обробка

@@ -2,8 +2,8 @@ import React, { useEffect, memo } from 'react';
 import { useWeather } from '../../Hooks/useWeather';
 import { Image, Text } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
-// Оптимізований імпорт іконки для зменшення bundle size
-import IconAlertCircle from '@tabler/icons-react/icons-js/alert-circle.js';
+// Виправлений імпорт іконки
+import { IconAlertCircle } from '@tabler/icons-react';
 import styles from './MiniWeather.module.scss';
 
 const MiniWeather: React.FC = memo(() => {
